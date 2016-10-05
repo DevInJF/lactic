@@ -1,0 +1,11 @@
+.comment {
+    font-size: smaller;
+    font-family: fantasy;
+    color: darkgray;
+    list-style: none;
+}
+.fake-button {
+    padding: 0;
+    border: none;
+    display: inline;
+}

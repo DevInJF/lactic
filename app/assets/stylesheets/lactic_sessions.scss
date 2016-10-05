@@ -1,0 +1,121 @@
+// Place all the styles related to the LacticSessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.lactic-img{
+  opacity: 0.3;
+  width: 100vh;
+}
+.lactic-instagram-img{
+  opacity: 0.5;
+  /* margin-top: 15vh; */
+  /* margin-left: 5vw; */
+  width: 100vh;
+  border-radius: 50%;
+}
+.lactic-title{
+  height: 10vh !important;
+  text-align: center;
+}
+
+.calendar-title{
+  text-align: center;
+  font-weight: 500;
+  font-family: serif;
+}
+.session-color-define{
+
+  display: inline-flex;
+  text-align: center;
+  font-weight: 500;
+
+}
+
+.session-color-define label{
+  width: inherit;
+  text-align: center;
+}
+.location-icon{
+  float: inherit !important;
+  text-align: center !important;
+}
+
+
+
+
+@media (device-height : 568px)
+and (device-width : 320px)
+and (-webkit-min-device-pixel-ratio: 2)
+  /* and (orientation : todo: you can add orientation or delete this comment)*/ {
+
+  #invite-btn{
+    display: inline-flex;
+    margin-left: -10vw;
+  }
+  #invite-footer-title{
+    margin-right: 3vw;
+  margin-top: -3vh;
+  margin-left: -5vw;
+  }
+  .btn-invite{
+    width: 15vw;
+    height: 3vh;
+    margin-top: -2vh;
+    font-size: xx-small !important;
+    height: inherit;
+
+  }
+  .footer-h5{
+    font-size: xx-small;
+  }
+  .invite-footer{
+    height: 5vh;
+  }
+}
+@media screen and (device-aspect-ratio: 40/71) {
+
+}
+/*iPhone 6*/
+@media screen and (device-aspect-ratio: 375/667) {
+  .footer-h5{
+    font-size: xx-small;
+  }
+  #invite-footer-title{
+    margin-right: 3vw;
+    margin-top: -3vh;
+    margin-left: -5vw;
+  }
+  #invite-btn{
+    display: inline-flex;
+
+  }
+  .btn-invite{
+    width: 15vw;
+    height: 3vh;
+    margin-top: -2vh;
+    font-size: xx-small !important;
+    height: inherit;
+  }
+  .invite-footer{
+    height: 5vh;
+  }
+}
+.lactic-icon-search{
+  transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -webkit-transform: scale(0.5, 0.5);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 20%;
+}
+//.google-cal-ico img{
+//  width: 3vw;
+//  margin-left: 5vw;
+//  margin-right: 5vw;
+//}
+//@media(max-width: 768px) {
+//
+//  .google-cal-ico img{
+//    width: 10vw;
+//  }
+//}

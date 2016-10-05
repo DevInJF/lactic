@@ -1,0 +1,38 @@
+
+
+
+<div class="modal fade" id="modal_votes" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-id">Voters</h3>
+      </div>
+      <div class="modal-body">
+        <% if (@voters) %>
+
+            <ol id="UserslistFilter" class="lacticUserlist">
+              <% (@voters).each do |lactic_user_hash| %>
+                  <% (lactic_user_hash).each do |id,name| %>
+                      <li >
+                        <a>
+                          <img id="<%= "img_#{id}" %>" src="https://graph.facebook.com/<%= id%>/picture?type=small"/>
+
+                          <%if id == @user.uid %>
+                              <%= link_to name,profile_path%>
+                          <% else %>
+                              <%= link_to name,public_profile_path({:id => id})%>
+                          <% end %>
+                        </a></li>
+                  <% end %>
+              <% end %>
+            </ol>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,231 @@
+<%= javascript_include_tag "fitness/main.js" %>
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+<div class="preloader">
+  <%= image_tag "loader.gif" %>
+</div>
+<nav class="navbar">
+  <div class="container container-about">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+       <%= image_tag "LACtic.png" %>
+      </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right main-nav">
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#services">Features</a></li>
+        <li><a href="#team">About Us</a></li>
+        <% if @current_user && @current_user.uid %>
+            <li><a href="<%= profile_path %>" class="btn btn-blue">LACtic In!</a></li>
+        <% end %>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<header class="header-about" id="intro">
+  <div class="container container-about">
+    <div class="table">
+      <div class="header-about-text">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3 class="high-light typed">The online Fitness platform where endorphins released.</h3>
+            <span class="typed-cursor"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="main" class="main-view footer-padding" style="opacity: 1;">
+  <div class="container">
+    <section>
+      <div class="cut cut-top"></div>
+      <div class="container container-about">
+        <div class="row intro-tables">
+          <div class="col-md-4">
+            <div class="intro-table intro-table-1">
+              <div class="layer-blue">
+                <h5 class="white heading high-light">LACtic Schedules</h5>
+                <div class="owl-carousel owl-schedule bottom">
+                  <div class="item">
+                    <div class="schedule-row row">
+                      <div class="col-xs-6">
+                        <h5 class="white high-light">Keep track with your Month & Weekly sessions</h5>
+                      </div>
+                      <div class="col-xs-6 text-right">
+                        <h5 class="white high-light"><i class="fa fa-calendar fa-lg fa-stack-1x hover-header"></i></h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="schedule-row row">
+                      <div class="col-xs-6">
+                        <h5 class="white high-light">Follow your favorite friends, trainers & fit idols</h5>
+                      </div>
+                      <div class="col-xs-6 text-right">
+                        <h5 class="white high-light"><i class="fa fa-home fa-lg fa-stack-1x hover-header"></i></h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="schedule-row row">
+                      <div class="col-xs-6">
+                        <h5 class="white high-light">Keep updates of the nearest gyms, & public services</h5>
+                      </div>
+                      <div class="col-xs-6 text-right">
+                        <h5 class="white high-light"><i class="fa fa-user fa-lg fa-stack-1x hover-header"></i></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="intro-table intro-table-hover">
+              <h5 class="white heading hide-hover">LACtic Profile</h5>
+              <div class="bottom">
+                <h4 class="white heading small-heading no-margin regular">Stay socially active</h4>
+                <h4 class="white heading small-pt">Your professional fitness profile online</h4>
+                <a  class="btn btn-white-fill expand">More about</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="intro-table intro-table-third1 ">
+              <div class="layer-red">
+                <h5 class="white heading">Lactic Partners</h5>
+                <div class="owl-testimonials bottom">
+                  <div class="item">
+                    <h4 class="white heading high-light content">LACticate with other users</h4>
+                    <h5 class="white heading high-light author">More about</h5>
+                  </div>
+                  <div class="item">
+                    <h4 class="white heading high-light content">Find the best and nearest sessions that fits you</h4>
+                    <h5 class="white heading high-light author">More about</h5>
+                  </div>
+                  <div class="item">
+                    <h4 class="white heading high-light content">Share your Fitness daily schedule and motivate other for a healthier life style!</h4>
+                    <h5 class="white heading high-light author">More about</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="services" class="section">
+      <div class="container container-about">
+        <div class="row text-center title">
+          <h2>Features</h2>
+        </div>
+        <div class="row services">
+          <div class="col-md-4">
+            <div class="service lactic-diary-feature">
+              <div class="icon-holder">
+                <a class="btn icon icon-transparent" ><span class="fa-stack fa-lg">
+              <i class="fa fa-square-o fa-stack-2x text-blue"></i>
+              <i class="fa fa-calendar text-blue fa-lg fa-stack-1x"></i></span></a>
+              </div>
+              <h4 class="heading text-blue">Fitness Diary</h4>
+              <div class="description list-group">
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Keep your past &amp; future sessions scheduled and tracked</li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  See your LACtic weekly partner sessions <i class="info-icon icon_question"></i></li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Get invites to other sessions</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service lactic-follower-feature">
+              <div class="icon-holder">
+                <a class="btn icon icon-transparent" ><span class="fa-stack fa-lg">
+              <i class="fa fa-square-o fa-stack-2x text-blue"></i>
+              <i class="fa fa-search text-blue fa-lg fa-stack-1x"></i></span></a>
+              </div>
+              <h4 class="heading text-blue">Fitness Follower</h4>
+              <div class="description list-group">
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  See your friends workout plans for this week</li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Follow your favorite trainers and gyms to get all the latest updates from first source</li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Check out other LACtic users schedule and profiles that have same fitness goals as you</li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Find all the LACtic people that are nearby - you may find a new workout partner! </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="service lactic-profile-feature">
+              <div class="icon-holder">
+                <a class="btn icon icon-transparent" ><span class="fa-stack fa-lg">
+              <i class="fa fa-square-o fa-stack-2x text-blue"></i>
+              <i class="fa fa-user text-blue fa-lg fa-stack-1x"></i></span></a>
+              </div>
+              <h4 class="heading text-blue">Fitness Profile</h4>
+             <div class="description list-group">
+                <ul class="fa-ul">
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Your Fitness resume online</li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Share your Fitness interests and goals</li>
+                  <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Get and send LACtic partnering requests! <i class="fa fa-star text-yellow" aria-hidden="true"></i></li>
+                  <li><a href="#" class="btn btn-white-fill expand">More about</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cut cut-bottom"></div>
+    </section>
+    <section id="team" class="section gray-bg">
+      <div class="container container-about">
+        <div class="row title text-center">
+          <h2 class="margin-top">About Us</h2>
+        </div>
+        <div class="row">
+          <div class="col-md-4 col-about-sharon">
+            <div class="team text-center">
+              <div class="cover sharon-cover" >
+                <div class="overlay text-center">
+                  <h3 class="white">Founder</h3>
+                </div>
+              </div>
+              <%= link_to  'https://www.linkedin.com/in/sharona-nachum-35084617', id: "sharon-link" do %>
+                  <%= image_tag "https://graph.facebook.com/10153011850791938/picture?type=large", :class => "circular team-img" %>
+              <% end %>
+              <div class="title">
+                <h4>Sharon Nachum</h4>
+                <h5 class="muted regular">Founder</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<%= render 'layouts/shared/footer'  %>
+
+<!-- Holder for mobile navigation -->
+<div class="mobile-nav">
+  <ul>
+  </ul>
+  <a href="#" class="close-link"><i class="arrow_up"></i></a>
+</div>

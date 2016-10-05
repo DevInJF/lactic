@@ -1,0 +1,30 @@
+
+<div id="search_header" >
+
+    <li class="nav-item ">
+      <%= label_tag 'Search', nil, class: "search_fb"  %>
+      <%= text_field_tag :user_search %>
+
+
+      <%= hidden_field_tag :user_search_id, :id=>'user_search_id' %>
+
+      <!--<input type="text" class="text-input" id="location" value="" />-->
+      <span id="filter-count"></span>
+      <!--</fieldset>-->
+      <!--</form>-->
+
+
+      <% if JSON.load(facebook_friends_call) %>
+          <ol id="UserslistFilter" class="fblist">
+            <% JSON.load(facebook_friends_call).each do |osm_user| %>
+            <!--<tr >-->
+                <li ><a id='<%= osm_user["picture"]%>' text='<%=raw osm_user["name"]%>' onClick='onFriendClick(this)'><img id="<%= "img_#{osm_user["id"]}" %>" src='<%= osm_user["picture"]%>' class="lactic_request_profile_img"/><label><%=raw osm_user["name"].gsub('%q',"'")%></label></a></li>
+            <!--</tr>-->
+
+            <% end %>
+          </ol>
+      <% end %>
+
+    </li>
+
+</div>

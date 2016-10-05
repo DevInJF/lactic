@@ -1,0 +1,25 @@
+<%= form_for(@session_replica) do |f| %>
+  <% if @session_replica.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@session_replica.errors.count, "error") %> prohibited this session_replica from being saved:</h2>
+
+      <ul>
+      <% @session_replica.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :origin_id %><br>
+    <%= f.number_field :origin_id %>
+  </div>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.datetime_select :start_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

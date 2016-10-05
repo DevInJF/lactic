@@ -1,0 +1,21 @@
+<%= link_to(id_params) do %>
+<%= form_for(@notification,:url => fetch_notification_path, id: "notification-form", :html => {:id => "notification-form", :url_params => id_params}) do |f|   %>
+
+    <div class="actions">
+      <div class="">
+
+
+        <div class="form-group">
+          <%= f.hidden_field :invites, :value=>"" %>
+          <%= f.hidden_field :notification_type, :value=>"" %>
+          <%= f.hidden_field :notification_picture, :value=>"" %>
+          <%= f.submit  "", :id => 'notify_submit', :style => "display: none;" %>
+        </div>
+
+      </div>
+
+    </div>
+
+
+<% end %>
+<% end %>

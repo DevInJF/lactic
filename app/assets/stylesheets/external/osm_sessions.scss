@@ -1,0 +1,269 @@
+// Place all the styles related to the osm_sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.osmfieldgroup{
+
+
+
+    float: none;
+    font-weight: bold;
+    border-width: 100px;
+    display: initial;
+    border-style: none;
+    cursor: pointer;
+    margin: 0;
+    overflow: visible;
+    text-decoration: none !important;
+    width: 90%;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    /*-webkit-border-radius: 3px;*/
+    /*-moz-border-radius: 3px;*/
+    /*-ms-border-radius: 3px;*/
+    /*-o-border-radius: 3px;*/
+    /*border-radius: inherit;*/
+    /*padding: 0 15px;*/
+    height: 34px;
+    /* line-height: 32px; */
+    /*-webkit-box-sizing: border-box;*/
+    /*-moz-box-sizing: inherit;*/
+    box-sizing: content-box;
+    font-size: 16px;
+    color: #333;
+    background-color: #F2F2EF;
+    border-color: rgba(233, 235, 236, 0);
+
+
+    border-radius: 25px;
+    border: 2px solid #8AC007;
+    /*padding: 20px;*/
+    /*width: 200px;*/
+    /*height: 150px;*/
+
+
+    /*filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');*/
+    /*background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b6b6b6), color-stop(100%, rgba(0, 134, 179, 0)));*/
+    /*background-image: -webkit-linear-gradient(top, #b6b6b6 0%,#FFFFFF 100%);*/
+    /*background-image: -moz-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+    /*background-image: -o-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+    /*background-image: linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+    white-space: normal;
+    display: -moz-inline-stack;
+    display: table-cell;
+
+
+  display: table-header-group;
+    /* vertical-align: initial; */
+    zoom: 1;
+//    vertical-align: middle;
+  padding: 10px;
+//  width: 400px;
+  }
+
+.new_osm_session {
+  width: 100%;
+}
+
+.osmsessiongroup {
+  margin: 0;
+  overflow: visible;
+  text-decoration: none !important;
+  width: 90%;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+  /*-webkit-border-radius: 3px;*/
+  /*-moz-border-radius: 3px;*/
+  /*-ms-border-radius: 3px;*/
+  /*-o-border-radius: 3px;*/
+  /*border-radius: inherit;*/
+  /*padding: 0 15px;*/
+  height: 34px;
+  /* line-height: 32px; */
+  /*-webkit-box-sizing: border-box;*/
+  /*-moz-box-sizing: inherit;*/
+//  box-sizing: content-box;
+  font-size: 16px;
+  color: #333;
+  background-color: #F2F2EF;
+  border-color: rgba(233, 235, 236, 0);
+
+
+  border-radius: 25px;
+  border: 2px solid #8AC007;
+  /*padding: 20px;*/
+  /*width: 200px;*/
+  /*height: 150px;*/
+
+
+  /*filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');*/
+  /*background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b6b6b6), color-stop(100%, rgba(0, 134, 179, 0)));*/
+  /*background-image: -webkit-linear-gradient(top, #b6b6b6 0%,#FFFFFF 100%);*/
+  /*background-image: -moz-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  /*background-image: -o-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  /*background-image: linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  white-space: normal;
+  display: -moz-inline-stack;
+
+  /* vertical-align: initial; */
+  zoom: 1;
+//  vertical-align: middle;
+  padding: 10px;
+//  display: inline-table;
+  display: table-cell;
+}
+
+.osmsessiongroup ol{
+
+
+  padding: inherit;
+}
+
+#osm_sessions_form {
+  text-align: -webkit-center;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+
+
+.osm_session_voters  tr li:hover ol {
+  display:block;
+}
+
+/* base nav styles */
+.osm_session_voters {
+  display:block;
+  margin:0 auto 20px;
+  border-radius: 25px;
+  border: 2px solid #8AC007;
+  position:inherit;
+  /*background-color:#6a6a6a;*/
+  font:16px Tahoma,
+  Sans-serif;
+  cursor: pointer;
+
+//  width: 30em;
+
+  height: 12em;
+  line-height: 2em;
+  /*border: 1px solid #ccc;*/
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+}
+.osm_session_voters ol {
+  padding:10px;
+  margin:0;
+}
+.osm_session_voters tr li {
+  position:relative;
+  float:left;
+  list-style-type:none;
+
+}
+.osm_session_voters ol:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.osm_session_voters tr li a {
+  display:block;
+  padding:10px 20px;
+  border-left:1px solid #999;
+  border-right:1px solid #222;
+  color:#eee;
+  text-decoration:none;
+}
+.osm_session_voters tr li a img{
+  float: left;
+}
+.osm_session_voters tr li a label{
+  align-content: center;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.osm_session_voters tr li a:focus {
+  outline:none;
+  text-decoration:underline;
+}
+.osm_session_voters tr li:first-child a {
+  border-left:none;
+}
+.osm_session_voters tr li.last a {
+  border-right:none;
+}
+.osm_session_voters a span {
+  display:block;
+  float:right;
+  margin-left:5px;
+}
+.osm_session_voters ol ol {
+  display:block;
+  width:100%;
+  position:relative;
+  left:0;
+  background:#6a6a6a;
+}
+.osm_session_voters ol ol li {
+  float:none;
+}
+.osm_session_voters ol ol a {
+  padding:5px 10px;
+  border-left:none;
+  border-right:none;
+  font-size:14px;
+}
+.osm_session_voters ol ol a:hover {
+  background-color:#555;
+}
+
+
+#osm_voters img{
+  width: 30%;
+  height: 30%;
+  padding: 15px;
+  cursor: pointer;
+
+
+}
+#osm_voters a{
+  cursor: pointer;
+  padding: 15px;
+}
+
+#osm_voters li a{
+  cursor: pointer;
+  padding: 15px;
+}
+#osm_voters li a label{
+  cursor: pointer;
+  padding: 15px;
+}
+
+#osm_voters li a:hover{
+  cursor: pointer;
+  background-color: transparent;
+}
+
+//#voter_img {
+//  width: 20%;
+//  height: 10%;
+//
+//}
+
+.hint {
+  cursor: pointer;
+  background-color: transparent;
+}
+.hint a a:hover{
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.ui-dialog .ui-dialog-content {
+//  margin-top: 100px;
+}
+
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 10px;
+  list-style: none;
+}

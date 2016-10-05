@@ -1,0 +1,100 @@
+<script>
+    var ready;
+    ready = function() {
+
+        $("#previous-settings").click(function() {
+            $("#settings-service-form").hide();
+            $("#settings-user-form").hide();
+
+            $("#main-settings").show();
+            $("#previous-settings").hide();
+
+        });
+
+
+
+        $("#user-btn").click(function() {
+           $("#settings-service-form").hide();
+           $("#main-settings").hide();
+
+           $("#settings-user-form").css('display','inline-block');
+           $("#settings-user-form").show();
+            $("#previous-settings").show();
+       });
+
+    $("#service-btn").click(function() {
+        $("#settings-user-form").hide();
+        $("#main-settings").hide();
+        $("#settings-service-form").css('display','inline-block');
+        $("#settings-service-form").show();
+        $("#previous-settings").show();
+    });
+
+    };
+//
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
+
+</script>
+
+<%= render 'layouts/shared/header'  %>
+<!--<div id="main" class="main-view footer-padding" style="opacity: 1;">-->
+
+  <!--<div class="container">-->
+
+
+
+    <!--<div class="what-is-linkedin">-->
+    <div class="row setting-head">
+    <div class="row ">
+      <div class="col-xs-12">
+          <a class="btn btn-default" href="#" id="previous-settings" >
+            <i class="fa fa-chevron-circle-left fa-lg" aria-hidden="true">  Previous</i>
+          </a>
+      </div>
+    </div>
+    <div class="row setting-head" id="main-settings">
+
+      <div class="row">
+
+        <h3 class="user-setting-headline">Edit profile as...</h3>
+        <nav id="second-top-header-settings" class="col-xs-12" role="navigation">
+          <div class="row">
+          <div class="col-xs-12 center-settings">
+            <a class="btn btn-default" href="#" id="service-btn" >
+              <i class="fa fa-university fa-2x fa-pull-left fa-border" aria-hidden="true">Public Service</i>
+            </a>
+          </div>
+          </div>
+          <div class="row">
+          <div class="col-xs-12 center-settings">
+            <a class="btn btn-primary center-user-setting" href="#" id="user-btn">
+              <i class="fa fa-user fa-2x fa-pull-right fa-border" aria-hidden="true">User</i>
+            </a>
+          </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+      <div class="row">
+        <!--<div class="row">-->
+        <div class="col-xs-12 center-settings">
+          <div id="settings-user-form" class="user-form">
+            <%= render 'form'  %>
+            <!--</div>-->
+          </div>
+          <div id="settings-service-form" class="service-form">
+            <%= render 'service_form'  %>
+          </div>
+        </div>
+        <!--<div class="col-xs-12 center-settings">-->
+         <!---->
+        <!--</div>-->
+      </div>
+      <!--<div class="row">-->
+
+      <!--</div>-->
+    </div>
+
+
+<%= render 'layouts/shared/footer'  %>

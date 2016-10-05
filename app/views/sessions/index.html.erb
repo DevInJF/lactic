@@ -1,0 +1,26 @@
+<script>
+    $(document).ready(function(){
+
+
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+        function setPosition(position) {
+
+            setCookie("osm_latitude",position.coords.latitude);
+            setCookie("osm_longitude",position.coords.longitude);
+
+            console.log(document.cookie);
+
+        }
+
+    });
+</script>
+
+
+
+

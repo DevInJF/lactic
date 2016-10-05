@@ -1,0 +1,42 @@
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for(@gmail_sign_in, :url => google_sign_in_confirm_path(@gmail_sign_in, :google_user =>  @gmail_sign_in  ),:html => {:id => "user_info_form",  :style => 'class:ajax-form;' }) do |f| %>
+<% if @gmail_sign_in.errors.any? %>
+<div id="error_explanation">
+    <h2><%= pluralize(@gmail_sign_in.errors.count, "error") %></h2>
+    <ul>
+        <% @gmail_sign_in.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+    </ul>
+</div>
+<% end %>
+<div class="form-group">
+    <div class="form-group">
+        <%= f.hidden_field :id, :value => @gmail_sign_in.id%>
+        <%= f.hidden_field :email, :value => @gmail_sign_in.email%>
+        <%= f.hidden_field :picture, :value => @gmail_sign_in.picture%>
+        <%= f.hidden_field :google_token, :value => @gmail_sign_in.google_token%>
+        <%= f.hidden_field :name, :value => @gmail_sign_in.name%>
+    </div>
+
+  <div class="col-xs-12">
+      <h1>
+        <%= f.label :name, class: 'control-label', :value => @gmail_sign_in.name%>
+      </h1>
+    </div>
+  <div class="col-xs-12">
+
+    <%= image_tag @gmail_sign_in.picture %>
+
+    </div>
+
+    <div class="actions space-left">
+        <%= f.submit 'LACtic In', class: 'btn btn-primary' %>
+    </div>
+</div>
+<% end %>
+
+
+
+

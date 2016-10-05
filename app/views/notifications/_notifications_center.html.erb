@@ -1,0 +1,38 @@
+
+
+<div>
+  <ul class="notifications_box" id="notifications_box">
+    <% if @notifications %>
+        <% (@notifications).reverse_each do | notifications_arr| %>
+            <% (notifications_arr).each do | date, notification| %>
+                    <% if notification %>
+                    <% @url =  (@email_notification_send)? "https://warm-citadel-1598.herokuapp.com#{notification["url"]}" : "#{notification["url"]}"%>
+                    <%= link_to  @url  do %>
+                        <li class="active">
+                              <div >
+                                <%= image_tag "https://graph.facebook.com/#{notification["notifier_id"]}/picture?type=small"%>
+                                <span><%=notification["message"] %></span>
+                                <% if DateTime.now()  - date.to_datetime < 1 %>
+                                    <% if ((DateTime.now()  - date.to_datetime)*24).to_i < 1 %>
+                                        <% if ((DateTime.now()  - date.to_datetime)*24*60).to_i <  1 %>
+                                            <span class="notification-date"><%="#{((DateTime.now()  - date.to_datetime)*24*60).to_i} seconds ago" %></span>
+                                        <% else %>
+                                            <span class="notification-date"><%="#{((DateTime.now()  - date.to_datetime)*24).to_i} minutes ago" %></span>
+                                        <% end %>
+                                    <% else %>
+                                        <span class="notification-date"><%="#{((DateTime.now()  - date.to_datetime)*24).to_i} hours ago" %></span>
+                                    <% end %>
+                                <% else %>
+                                    <span class="notification-date"><%=Time.zone.parse(date).strftime("%b %d at %H:%M") %></span>
+                                <% end %>
+                              </div>
+                        </li>
+                <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% else %>
+        No new notifications
+    <% end %>
+  </ul>
+</div>

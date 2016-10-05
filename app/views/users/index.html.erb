@@ -1,0 +1,35 @@
+<script>
+    $(document).ready(function() {
+        document.cookie = "time_zone=" + Date.now().getTimezoneOffset();
+
+//        alert("TIME ZONE SET "+getCookie('time_zone'));
+
+    //    $.ajax({
+//        type: "GET",
+//
+//        success: function(data)
+//        {
+//            alert(data);
+//            document.cookie = "current_access_token="+ data.split('=');
+//            document.cookie = "current_access_token_expires_in="+ extended['1'].replace('&expires','');
+//
+//            console.log("current access "+data);
+//            <!--extended = data.split('=');-->
+//            <!--extendedAT = extended['1'].replace('&expires','');-->
+////            alert(data);
+//
+//        }
+//
+    });
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+</script>

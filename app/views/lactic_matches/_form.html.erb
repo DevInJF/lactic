@@ -1,0 +1,50 @@
+<%= form_for(@lactic_match) do |f| %>
+  <% if @lactic_match.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lactic_match.errors.count, "error") %> prohibited this lactic_match from being saved:</h2>
+
+      <ul>
+      <% @lactic_match.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+
+
+      <%= f.hidden_field :status, :id=>'status' %>
+
+
+    </div>
+        <div class="field">
+
+          <%= f.hidden_field :requestor, :id=>'requestor' %>
+
+
+
+        </div>
+
+        <div class="field">
+
+
+          <%= f.hidden_field :responder, :id=>'responder' %>
+
+
+        </div>
+    <div class="field">
+
+
+      <%= f.hidden_field :responder_uid %>
+        </div>
+
+
+
+        <div class="actions">
+
+          <%= f.submit 'LACtic request!', class: 'btn btn-primary' %>
+
+        </div>
+
+
+<% end %>

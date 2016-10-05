@@ -1,0 +1,25 @@
+<div>
+  <ul class="locations_box">
+    <% if @nearest_locations &&  @nearest_locations.length > 0 %>
+        <!--<ol id="listFilter" class="locationlist">-->
+          <% @nearest_locations.each do |location| %>
+
+                <li class="active notification-place">
+                  <div >
+                    <span>
+                      <a id='<%= location["id"]%>'
+                         onClick='onLocationClick(this,"<%= location["name"].gsub('%q',"'").gsub('\\\\u0026',"&")%>")'
+                      value='<%=location["location_origin"]%>'>
+                        <%= location["name"].gsub('%q',"'").gsub('\\\\u0026',"&") %></a>
+                    </span>
+                  </div>
+                </li>
+          <% end %>
+
+        <!--</ol>-->
+    <% else %>
+        No places found nearby
+        Make sure your location is on and green on the top!
+    <% end %>
+  </ul>
+</div>

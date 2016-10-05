@@ -1,0 +1,578 @@
+<%= javascript_include_tag "fitness/main.js" %>
+<script>
+    $(document).ready(function() {
+        var URL = '<%= about_path %>'
+        var gmail_account =  '<%=@gmail_signed %>' ;
+        gmail_account = (gmail_account)? gmail_account : '';
+        if (gmail_account && gmail_account != ''){
+            $('#modal_google_sign_up').modal();
+        }
+
+        $("#signUpBtn").click(function() {
+//            facebook_sign_in=true
+            var facebook_callback = location.search.split('facebook_sign_in=')[1];
+            if (facebook_callback && (facebook_callback == 'true' || facebook_callback == true)){
+//                location.reload(true);
+
+//                window.location = '<= root_path %>';
+            }
+        });
+        $("#sharon-link").click(function() {
+//      <send_sharon_email %>
+        });
+
+        var facebook_callback =  '<%= @facebook_login_callback %>';
+        facebook_callback = facebook_callback || location.search.split('facebook_sign_in=')[1];
+//        facebook_callback = (facebook_callback && facebook_callback==true)? true : false;
+        if (facebook_callback && facebook_callback == true){
+            $("#modal_sign_up").modal("hide");
+//            $('#modal_sign_up').modal();
+
+//            window.location = URL;
+//            window.location = '<= root_path %>';
+        }
+
+
+    });
+</script>
+<div class="preloader">
+  <%= image_tag "loader.gif" %>
+  <!--<img src="/assets/loader.gif" alt="Preloader image">-->
+</div>
+<nav class="navbar">
+  <div class="container container-about">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <!--<img src="/images/fitness/logo.png" data-active-url="/images/fitness/logo-active.png" alt="">-->
+        <!--<= image_tag "logo-active.png" %>-->
+        <%= image_tag "LACtic.png" %>
+      </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right main-nav">
+        <li><a href="#intro">Intro</a></li>
+        <li><a href="#services">Features</a></li>
+        <li><a href="#team">About Us</a></li>
+        <!--<li><a href="#pricing">Pricing</a></li>-->
+        <% if @user && @user.uid %>
+            <!--<button type="submit" class="header-button hover-header" onClick="location.href='/profile'" ><i class="fa fa-user fa-lg fa-stack-2x hover-header"></i></button>-->
+            <li><a href="<%= profile_path %>" class="btn btn-blue">My Profile</a></li>
+        <% else %>
+            <% if !@gmail_sign_in ||  !@gmail_sign_in.id %>
+                <% if osm_cookie && !osm_cookie.empty? && osm_cookie.to_i != 0 && osm_cookie != 'undefined' %>
+                    <li><a data-toggle="modal" class="btn btn-blue" data-target="#modal_sign_up" type="submit" href="#" id="signUpBtn">LACtic IN</a></li>
+                <% else %>
+                    <li><a data-toggle="modal" class="btn btn-blue" data-target="#modal_sign_up" type="submit" href="#" id="signUpBtn">Sign Up</a></li>
+                <% end %>
+
+            <% else %>
+                <!--<li><a data-toggle="modal" class="btn btn-blue" data-target="#modal_google_sign_up" type="submit" href="#">Sign Up</a></li>-->
+
+            <% end %>
+      <% end %>
+
+      </ul>
+
+      <!--<ul class="nav navbar-nav navbar-right">-->
+        <!--&lt;!&ndash;<li><a data-toggle="modal" class="btn btn-blue" data-target="#modal_sign_up" type="submit" href="#">Sign Up</a></li>&ndash;&gt;-->
+      <!--</ul>-->
+
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+<header class="header-about" id="intro">
+  <div class="container container-about">
+    <div class="table">
+      <div class="header-about-text">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <!--<h3 class="light white">Take care of your body.</h3>-->
+            <!--<h1 class="white typed">It's the only place you have to live.</h1>  -->
+            <!--<h1 class="high-light white">LACtic </h1>-->
+            <h3 class="high-light typed">The online Fitness platform where endorphins released.</h3>
+            <!--<span class="typed-cursor">|</span>-->
+            <span class="typed-cursor"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div id="main" class="main-view footer-padding" style="opacity: 1;">
+  <div class="container">
+<section>
+  <div class="cut cut-top"></div>
+  <div class="container container-about">
+    <div class="row intro-tables">
+      <div class="col-md-4">
+        <!--<div class="intro-table intro-table-first">-->
+        <div class="intro-table intro-table-1">
+        <div class="layer-blue">
+          <h5 class="white heading high-light">LACtic Schedules</h5>
+          <div class="owl-carousel owl-schedule bottom">
+            <div class="item">
+              <div class="schedule-row row">
+                <div class="col-xs-6">
+                  <h5 class="white high-light">Keep track with your Month & Weekly sessions</h5>
+                </div>
+                <div class="col-xs-6 text-right">
+                  <h5 class="white high-light"><i class="fa fa-calendar fa-lg fa-stack-1x hover-header"></i></h5>
+                </div>
+              </div>
+              <!--<div class="schedule-row row">-->
+                <!--<div class="col-xs-6">-->
+                  <!--<h5 class="regular white">Follow your favorite friends, trainers & fit idols</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 text-right">-->
+                  <!--<h5 class="white"><i class="fa fa-home fa-lg fa-stack-1x hover-header"></i></h5>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="schedule-row row">-->
+                <!--<div class="col-xs-6">-->
+                  <!--<h5 class="regular white">Keep updates of the nearest gyms, & public services</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 text-right">-->
+                  <!--<h5 class="white"><i class="fa fa-user fa-lg fa-stack-1x hover-header"></i></h5>-->
+                <!--</div>-->
+              </div>
+             <!--</div>-->
+            <div class="item">
+              <div class="schedule-row row">
+              <div class="col-xs-6">
+              <h5 class="white high-light">Follow your favorite friends, trainers & fit idols</h5>
+              </div>
+              <div class="col-xs-6 text-right">
+              <h5 class="white high-light"><i class="fa fa-home fa-lg fa-stack-1x hover-header"></i></h5>
+              </div>
+              </div>
+              <!--<div class="schedule-row row">-->
+                <!--<div class="col-xs-6">-->
+                  <!--<h5 class="regular white">Muscle Building</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 text-right">-->
+                  <!--<h5 class="white">8:30 - 10:00</h5>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="schedule-row row">-->
+                <!--<div class="col-xs-6">-->
+                  <!--<h5 class="regular white">Cardio</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 text-right">-->
+                  <!--<h5 class="white">8:30 - 10:00</h5>-->
+                <!--</div>-->
+              <!--</div>-->
+            </div>
+            <div class="item">
+              <div class="schedule-row row">
+              <div class="col-xs-6">
+              <h5 class="white high-light">Keep updates of the nearest gyms, & public services</h5>
+              </div>
+              <div class="col-xs-6 text-right">
+              <h5 class="white high-light"><i class="fa fa-user fa-lg fa-stack-1x hover-header"></i></h5>
+              </div>
+              </div>
+              <!--<div class="schedule-row row">-->
+                <!--<div class="col-xs-6">-->
+                  <!--<h5 class="regular white">Muscle Building</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 text-right">-->
+                  <!--<h5 class="white">8:30 - 10:00</h5>-->
+                <!--</div>-->
+              <!--</div>-->
+              <!--<div class="schedule-row row">-->
+                <!--<div class="col-xs-6">-->
+                  <!--<h5 class="regular white">Cardio</h5>-->
+                <!--</div>-->
+                <!--<div class="col-xs-6 text-right">-->
+                  <!--<h5 class="white">8:30 - 10:00</h5>-->
+                <!--</div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-4">
+        <div class="intro-table intro-table-hover">
+          <h5 class="white heading hide-hover">LACtic Profile</h5>
+          <div class="bottom">
+            <h4 class="white heading small-heading no-margin regular">Stay socially active</h4>
+            <h4 class="white heading small-pt">Your professional fitness profile online</h4>
+            <a  class="btn btn-white-fill expand">More about</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="intro-table intro-table-third1 ">
+        <div class="layer-red">
+          <h5 class="white heading">Lactic Partners</h5>
+          <div class="owl-testimonials bottom">
+            <div class="item">
+              <h4 class="white heading high-light content">LACticate with other users</h4>
+              <h5 class="white heading high-light author">More about</h5>
+            </div>
+            <div class="item">
+              <h4 class="white heading high-light content">Find the best and nearest sessions that fits you</h4>
+              <h5 class="white heading high-light author">More about</h5>
+            </div>
+            <div class="item">
+              <h4 class="white heading high-light content">Share your Fitness daily schedule and motivate other for a healthier life style!</h4>
+              <h5 class="white heading high-light author">More about</h5>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--&lt;!&ndash;<section id="services" class="section section-padded">&ndash;&gt;-->
+<section id="services" class="section">
+  <div class="container container-about">
+    <div class="row text-center title">
+      <h2>Features</h2>
+      <!--<h4 class="light muted">Find sessions that best fits you from a variety of training options!</h4>-->
+    </div>
+    <div class="row services">
+      <div class="col-md-4">
+        <div class="service lactic-diary-feature">
+          <div class="icon-holder">
+
+
+            <a class="btn icon icon-transparent" ><span class="fa-stack fa-lg">
+              <i class="fa fa-square-o fa-stack-2x text-blue"></i>
+              <i class="fa fa-calendar text-blue fa-lg fa-stack-1x"></i></span></a>
+
+            <!--<img src="/images/icons/heart-blue.png" alt="" class="icon">-->
+            <!--<i class="fa fa-calendar text-blue fa-lg fa-stack-2x hover-header"></i>-->
+          </div>
+          <h4 class="heading text-blue">Fitness Diary</h4>
+          <!--<p class="description">-->
+          <div class="description list-group">
+            <ul class="fa-ul">
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Keep your past &amp; future sessions scheduled and tracked</li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  See your LACtic weekly partner sessions <i class="info-icon icon_question"></i></li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Get invites to other sessions</li>
+            </ul>
+
+        </div>
+      </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service lactic-follower-feature">
+          <div class="icon-holder">
+
+            <a class="btn icon icon-transparent" ><span class="fa-stack fa-lg">
+              <i class="fa fa-square-o fa-stack-2x text-blue"></i>
+              <i class="fa fa-search text-blue fa-lg fa-stack-1x"></i></span></a>
+
+            <!--<img src="/images/icons/guru-blue.png" alt="" class="icon">-->
+            <!--<i class="fa fa-search text-blue fa-lg fa-stack-2x hover-header icon"></i>-->
+          </div>
+          <h4 class="heading text-blue">Fitness Follower</h4>
+          <!--<p class="description">-->
+          <div class="description list-group">
+            <ul class="fa-ul">
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  See your friends workout plans for this week</li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Follow your favorite trainers and gyms to get all the latest updates from first source</li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Check out other LACtic users schedule and profiles that have same fitness goals as you</li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Find all the LACtic people that are nearby - you may find a new workout partner! </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service lactic-profile-feature">
+          <div class="icon-holder">
+            <!--<img src="/images/icons/weight-blue.png" alt="" class="icon">-->
+            <a class="btn icon icon-transparent" ><span class="fa-stack fa-lg">
+              <i class="fa fa-square-o fa-stack-2x text-blue"></i>
+              <i class="fa fa-user text-blue fa-lg fa-stack-1x"></i></span></a>
+
+            <!--<a class="btn btn-default icon" >-->
+              <!--<i class="fa fa-user fa-stack-1x text-blue"></i></a>-->
+
+
+            <!--<span class="fa-stack fa-lg">-->
+              <!--<i class="fa fa-square-o fa-stack-2x text-blue"></i>-->
+              <!--<i class="fa fa-user fa-stack-1x text-blue"></i>-->
+            <!--</span>-->
+            <!--<span class="icon"><i class="fa fa-user text-blue fa-lg fa-stack-2x  "></i></span>-->
+          </div>
+          <h4 class="heading text-blue">Fitness Profile</h4>
+          <!--<p class="description">-->
+
+          <div class="description list-group">
+            <ul class="fa-ul">
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Your Fitness resume online</li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Share your Fitness interests and goals</li>
+              <li><i class="fa-li fa fa-plus " aria-hidden="true"></i>&nbsp;  Get and send LACtic partnering requests! <i class="fa fa-star text-yellow" aria-hidden="true"></i></li>
+              <li><a href="#" class="btn btn-white-fill expand">More about</a></li>
+            </ul>
+          </div>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cut cut-bottom"></div>
+</section>
+<section id="team" class="section gray-bg">
+  <div class="container container-about">
+    <div class="row title text-center">
+      <h2 class="margin-top">About Us</h2>
+      <!--<h4 class="light muted">LACtic dream team!</h4>-->
+    </div>
+    <div class="row">
+      <!--<div class="col-md-4">-->
+        <!--<div class="team text-center">-->
+          <!--&lt;!&ndash;<div class="cover" style="background:url('img/team/team-cover1.jpg'); background-size:cover;">&ndash;&gt;-->
+          <!--<div class="cover team-cover1">-->
+            <!--<div class="overlay text-center">-->
+              <!--<h3 class="white">VP</h3>-->
+              <!--<h5 class="light light-white">Learn more about</h5>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<img src="img/team/team3.jpg" alt="Team Image" class="avatar">&ndash;&gt;-->
+          <!--<div class="title">-->
+            <!--<h4>Ben Adamson</h4>-->
+            <!--<h5 class="muted regular">Fitness Instructor</h5>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<button data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill">Sign Up Now</button>&ndash;&gt;-->
+        <!--</div>-->
+      <!--</div>-->
+      <div class="col-md-4 col-about-sharon">
+        <div class="team text-center">
+          <!--<div class="cover" style="background:url('img/team/team-cover2.jpg'); background-size:cover;">-->
+          <div class="cover sharon-cover" >
+            <div class="overlay text-center">
+              <h3 class="white">Founder</h3>
+              <!--<a class="light light-white" href="https://www.linkedin.com/in/sharona-nachum-35084617">Learn more about</a>-->
+            </div>
+          </div>
+          <!--<img src="img/team/team1.jpg" alt="Team Image" class="avatar">-->
+
+          <%= link_to  'https://www.linkedin.com/in/sharona-nachum-35084617', id: "sharon-link" do %>
+              <%= image_tag "https://graph.facebook.com/10153011850791938/picture?type=large", :class => "circular team-img" %>
+          <% end %>
+
+
+          <div class="title">
+            <h4>Sharon Nachum</h4>
+            <h5 class="muted regular">Founder</h5>
+          </div>
+          <!--<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Sign Up Now</a>-->
+        </div>
+      </div>
+      <!--<div class="col-md-4">-->
+        <!--<div class="team text-center">-->
+          <!--&lt;!&ndash;<div class="cover" style="background:url('img/team/team-cover3.jpg'); background-size:cover;">&ndash;&gt;-->
+          <!--<div class="cover team-cover3" >-->
+            <!--<div class="overlay text-center">-->
+              <!--<h3 class="white">CTO</h3>-->
+              <!--<h5 class="light light-white">Learn more about</h5>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<img src="img/team/team2.jpg" alt="Team Image" class="avatar">&ndash;&gt;-->
+          <!--<div class="title">-->
+            <!--<h4>John Phillips</h4>-->
+            <!--<h5 class="muted regular">CTO</h5>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-blue-fill ripple">Sign Up Now</a>&ndash;&gt;-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+  </div>
+</section>
+<!--&lt;!&ndash;<section id="pricing" class="section">&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="container container-about">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="row title text-center">&ndash;&gt;-->
+      <!--&lt;!&ndash;<h2 class="margin-top white">Pricing</h2>&ndash;&gt;-->
+      <!--&lt;!&ndash;<h4 class="light white">Choose your favorite pricing plan and sign up today!</h4>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="row no-margin">&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="col-md-7 no-padding col-md-offset-5 pricings text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="pricing">&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<div class="box-main active" data-img="/images/fitness/pricing1.jpg">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="box-main active" >&ndash;&gt;-->
+            <!--&lt;!&ndash;&ndash;&gt;-->
+            <!--&lt;!&ndash;<h4 class="white">Yoga Pilates</h4>&ndash;&gt;-->
+            <!--&lt;!&ndash;<h4 class="white regular light">$850.00 <span class="small-font">/ year</span></h4>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up Now</a>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<i class="info-icon icon_question"></i>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="box-second active">&ndash;&gt;-->
+            <!--&lt;!&ndash;<ul class="white-list text-left">&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>One Personal Trainer</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Big gym space for training</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Free tools &amp; props</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Free locker</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Free before / after shower</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="pricing">&ndash;&gt;-->
+          <!--&lt;!&ndash;&lt;!&ndash;<div class="box-main" data-img="/images/fitness/pricing2.jpg">&ndash;&gt;&ndash;&gt;-->
+          <!--&lt;!&ndash;&ndash;&gt;-->
+            <!--&lt;!&ndash;<h4 class="white">Cardio Training</h4>&ndash;&gt;-->
+            <!--&lt;!&ndash;<h4 class="white regular light">$100.00 <span class="small-font">/ year</span></h4>&ndash;&gt;-->
+            <!--&lt;!&ndash;&lt;!&ndash;<a href="#" data-toggle="modal" data-target="#modal1" class="btn btn-white-fill">Sign Up Now</a>&ndash;&gt;&ndash;&gt;-->
+            <!--&lt;!&ndash;<i class="info-icon icon_question"></i>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="box-second">&ndash;&gt;-->
+            <!--&lt;!&ndash;<ul class="white-list text-left">&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>One Personal Trainer</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Big gym space for training</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Free tools &amp; props</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Free locker</li>&ndash;&gt;-->
+              <!--&lt;!&ndash;<li>Free before / after shower</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</section>&ndash;&gt;-->
+<!--&lt;!&ndash;<section class="section section-padded blue-bg">&ndash;&gt;-->
+<!--<section class="section blue-bg">-->
+  <!--<div class="container container-about">-->
+    <!--<div class="row">-->
+      <!--<div class="col-md-8 col-md-offset-2">-->
+        <!--<div class="owl-twitter owl-carousel">-->
+          <!--<div class="item text-center">-->
+            <!--<i class="icon fa fa-twitter"></i>-->
+            <!--<h4 class="white light">Schedule & track your daily workouts.</h4>-->
+            <!--<h4 class="light-white light">#health #training #exercise</h4>-->
+          <!--</div>-->
+          <!--<div class="item text-center">-->
+            <!--<i class="icon fa fa-twitter"></i>-->
+            <!--<h4 class="white light">Follow other on their path for a better life style.</h4>-->
+            <!--<h4 class="light-white light">#health #training #exercise</h4>-->
+          <!--</div>-->
+          <!--<div class="item text-center">-->
+            <!--<i class="icon fa fa-twitter"></i>-->
+            <!--<h4 class="white light">Share and Invite people to your favorite sessions</h4>-->
+            <!--<h4 class="light-white light">#health #training #exercise</h4>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</section>-->
+
+
+
+  </div>
+
+</div>
+
+<%= render 'login_form' %>
+
+<% if !@gmail_sign_in ||  !@gmail_sign_in.id %>
+
+<div class="modal fade" id="modal_sign_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-popup modal-sign-up-size">
+      <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+      <h3 class="white">Sign Up</h3>
+      <div class="modal-body">
+        <%= render 'sign_in_options' %>
+    </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true" id="sign-up-closebtn">Close</button>
+        <!--<button class="btn btn-primary">Save changes</button>-->
+      </div>
+  </div>
+</div>
+</div>
+  <% else %>
+<div class="modal fade" id="modal_google_sign_up" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content modal-popup modal-sign-up-size">
+      <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+      <h3 class="white">Sign Up With Google Account</h3>
+      <div class="modal-body">
+
+        <%= render 'users/google_sign_form' %>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true"  onclick="location.href = '<%= root_path %>'">Close</button>
+      </div>
+  </div>
+</div>
+</div>
+  <% end %>
+<!--</div>-->
+
+<!--</div>-->
+<%= render 'layouts/shared/footer'  %>
+
+
+
+<!--<footer class="footer-about">-->
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<div class="col-sm-6 text-center-mobile">-->
+        <!--<h3 class="white">Reserve a Free Trial Class!</h3>-->
+        <!--<h5 class="light regular light-white">Shape your body and improve your health.</h5>-->
+        <!--<a href="#" class="btn btn-blue ripple trial-button">Start Free Trial</a>-->
+      <!--</div>-->
+      <!--<div class="col-sm-6 text-center-mobile">-->
+        <!--<h3 class="white">Opening Hours <span class="open-blink"></span></h3>-->
+        <!--<div class="row opening-hours">-->
+          <!--<div class="col-sm-6 text-center-mobile">-->
+            <!--<h5 class="light-white light">Mon - Fri</h5>-->
+            <!--<h3 class="regular white">9:00 - 22:00</h3>-->
+          <!--</div>-->
+          <!--<div class="col-sm-6 text-center-mobile">-->
+            <!--<h5 class="light-white light">Sat - Sun</h5>-->
+            <!--<h3 class="regular white">10:00 - 18:00</h3>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="row bottom-footer text-center-mobile">-->
+      <!--<div class="col-sm-8">-->
+        <!--<p>&copy; 2016 All Rights Reserved. Powered by <a href="#">LACtic</a> exclusively for <a href="#"></a></p>-->
+      <!--</div>-->
+      <!--<div class="col-sm-4 text-right text-center-mobile">-->
+        <!--<ul class="social-footer">-->
+          <!--<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+          <!--<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+          <!--<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</footer>-->
+<!-- Holder for mobile navigation -->
+<div class="mobile-nav">
+  <ul>
+  </ul>
+  <a href="#" class="close-link"><i class="arrow_up"></i></a>
+</div>
+<!-- Scripts -->
+<!--<script src="js/jquery-1.11.1.min.js"></script>-->
+<!--<script src="js/owl.carousel.min.js"></script>-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<!--<script src="js/wow.min.js"></script>-->
+<!--<script src="js/typewriter.js"></script>-->
+<!--<script src="js/jquery.onepagenav.js"></script>-->
+<!--<script src="js/main.js"></script>-->

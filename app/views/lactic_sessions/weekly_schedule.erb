@@ -1,0 +1,91 @@
+<script>
+    $(window).on('load', function() {
+        $(document).ready(function() {
+
+            function getDayTitle(d){
+                var date  = new Date(d);
+                var weekday = new Array(7);
+                weekday[0]=  "Sunday";
+                weekday[1] = "Monday";
+                weekday[2] = "Tuesday";
+                weekday[3] = "Wednesday";
+                weekday[4] = "Thursday";
+                weekday[5] = "Friday";
+                weekday[6] = "Saturday";
+                return weekday[date.getDay()];
+            }
+            function getHoursTitle(d){
+                var date = new Date(d);
+                var hours = (d.getHours()<10)? "0"+d.getHours() : d.getHours();
+                var minutes = (d.getMinutes()<10)? "0"+d.getMinutes() : d.getMinutes();
+                return hours+":"+minutes;
+            }
+            $('#calendar').fullCalendar({
+                header: {
+                    left:"prev,next",
+                    center: 'title',
+                    right:"today"
+                },
+                resourceAreaWidth: 230,
+                height:"500",
+                editable: true,
+                aspectRatio: 1.5,
+                scrollTime: '00:00',
+//            slotMinutes:15,
+//            defaultDate: '2015-02-12',
+                defaultView:"agendaWeek",
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                    var  date = new Date(start);
+                    $("#day_session").val(date.getDay());
+                    $("#start_date").val(date);
+                    $("#time_start").val(getHoursTitle(start));
+                    $("#time_end").val(getHoursTitle(end));
+                    $('#modal-title-id').html(getDayTitle(start)+"s LACtic Session");
+                    $('#modal_form_addappt').modal();
+                    $('#calendar').fullCalendar('unselect');
+                },
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+//                events:'/lactic_sessions#set_weekly_schedule'
+                events:'/lactics'
+            });
+        });
+    });
+</script>
+<%= render 'layouts/shared/header'  %>
+<div id="main" class="main-view footer-padding" style="opacity: 1;">
+  <div class="home-page">
+    <div >
+      <p id="notice"><%= notice %></p>
+      <div >
+        <div class="landing-event-time">
+          <h4>LActic Weekly Schedule</h4>
+          <!-- /.modal -->
+          <div class="modal fade" id="modal_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title" id="modal-title-id">Add New LActic...</h1>
+                </div>
+                <div class="modal-body">
+                  <%= render 'form'  %>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <%= render 'layouts/shared/lactic_calendar'  %>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--footer!-->
+<%= render 'layouts/shared/footer'  %>

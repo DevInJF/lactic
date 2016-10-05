@@ -1,0 +1,446 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.modal-sign-up-size{
+//  height: 100vh !important;
+
+}
+
+#modal_sign_up{
+  z-index: 10500 !important;
+//  height: 600px;
+}
+@media (max-width:768px){
+  .mock-user-sign-in{
+    margin-left: -10vw;
+  }
+
+}
+
+.background-profile{
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0.2;
+}
+
+
+.speaker-header-background{
+  background: black;
+  opacity: 0.8;
+}
+.profile-owl .owl-controls {
+//  margin-top: -19vh !important;
+}
+.user-about{
+  top: 0 !important;
+}
+.intro-session-weekly-table{
+  height: 70vh;
+  /* margin-bottom: -65px; */
+  margin-left: 5vh;
+  /* top: 0 !important; */
+  /* margin-top: 0 !important; */
+  /* padding-bottom: 15vh; */
+  margin-right: 5vw;
+  margin-top: 5vh !important;
+}
+.center-sessions{
+  text-align: -webkit-center;
+}
+.weekly-panel{
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+  background-color: #fff;
+  /* padding: 10px 0; */
+  opacity: 1;
+  border: 1px solid #B1B4BF;
+}
+
+
+.panel-weekly-sessions{
+  padding-left: 10px;
+  padding-right: 10px;
+  /* white-space: pre-line; */
+  text-align: justify;
+  padding-top: 35px;
+}
+.weekly-sessions-profile{
+  display:inherit;
+  height: 80vh;
+}
+.login-btn-class{
+  margin: 2vh;
+}
+.new-lactic-btn{
+  margin-top: 2vh;
+}
+
+
+#moreAboutBtn{
+//  color: blue;
+}
+.circular-large{
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+}
+
+#user-search-navigator {
+  float: none;
+  padding: 10px;
+}
+#user-search-navigator li a:hover{
+  background-color: transparent;
+}
+
+#search_img {
+  width: 2%;
+  height: 2%;
+  background-color: transparent;
+}
+#search_img:hover{
+  background-color: transparent;
+}
+
+#user-search-input {
+  background-color: transparent;
+}
+#user-search-input {
+  background-color: transparent;
+}
+
+#osm_friends {
+  float: inherit;
+}
+
+
+
+
+/* JS disabled styles */
+.osm_friends  tr li:hover ol {
+  display:block;
+}
+
+/* base nav styles */
+.osm_friends {
+  display:block;
+  margin:0 auto 20px;
+  border-radius: 25px;
+  border: 2px solid #8AC007;
+  position:inherit;
+  /*background-color:#6a6a6a;*/
+  font:16px Tahoma,
+  Sans-serif;
+  cursor: pointer;
+
+  width: 90%;
+
+  height: 30em;
+  line-height: 2em;
+  /*border: 1px solid #ccc;*/
+  padding: 0;
+//  margin: 0;
+  overflow: scroll;
+}
+.osm_friends ol {
+  padding:10px;
+  margin:0;
+}
+.osm_friends li {
+  padding:20px;
+  margin:0;
+//  height: 10%;
+}
+.osm_friends tr li {
+  position:relative;
+  float:left;
+  list-style-type:none;
+
+}
+.osm_friends ol:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.osm_friends  li a {
+  display:block;
+  padding:10px 20px;
+//  border-left:1px solid #999;
+//  border-right:1px solid #222;
+//  color:#eee;
+  text-decoration:none;
+}
+.osm_friends  li a img{
+  float: left;
+
+  widows: 50px;
+  height: 50px;
+  border-radius: 25px;
+  border: 2px solid #8AC007;
+
+}
+.osm_friends  li a label{
+  align-content: center;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.osm_friends  li a:focus {
+  outline:none;
+  text-decoration:underline;
+}
+.osm_friends  li:first-child a {
+  border-left:none;
+}
+.osm_friends  li.last a {
+  border-right:none;
+}
+.osm_friends a span {
+  display:block;
+  float:right;
+  margin-left:5px;
+}
+.osm_friends ol ol {
+  display:block;
+  width:100%;
+  position:relative;
+  left:0;
+  background:#6a6a6a;
+}
+.osm_friends ol ol li {
+  float:none;
+}
+.osm_friends li a {
+  padding:5px 10px;
+  border-left:none;
+  border-right:none;
+  font-size:14px;
+}
+.osm_friends li a:hover {
+  background-color:transparent;
+}
+
+.user_info_element {
+  list-style: none;
+//  float: none;
+  font-weight: bold;
+  border-width: 100px;
+  display: initial;
+  border-style: none;
+  cursor: pointer;
+  margin: 0;
+  overflow: visible;
+  text-decoration: none !important;
+//  width: 90%;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+  /*-webkit-border-radius: 3px;*/
+  /*-moz-border-radius: 3px;*/
+  /*-ms-border-radius: 3px;*/
+  /*-o-border-radius: 3px;*/
+  /*border-radius: inherit;*/
+  /*padding: 0 15px;*/
+//  height: 34px;
+  /* line-height: 32px; */
+  /*-webkit-box-sizing: border-box;*/
+  /*-moz-box-sizing: inherit;*/
+  box-sizing: content-box;
+//  font-size: 16px;
+  font-size: small;
+//  color: #333;
+//  background-color: #F2F2EF;
+//  border-color: rgba(233, 235, 236, 0);
+
+
+  border-radius: 25px;
+  border: 2px solid #212b36;
+  /*padding: 20px;*/
+  /*width: 200px;*/
+  /*height: 150px;*/
+
+
+  /*filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');*/
+  /*background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b6b6b6), color-stop(100%, rgba(0, 134, 179, 0)));*/
+  /*background-image: -webkit-linear-gradient(top, #b6b6b6 0%,#FFFFFF 100%);*/
+  /*background-image: -moz-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  /*background-image: -o-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  /*background-image: linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  white-space: normal;
+  display: -moz-inline-stack;
+  display: table-cell;
+
+
+  display: flex;
+  /* vertical-align: initial; */
+  zoom: 1;
+  //    vertical-align: middle;
+  padding: 10px;
+}
+.user_info {
+  list-style: none;
+  margin: 0;
+  overflow: visible;
+  text-decoration: none !important;
+  width: 90%;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+  /*-webkit-border-radius: 3px;*/
+  /*-moz-border-radius: 3px;*/
+  /*-ms-border-radius: 3px;*/
+  /*-o-border-radius: 3px;*/
+  /*border-radius: inherit;*/
+  /*padding: 0 15px;*/
+  height: 34px;
+  /* line-height: 32px; */
+  /*-webkit-box-sizing: border-box;*/
+  /*-moz-box-sizing: inherit;*/
+  //  box-sizing: content-box;
+  font-size: 16px;
+//  color: #333;
+//  background-color: #F2F2EF;
+//  border-color: rgba(233, 235, 236, 0);
+
+
+  border-radius: 25px;
+  border: 2px solid #212b36;
+  /*padding: 20px;*/
+  /*width: 200px;*/
+  /*height: 150px;*/
+
+
+  /*filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');*/
+  /*background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #b6b6b6), color-stop(100%, rgba(0, 134, 179, 0)));*/
+  /*background-image: -webkit-linear-gradient(top, #b6b6b6 0%,#FFFFFF 100%);*/
+  /*background-image: -moz-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  /*background-image: -o-linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  /*background-image: linear-gradient(top, #b6b6b6 0%,#0086b3 100%);*/
+  white-space: normal;
+//  display: -moz-inline-stack;
+
+  /* vertical-align: initial; */
+  zoom: 1;
+  //  vertical-align: middle;
+  padding: 10px;
+  //  display: inline-table;
+  display: table;
+}
+.submit_user_info_button {
+  float: right;
+}
+
+@media (max-width:768px){
+  background-size:100%!important;
+}
+
+.background-blur{
+//  background-image:  asset-data-url('blur_background.png')
+//  background-image:  asset-data-url('starsbackground.png')
+//  background-image:  asset-data-url('milky.jpg');
+  background-image:  asset-data-url('profile-background.jpg');
+
+  background-size:60%;
+
+//  background-size: cover !important;
+//  background-image:  asset-data-url('milky.jpg')
+}
+.background-blur-non{
+  background-image:  asset-data-url('blur_background2.png');
+  background-size: 100% !important;
+  content: "";
+  position: absolute;
+  -webkit-background-size: cover !important;
+  background-size: cover !important;
+  -webkit-filter: brightness(60%);
+  -moz-filter: brightness(60%);
+  -o-filter: brightness(60%);
+  -ms-filter: brightness(60%);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+.lactic-icon {
+  transform: scale(0.5, 0.5);
+  -ms-transform: scale(0.5, 0.5);
+  -webkit-transform: scale(0.5, 0.5);
+  /* top: 0px; */
+  position: absolute;
+  top: 0px;
+  right: 0px
+}
+
+.speaker-header .user-lacticate-btn{
+  background-image:  asset-data-url('arm_wrestling1.png');
+border: 0;
+  background-size: 100%;
+position:absolute;background-color:rgba(255,255,255,.2);
+  color:#fff;right:20px;border:1px solid #fff;margin-top:-40px;
+  border-radius:25px;width:50px;height:50px
+}
+.speaker-header .user-lacticate-btn .icon-lacticate{font-size:38px;margin-top:4px;margin-left:5px}
+//.speaker-header .user-lacticate-btn .fa-thumbs-o-up{font-size:38px;margin-top:4px;margin-left:5px}
+//.speaker-header .user-lacticate-btn.liked{background:#fff}
+
+
+.speaker-header .user-lacticate-match{
+//  background-image:  asset-data-url('arm_wrestling1.png');
+  border: 0;
+  background-size: 100%;
+  position:absolute;background-color:rgba(255,255,255,.2);
+  color:#fff;right:20px;border:1px solid #fff;margin-top:-40px;
+  border-radius:25px;width:50px;height:50px
+}
+.speaker-header .user-lacticate-match .icon-lacticate{font-size:38px;margin-top:4px;margin-left:5px}
+//.speaker-header .user-lacticate-btn .fa-thumbs-o-up{font-size:38px;margin-top:4px;margin-left:5px}
+//.speaker-header .user-lacticate-btn.liked{background:#fff}
+
+.user-container-actions{
+  padding-right: 15vw !important;
+  padding-left: 15vw !important;
+}
+.user-container{
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.keywords-form{
+  display: table-caption;
+  margin-top: 1vh;
+}
+
+.keywords-profile {
+  margin-left: 1vw;
+  margin-right: 5vw;
+  font-size: medium !important;
+  margin-bottom: 2vw !important;
+}
+@media (max-width:767px){
+
+.keywords-profile{
+//  margin-left: 1vw;
+//  margin-right: 5vw;
+//  font-size: medium !important;
+  margin-bottom: 8vw !important;
+}
+}
+.fitness-skills .panel-title{
+  margin-bottom: 10px;
+}
+
+.fitness-skill{
+  background-color: transparent !important;
+  border-color: #4cae4c !important;
+  color: #5cb85c;
+}
+.skills-title{
+  margin-left: 1vw;
+  font-size: large;
+  display: inline-block;
+}
+.keyword-icon{
+  margin-left: 3vw;
+}

@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<!--<html lang=en class="skrollr skrollr-desktop">-->
+
+<head>
+  <title>LACtic</title>
+
+  <meta charset="UTF-8">
+  <!--<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+  <!--<meta name="HandheldFriendly" content="True">-->
+  <!--<meta name="MobileOptimized" content="320">-->
+  <!--<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">-->
+  <!--<meta name="format-detection" content="telephone=no, email=no">-->
+  <!--<meta name="apple-mobile-web-app-capable" content="no">-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+  <!--<meta name="description" content="webOS-Style HTML5 Notifications">-->
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <!--<link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">-->
+  <!--<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">-->
+  <!--<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">-->
+  <!--<link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">-->
+  <!--<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">-->
+  <!--<link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">-->
+  <!--<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">-->
+  <!--<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">-->
+  <!--<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">-->
+  <!--<link rel="icon" type="image/png" href="/android-chrome-192x192.png" sizes="192x192">-->
+  <!--<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">-->
+  <!--<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">-->
+  <!--<link rel="manifest" href="/manifest.json">-->
+  <!--<meta name="msapplication-TileColor" content="#da532c">-->
+  <!--<meta name="msapplication-TileImage" content="/mstile-144x144.png">-->
+  <meta name="theme-color" content="#ffffff">
+
+  <!--FAVICON-->
+
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+
+
+  <!---->
+
+
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}</style>
+  <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style>
+  <style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style>
+  <style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+  <style type="text/css">
+      .popover{position:fixed;}
+      .sleek-template h1,
+      .sleek-template h2,
+      .sleek-template h3,
+      .sleek-template h4,
+      .sleek-template h5 {
+          font-family: 'Open Sans', sans-serif;
+      }
+
+      .sleek-template h2 {
+          color: #000000
+      }
+
+      .sleek-template h1 {
+          color: #ffffff
+      }
+
+      .sleek-template p {
+          color: #636363
+      }
+
+      .sleek-template ul {
+          color: #636363
+      }
+
+      .sleek-template ol {
+          color: #636363
+      }
+      .custom-font {
+          font-family: 'Open Sans', sans-serif;
+      }
+
+      .color-0 {
+          color: #3CB878 !important;
+      }
+
+      .color-0-background {
+          background-color: #3CB878 !important;
+      }
+
+      .color-0-hover-opacity:hover {
+          background-color: rgba(60, 184, 120, 0.8)
+      }
+
+      .color-0-border {
+          border-color: #3CB878;
+      }
+
+      .color-0-border-important {
+          border-color: #3CB878 !important;
+      }
+
+      .color-0-hover:hover {
+          color: #3CB878 !important;
+      }
+
+      .color-1,  .dropdown-menu > li > a.color-1 {
+          color: #3CB878 !important;
+      }
+
+      .color-1-background {
+          background-color: #3CB878 !important;
+      }
+
+      .color-1-hover-opacity:hover {
+          background-color: rgba(60, 184, 120, 0.8)
+      }
+
+      .color-1-border {
+          border-color: #3CB878;
+      }
+
+      .color-1-border-important {
+          border-color: #3CB878 !important;
+      }
+
+      .color-1-selected.selected,  .dropdown-menu > li > a.color-1 {
+          color: #3CB878 !important;
+      }
+
+      .color-1-hover:hover,  .dropdown-menu > li > a.color-1-hover:hover {
+          color: #3CB878 !important;
+      }
+
+      .color-2,  .dropdown-menu > li > a.color-2 {
+          color: #000000 !important;
+      }
+
+      .color-2-background {
+          background-color: #000000 !important;
+      }
+
+      .color-2-selected.selected,  .dropdown-menu > li > a.color-2-selected.selected {
+          color: #000000 !important;
+      }
+
+      .color-2-border {
+          border-color: #000000;
+      }
+
+      .color-3,
+      .color-3-selected.selected,  .dropdown-menu > li > a.color-3 {
+          color: #636363 !important;
+      }
+
+      .color-3-background,
+      .color-3-background-selected.selected {
+          background-color: #636363 !important;;
+      }
+
+      .color-3-border {
+          border-color: #636363;
+      }
+
+      .color-4 {
+          color: #E1E2E7 !important;
+      }
+
+      .color-4-background {
+          background-color: #E1E2E7 !important;;
+      }
+
+      .color-4-border {
+          border-color: #E1E2E7;
+      }
+
+      .color-4-left-triangle:before {
+          border-color: transparent;
+          border-top-color: #E1E2E7;
+      }
+
+      .color-4-left-triangle:after {
+          border-color: transparent;
+          border-left-color: #E1E2E7;
+      }
+
+      .color-4-right-triangle:before {
+          border-color: transparent;
+          border-bottom-color: #E1E2E7;
+      }
+
+      .color-4-right-triangle:after {
+          border-color: transparent;
+          border-right-color: #E1E2E7;
+      }
+
+
+      .color-5,  .dropdown-menu > li > a.color-5 {
+          color: #ffffff !important;
+      }
+
+      .color-5-background {
+          background-color: #ffffff !important;
+      }
+
+      .color-5-border {
+          border-color: #ffffff;
+      }
+
+      .color-5-background-opacity {
+          background-color: rgba(255, 255, 255, 0.85)
+      }
+
+      .color-5-left-triangle:before {
+          border-color: transparent;
+          border-top-color: #ffffff;
+      }
+
+      .color-5-left-triangle:after {
+          border-color: transparent;
+          border-left-color: #ffffff;
+      }
+
+      .color-5-right-triangle:before {
+          border-color: transparent;
+          border-bottom-color: #ffffff;
+      }
+
+      .color-5-right-triangle:after {
+          border-color: transparent;
+          border-right-color: #ffffff;
+      }    </style>
+
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+  <![endif]-->
+  <!--<script src="https://connect.facebook.net/de_DE/all.js"></script>-->
+
+  <script>
+      var ready;
+      ready = function() {
+
+          var pusher = new Pusher('<%= Pusher.key %>');
+
+          var channel = pusher.subscribe(getCookie("osm_respond_id"));
+//          alert(channel.members.count);
+//          SUBSCRIBING USER TO TRAINERS CHANNEL
+          channel.bind('invite', function(data) {
+              notification_alert(data.greeting);
+              $("#notification_invites").val('true');
+              var notification_type = [];
+              if ($("#notification_notification_type").val() && $("#notification_notification_type").val()!=""){
+                  notification_type = $("#notification_notification_type").val()
+
+              }
+              notification_type.push(data.notify_type);
+
+//              $("#notification_notification_type").val('invites');
+              $(".new_notification").submit();
+          });
+
+
+
+// attach dialog element to .hint elements
+
+////          var presenceChannel = pusher2.subscribe('presence-instructor');
+//          presenceChannel.bind('pusher:subscription_succeeded', function() {
+//              var me = presenceChannel.members.me;
+//              var userId = me.id;
+//              var userInfo = me.info;
+////              alert("SUBSCRIBED SUCCESS "+userInfo);
+//          });
+
+
+//          function subscribe_to_channel(channel_name){
+////              alert("SUBSCRIBED TO INSTRUCOTRS CHANNEL"+channel_name);
+//              var pusher3 = new Pusher('', {
+//                  authEndpoint: ''
+//              });
+//              pusher3.subscribe('presence-'+channel_name);
+//
+////              var trainer_channel = pusher3.channel('presence-'+channel_name);
+////              alert("SUBSCRIBED TO INSTRUCOTRS CHANNEL - "+trainer_channel.members.count)
+//
+////            var count = presenceChannel.members.count;
+//
+//              trainer_channel.members.each(function(member) {
+//                  var userId = member.id;
+//                  var userInfo = member.info;
+//                  alert("SUBSCRIBED TO INSTRUCOTRS CHANNEL - "+userInfo)
+//              });
+//          }
+//          $('.submit_user_info_button').click( function() {
+//              var selected = [];
+//              $('.person-category').each(function () {
+//                  if ($(this).is(':checked')) {
+//                      selected.push($(this).val());
+//                      subscribe_to_channel($(this).val());
+//                  }
+//              });
+//              $("#user_info_keywords_about").val(selected);
+////            alert($("#user_info_keywords_about").val);
+//          });
+
+
+
+
+          function notification_alert(msg) {
+              //add a new style 'foo'
+              $.notify.addStyle('lactic', {
+                  html:
+                  "<div>" +
+                  "<div class='clearfix'>" +
+                  "<div class='title' data-notify-html='title'/>" +
+                  "<div class='buttons'>" +
+//                "<button class='no'>Cancel</button>" +
+                  "<button class='yes' data-notify-text='button'>OK</button>" +
+                  "</div>" +
+                  "</div>" +
+                  "</div>"
+              });
+
+
+
+//listen for click events from this style
+              $(document).on('click', '.notifyjs-lactic-base .no', function() {
+                  //programmatically trigger propogating hide event
+                  $(this).trigger('notify-hide');
+              });
+              $(document).on('click', '.notifyjs-lactic-base .yes', function() {
+                  //show button text
+                  //hide notification
+//                $("#notify-li").html("<button type='submit' class='header-button' onClick='location.href='/fetch_invite"/'"><i class="fa fa-calendar fa-lg"></i></button>');
+
+
+                  $(this).trigger('notify-hide');
+
+//                $.post('/notifications/fetch_invites');
+
+//                $.ajax({
+//                    type: "POST",
+//                    url: '/notifications/fetch_invites',
+//                    success: function(data) {
+////                    location.reload();
+//                        alert("invite alert")
+//                        // do something with the return value here if you like
+//                    }
+//                });
+
+//                $("#notify_btn").click();
+//                location.reload();
+//                $("#notify-li").remove();
+              });
+
+
+              $.notify({
+                  title: msg
+//                  button: 'Confirm'
+              }, {
+                  style: 'lactic',
+                  autoHide: false,
+                  clickToHide: false
+              });
+
+              // Notification feature detection
+              if (typeof Notification === 'function') {
+                  checkPermission();
+              } else {
+                  return;
+              }
+              function checkPermission() {
+                  Notification.requestPermission(function (status) {
+                      if (Notification.permission !== status) {
+                          Notification.permission = status;
+                      }
+                      if (Notification.permission === 'granted') {
+                          showNotifications();
+                      } else {
+//                    alert('LActic Notification was NOT granted');
+                      }
+                  });
+              }
+
+              function showNotifications() {
+              }
+          };
+
+
+
+
+          $('#loctionShareButton').click(function () {
+//              var shared_location = getCookie('lactic_location');
+////
+//          shared_location = (!shared_location || shared_location == 'off')? 'off' : 'on'
+//          var opposite = (shared_location == 'on')? 'off' : 'on'
+//
+//              $("#location"+opposite).show();
+//              $("#location"+shared_location).hide();
+//
+//
+//
+//              if (shared_location=='on')
+//              {
+//                  $("#location-icon").removeClass("location-on");
+//
+//
+////                  $("#location_shared").val("on");
+//
+//              }else
+//              {
+//                  $("#location-icon").addClass("location-on");
+//              }
+//              $("#location_shared").val(opposite);
+//              document.cookie = "lactic_location="+opposite;
+//              notification_alert("Location is "+opposite);
+//              $(this).val(opposite);
+
+
+          });
+
+//          var shared_location = getCookie('lactic_location');
+//
+//          shared_location = (!shared_location || shared_location == 'off')? 'off' : 'on'
+//          var opp_loc = (shared_location == 'on')? 'off' : 'on'
+//          $('#loctionShareButton').val(shared_location);
+//          $("#location"+shared_location).show();
+//          $("#location"+opp_loc).hide();
+//          if (shared_location == 'on'){
+//              $("#location-icon").addClass("location-on");
+//          }else
+//          {
+//              $("#location-icon").removeClass("location-on");
+//          }
+
+
+          // If your Heroku application is within the EU region,
+          // uncomment the followling lines
+          // Pusher.host = 'ws-eu.pusher.com';
+          // Pusher.sockjs_host = 'sockjs-eu.pusher.com';
+
+
+//          SUBSCRIBE TO PRIVATE USER NOTIFICATION CHANNEL
+
+
+
+
+
+          function getCookie(cname) {
+              var name = cname + "=";
+              var ca = document.cookie.split(';');
+              for(var i=0; i<ca.length; i++) {
+                  var c = ca[i];
+                  while (c.charAt(0)==' ') c = c.substring(1);
+                  if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+              }
+              return "";
+          }
+      };
+
+      $(document).ready(ready);
+      $(document).on('page:load', ready);
+  </script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>-->
+  <script>
+      var ready;
+      ready = function() {
+
+//          function locationsUpdtae() {
+//              if (navigator.geolocation) {
+//                  navigator.geolocation.getCurrentPosition(setPosition);
+//              } else {
+//                  x.innerHTML = "Geolocation is not supported by this browser.";
+//              }
+//
+//              function setPosition(position) {
+//
+//                  setCookie("lactic_latitude",position.coords.latitude);
+//                  setCookie("lactic_longitude",position.coords.longitude);
+//
+//                  console.log(document.cookie);
+//
+//              }
+//
+//              setTimeout(locationsUpdtae, 7000); // you could choose not to continue on failure...
+//
+//          }
+//          setTimeout(locationsUpdtae, 7000);
+
+//          $.noConflict();
+          $( document ).ready(function () {
+          $("[data-toggle='tooltip']").tooltip({html: true}); // enable bootstrap 3 tooltips
+//          $('[data-toggle="popover"]').popover({
+//              trigger: 'hover',
+//              'placement': 'top',
+//              'show': true
+//          });
+          });
+//          var pusher = new Pusher('7a13213ca2ec66a6f38a');
+//          $('[data-toggle="tooltip"]').tooltip();
+//          $('#modal_notification').modal('hide');
+          $('#signoutButton').click(function () {
+              $('#modal_sign_out').modal();
+          })
+          $('#notificationBtn').popover({trigger: 'hover focus', html: true, content: "<%= escape_javascript render 'notifications_center' %>"}).click(function(e) {
+              e.preventDefault();
+              $(this).popover('toggle');
+          });
+
+          $(document).mouseup(function (e)
+          {
+              var container = $("#notifications_box");
+
+              if (!container.is(e.target) // if the target of the click isn't the container...
+                      && container.has(e.target).length === 0) // ... nor a descendant of the container
+              {
+                  $("#notificationBtn").popover('hide');
+
+              }
+          });
+          $('#notificationBtn').click(function () {
+
+
+              $.ajax({
+                  type: "POST",
+                  url: "https://warm-citadel-1598.herokuapp.com/reset_notifications" //sumbits it to the given url of the form
+//                  data: valuesToSubmit,
+//                  dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+              }).success(function(json){
+                  console.log("success", json);
+              });
+
+
+//              window.location = "https://warm-citadel-1598.herokuapp.com/reset_notifications";
+          });
+//          $('#notificationBtn').popover({trigger: 'focus', html: true});
+//          $('#notificationButton').click(function () {
+//
+//
+////              $('#modal_notification').modal();
+//          })
+//          $('#testButton').click(function () {
+//              $('#testButton').popover({ html : true });
+//          })
+
+
+//          $('.badge-notify').each(function () {
+//              $(this).change(function () {
+//                  var inner_badge = $(this).val;
+//                  if (inner_badge == '0'){
+//                      $( this ).css( "color", "transparent" );
+//                      $( this ).css( "background", "transparent" );
+////                      background: transparent;
+////                      color: transparent;
+//                  }
+//
+//              });
+//          });
+
+//          $( ".badge-notify" ).change(function() {
+////              alert( "Handler for .change() called." );
+//              if
+//          });
+
+      };
+
+      $(document).ready(ready);
+      $(document).on('page:load', ready);
+
+
+//      $(document).ready(function() {
+//
+////        var pusher = new Pusher('7a13213ca2ec66a6f38a');
+//
+////          $('#modal_notification').modal('hide');
+//          $('#signoutButton').click(function () {
+//              $('#modal_sign_out').modal();
+//          })
+//          $('#notificationButton').click(function () {
+//
+//              $('#modal_notification').modal();
+//          })
+//
+//      })
+  </script>
+
+</head>
+
+
+
+
+
+<body class="home  color-4-background" >
+<% if cookies[:osm_respond_id] && cookies[:osm_respond_id] != '280906882262216' %>
+    <%= render 'sessions/login_form' %>
+<% end %>
+
+<%= render  partial: 'layouts/shared/notification_form',:locals => { :notification => @notification, :id_params => url_params} %>
+
+<%= yield %>
+
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<style type="text/css">
+    .list-content{
+        /*min-height:300px;*/
+        /*padding-top: 150px;*/
+    }
+    .list-content .list-group .title{
+        background:#5bc0de;
+        border:2px solid #DDDDDD;
+        font-weight:bold;
+        color:#FFFFFF;
+    }
+    /*.list-group-item img {*/
+        /*height:80px;*/
+        /*width:80px;*/
+    /*}*/
+
+    .jumbotron .btn {
+        padding: 5px 5px !important;
+        font-size: 12px !important;
+    }
+    .prj-name {
+        color:#5bc0de;
+    }
+    .break{
+        width:100%;
+        margin:20px;
+    }
+    .name {
+        color:#5bc0de;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+
+
+        var x = document.getElementById("osm_friends_list");
+        var locations;
+
+        $(document).mouseup(function (e)
+        {
+            var container = $("#osm_friends_list");
+
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+//                container.hide();
+            }
+
+
+        $("#Search").keydown(function(){
+
+            newFriendList = <%=raw contacts(true).to_json %>;
+//            alert(newFriendList.length);
+
+            if (newFriendList) {
+                for (var j = 0; j < newFriendList.length; j++) {
+                    {
+                        friendItem = newFriendList[j];
+                        var friend = document.getElementById(friendItem["id"]);
+                        if (!friend && typeof friend !== 'undefined' && friendItem["id"] !== 'undefined') {
+                            innerFriend = "<li class='list-group-item text-left'   id='" + friendItem["id"] + "'>" +
+                            "<a id='" + friendItem["id"] + "class = 'name' ' text='" + friendItem.name +
+                             + "<img class='list-group-item text-left' src='" +
+                            friendItem.picture + "'/><label>" + friendItem.name + "</label></a></li>"+" <div class='break'></div>"
+                            if (!document.getElementById(friendItem.picture))
+                                document.getElementById("osm_friends_list").innerHTML += innerFriend;
+                        }
+                    }
+
+                }
+            }
+            $('#osm_friends_list').show();
+        });
+
+        $("#Search").keyup(function(){
+            // Retrieve the input field text and reset the count to zero
+            var filter = $(this).val(), count = 0;
+
+            // Loop through the comment list
+            $(".list-group li").each(function(){
+
+                // If the list item does not contain the text phrase fade it out
+                if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                    $(this).fadeOut();
+
+                    // Show the list item if the phrase matches and increase the count by 1
+                } else {
+                    $(this).show();
+                    count++;
+                }
+            });
+
+            // Update the count
+            var numberItems = count;
+        });
+    });
+    });
+</script>
+
+<div id="second-top-header col-xs-12 invitees-header">
+  <!--<div class="wrapper">-->
+  <!--<ul class="user-search-navigator">-->
+    <!--<li >-->
+  <div class="input-group margin-bottom-sm">
+    <span class="input-group-addon"><i class="fa fa-search fa-fw"></i></span>
+        <%= text_field_tag 'Search', nil ,:placeholder => "Search for people "%>
+    <!--</li>-->
+  <!--</ul>-->
+</div>
+</div>
+<div class="jumbotron list-content">
+  <ul class="list-group" id="osm_friends_list">
+    <li href="#" class="list-group-item title">
+      Suggested LACtic
+    </li>
+    <h4 id="lactic_friends"></h4>
+
+    <% if (contacts(true)) %>
+        <% (contacts(true)).each do |osm_user| %>
+
+            <% if osm_user && !osm_user.empty?   %>
+
+                <li id='<%= ((osm_user)["id"])%>' class="list-group-item text-left">
+                  <label class="pull-right lactic-icon-search">
+                    <%= image_tag("flexed-biceps.png") %>
+                  </label>
+                  <a id='<%= ((osm_user)["id"])%>' text='<%= (osm_user)["name"]%>' >
+
+                      <%= image_tag ((osm_user)["picture"]), :class=> 'lactic_request_profile_img'%>
+                      <label class="name"><%= (osm_user)["name"].gsub('%q',"'")%></label>
+
+
+                  <!--<img src='<%= ((osm_user)["picture"])%>' class="img-thumbnail"/>-->
+
+                  </a>
+                </li>
+                <div class="break"></div>
+            <% end %>
+        <% end %>
+    <% end %>
+  </ul>
+
+</div>
+

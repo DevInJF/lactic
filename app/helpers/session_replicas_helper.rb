@@ -1,0 +1,2 @@
+module SessionReplicasHelper
+end

@@ -1,0 +1,106 @@
+<script>
+    $(document).ready(function() {
+
+        $("#instagram-icon").click(function() {
+//            $('div.modal-body').html(
+
+            $('#instagram_modal').modal();
+
+//            $("#lactic_session_instagram_image").val(0);
+
+
+
+        $(".instagram-pic").on("click",function() {
+
+
+            $( ".instagram-pic" ).each(function() {
+                $( this )
+                        .css('background-color','#ffffff');
+            });
+
+
+            var pic_id = $(this).attr('src');
+//            alert(pic_id);
+            $("#lactic_session_instagram_image").val(pic_id);
+            $(this)
+                    .css('background-color','#EE178C');
+            $("#lactic_session_image_id").attr('src',pic_id);
+        });
+    });
+    });
+
+</script>
+
+<span  id="instagram-icon" class="fa-stack fa-2x">
+ <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
+  <i class="fa fa-picture-o fa-stack-1x" aria-hidden="true"></i>
+</span>
+<div class="modal fade" id="instagram_modal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h3 class="modal-title" id="modal-title-id">Instagram #LACtic pictures</h3>
+
+</div>
+<div class="invite-modal-body">
+<div class="row">
+<div class="col-md-4 lactic-desc">
+
+
+</div>
+</div>
+
+  <% modal ||= false %>
+  <% remote = modal ? true : false %>
+  <%= form_for(@lactic_session, remote: remote,:url => edit_lactic_instagram_image_path, :html => {:id => "#{@lactic_session.id}-#{(@lactic_session.start_date_time.to_f * 1000).to_i}" }) do |f|   %>
+
+  <% if @lactic_instagram_images && !@lactic_instagram_images.empty? %>
+
+      <% @i = 0 %>
+      <% while @i < @lactic_instagram_images.length  do %>
+
+          <% if @lactic_instagram_images[@i] && !@lactic_instagram_images[@i].empty? %>
+              <div class="col-xs-12">
+                <%= image_tag @lactic_instagram_images[@i], :class => 'circular-large col-xs-6 instagram-pic', :id => "inst_img_#{@i}" %>
+                <% @i +=1 %>
+                <% if @lactic_instagram_images[@i] && !@lactic_instagram_images[@i].empty? %>
+                    <%= image_tag @lactic_instagram_images[@i], :class => 'circular-large col-xs-6 instagram-pic', :id => "inst_img_#{@i}"  %>
+                <% end %>
+              </div>
+          <% end %>
+          <% @i +=1 %>
+      <% end %>
+          <%= f.hidden_field  :instagram_image %>
+          <%= f.hidden_field  :redirect_id %>
+
+
+
+
+          <div class="modal-footer invite-modal-footer">
+            <%= f.submit "Set LACtic background", class: 'btn btn-primary'%>
+            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+
+          </div>
+
+
+  <% else %>
+
+  HASH TAG #LACtic your desired pictures on Instagram,
+      then connect with Instagram on LACtic to select them here.
+          <div class="modal-footer invite-modal-footer">
+
+            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+
+
+          </div>
+
+  <% end %>
+
+      </div>
+  <% end %>
+</div>
+    <!-- /.modal-content -->
+</div>
+  <!-- /.modal-dialog -->
+</div>

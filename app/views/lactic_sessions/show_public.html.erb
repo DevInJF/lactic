@@ -1,0 +1,140 @@
+<script>
+    $(document).ready(function() {
+// attach dialog element to .hint elements
+        $('.hint').click(function() {
+            $('#modal_form_addappt').modal();
+        });
+    });
+</script>
+<%= render 'layouts/shared/header'  %>
+<div id="main" class="main-view footer-padding">
+  <!--<div class="home-page">-->
+  <div class="container">
+
+    <div class="what-is-linkedin">
+      <div class="row">
+        <div class="col-xs-12 lactic-title">
+          <h1 class="headline hero-headline"><%= @lactic_session.title %>
+            <span class="subhead">
+                  <div class="inviter-avatar">
+                    <%= link_to  "/public_profile?id=#{@lactic_session.creator_fb_id}" do %>
+                        <%= image_tag("https://graph.facebook.com/#{@lactic_session.creator_fb_id}/picture?type=large")%>
+                    <% end %>
+                  </div>
+                </span>
+          </h1>
+        </div>
+        <div class="col-xs-12 lactic-title">
+          <% if @lactic_session.instagram_image && !@lactic_session.instagram_image.empty? %>
+              <%= image_tag @lactic_session.instagram_image, :class => 'lactic-instagram-img', :id => 'lactic_session_image_id'%>
+          <% else %>
+              <%= image_tag "fitness/#{@lactic_session.type_image}", :class => 'lactic-img', :id => 'lactic_session_image_id'%>
+          <% end %>
+        </div>
+      </div>
+    <div class="modal fade" id="modal_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="modal-title-id">Voters</h3>
+          </div>
+          <div class="modal-body">
+            <%= render  partial: 'layouts/shared/lactic_user_list',:locals => { :lactic_session => @lactic_session } %>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+          </div>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+      <div class="row">
+
+
+        <div class="col-md-8 lactic-desc">
+          <h2 class="session-title">Details :</h2>
+          <% desc ||= @lactic_session.description || "#{@lactic_session.title} LACtic session" %>
+          <p class="summary"><%= desc %>.</p>
+          <h3 >Start At : </h3><p class="summary"><%= Time.zone.parse(@lactic_session.start_date_time.to_s).strftime("%b %d %Y, %H:%M") %>.</p>
+          <h3 >Ends :</h3> <p class="summary"><%= Time.zone.parse(@lactic_session.end_date_time.to_s).strftime("%b %d %Y, %H:%M") %>.</p>
+          <% if @lactic_session.location %>
+              <div class="">
+                <div >
+                  <h3 >Location :</h3>
+                </div>
+              <% if @lactic_session.location_origin && !@lactic_session.location_origin.empty? %>
+
+                  <% if @session_location_url &&  @session_location_url != "" %>
+                        <div class=" location-icon">
+                        <a href=<%= @session_location_url%> target="_blank" class="location-url" class="transparent-link">
+                        <i class="fa fa-map-marker fa-lg " aria-hidden="true">
+                          " <%= @lactic_session.location %> "
+                        </i>
+                        </a>
+                        </div>
+                    <% else %>
+                        <%= @lactic_session.location %>
+                    <% end %>
+                  <% if @session_location_website &&  @session_location_website != "" %>
+                        <div class=" location-icon">
+                        <a href=<%= @session_location_website%> target="_blank" class="transparent-link">
+                        <i class="fa fa-home fa-lg  location-website-url" aria-hidden="true">
+                          Website
+                        </i>
+                      </a>
+                        </div>
+                  <% end %>
+              <% else %>
+                  <%= @lactic_session.location %>
+              <% end %>
+              </div>
+          <% end %>
+        </div>
+        <div class="col-md-4 lactic-desc">
+
+          <h2 class="session-title">Votes</h2>
+          <table summary="Overview session">
+            <tbody>
+            <tr id="overview-summary-past">
+              <th scope="row"></th>
+                <span class="field">
+                   <p>
+                     <%=link_to image_tag('flexed-biceps.png', :border => 0, :id => 'voter_img', :class => 'vote-img'), vote_on_path("#{@id}"), :method => 'post'%>
+                     <% if @lactic_session.votes && !@lactic_session.votes.empty? && !@lactic_session.votes[0].empty? %>
+                         <a class="hint"><%= JSON.parse(@lactic_session.votes.to_json).length %> Voted </a>
+                     <% else %>
+                         <label> No Votes Yet! </label>
+                     <% end %>
+                   </p>
+                </span>
+              <!--</td>-->
+            </tr>
+            </tbody>
+          </table>
+        <!--</div>-->
+        </div>
+
+      </div>
+      <div class="row ">
+        <div class="col-xs-8 center-field">
+          <h2 class="session-title ">Comments</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+            <span class="field">
+              <p>
+                <%= render  partial: 'layouts/shared/comments',:locals => { :lactic_session => @lactic_session, :redirect_id => @id} %>
+              </p>
+            </span>
+        </div>
+      </div>
+
+
+  </div>
+</div>
+
+</div>
+
+<%= render 'layouts/shared/footer'  %>

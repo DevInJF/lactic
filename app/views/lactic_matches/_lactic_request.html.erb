@@ -1,0 +1,31 @@
+<% if ((lactic_requests)) %>
+    <ol  class="lactic_requests_list">
+      <% if (lactic_requests).empty? %>
+          <h3>  No new LActic requests found for this week, yet </h3>
+
+      <% else %>
+      <% (lactic_requests).each do |lactic_request| %>
+          <!--<tr >-->
+          <li id='<%= lactic_request.requestor_uid%>'
+              text='<%= lactic_request.requestor_name%>'
+              >
+            <%= button_to "LACticate",lactic_request_path(:lactic_request_id => lactic_request.id, :lactic_request_requestor => lactic_request.requestor_uid), {:method => :post, :style=> 'float: right;
+    margin: 10px;'} %>
+            <!--<button class="btn btn-primary">LActicate</button>-->
+            <!--<button class="lacticate_btn" data-dismiss="modal" aria-hidden="true">DeLActicate</button>-->
+
+            <img id="<%= "img_#{lactic_request.requestor_uid}" %>"
+                 src="http://graph.facebook.com/<%= lactic_request.requestor_uid%>/picture?type=large"
+                 class="lactic_request_profile_img"/>
+            <label><%= lactic_request.requestor_name%></label>
+          <!--</tr>-->
+
+
+          </li>
+      <% end %>
+      <% end %>
+    </ol>
+
+
+
+<% end %>

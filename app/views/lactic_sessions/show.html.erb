@@ -1,0 +1,337 @@
+<script>
+    var ready;
+    ready = function() {
+
+//        $('[data-toggle="confirmation"]').confirmation();
+        $("#remove_from_cal").confirmation();
+        $('.hint').click(function() {
+            $('#modal_form_addappt').modal();
+        });
+
+        (function() {
+            //add a new style 'foo'
+            $.notify.addStyle('lactic', {
+                html:
+                "<div>" +
+                "<div class='clearfix'>" +
+                "<div class='session-title' data-notify-html='title'/>" +
+                "<div class='buttons'>" +
+                "<button class='no'>Cancel</button>" +
+                "<button class='yes' data-notify-text='button'></button>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+            });
+
+//listen for click events from this style
+            $(document).on('click', '.notifyjs-lactic-base .no', function() {
+                //programmatically trigger propogating hide event
+                $(this).trigger('notify-hide');
+            });
+            $(document).on('click', '.notifyjs-lactic-base .yes', function() {
+                //show button text
+                //hide notification
+                $(this).trigger('notify-hide');
+            });
+            <% if @invited_callback %>
+
+//            $.notify({
+//                title: 'Invitation sent! ',
+//                button: 'Confirm'
+//            }, {
+//                style: 'lactic',
+//                autoHide: false,
+//                clickToHide: false
+//            });
+            <% end %>
+            // Notification feature detection
+            if (typeof Notification === 'function') {
+                checkPermission();
+            } else {
+                return;
+            }
+            function checkPermission() {
+                Notification.requestPermission(function (status) {
+                    if (Notification.permission !== status) {
+                        Notification.permission = status;
+                    }
+                    if (Notification.permission === 'granted') {
+                        showNotifications();
+                    } else {
+//                    alert('LActic Notification was NOT granted');
+                    }
+                });
+            }
+
+            function showNotifications() {
+            }
+        })();
+
+//                FB.init({
+//                    appId: '1464889360497123',
+//                    version: 'v2.5' // or v2.0, v2.1, v2.2, v2.3
+//                    , status: true, cookie: true
+//                    //...
+//                });
+
+        <% if @fb_invite_sent  %>
+                    FB.ui({
+                        method: 'send',
+                        name: 'Sample message to the user',
+                        link: 'https://warm-citadel-1598.herokuapp.com/',
+                        description: ' has send you this message.'
+                    })
+        <% end %>
+    };
+
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
+
+
+</script>
+<%= render 'layouts/shared/header'  %>
+<div id="main" class="main-view footer-padding">
+  <!--<div class="home-page">-->
+    <div class="container">
+      <div class="what-is-linkedin">
+
+
+        <% if @lactic_session.invite_session %>
+            <div class="row">
+              <div class="col-xs-12 lactic-title">
+              <h1 class="headline hero-headline">
+                <div class="inviter-avatar">
+                  <%= link_to  "/public_profile?id=#{@lactic_session.inviter_id}" do %>
+                      <%= image_tag("https://graph.facebook.com/#{@lactic_session.inviter_id}/picture?type=large")%>
+                  <% end %>
+                </div>
+                <%= @lactic_session.inviter_name %> invites you to <%= @lactic_session.title %> <span class="subhead"></span>
+              </h1>
+                <% if @lactic_session.creator_fb_id != @lactic_session.inviter_id %>
+                <%= link_to  "/public_profile?id=#{@lactic_session.creator_fb_id}" do %>
+                    <%= image_tag("https://graph.facebook.com/#{@lactic_session.creator_fb_id}/picture?type=large")%>
+                <% end %>
+                <% end %>
+                <!--<h2 class="headline hero-headline"><= link_to  'LActic Owner' ,  "/public_profile?id=#{@lactic_session.creator_fb_id}"%></h2>-->
+              </div>
+              <div class="col-xs-12 lactic-title">
+                <% if @lactic_session.instagram_image && !@lactic_session.instagram_image.empty? %>
+                    <%= image_tag @lactic_session.instagram_image, :class => 'lactic-instagram-img'%>
+              <% else %>
+                    <%= image_tag "fitness/#{@lactic_session.type_image}", :class => 'lactic-img'%>
+              <% end %>
+
+              </div>
+            </div>
+        <% else %>
+
+
+        <div class="row">
+          <div class="col-xs-12 lactic-title">
+          <% if @lactic_session.creator_id == @current_user_id.to_s %>
+              <h1 class="headline hero-headline"><%= @lactic_session.title %><span class="subhead"></span></h1>
+                <% if @auth_instagram %>
+                    <%=link_to  $INSTAGRAM_CODE_URL, :alt =>"INSTAGRAM", :class => 'transparent-link col-xs-4',:id => "instagram-icon" do%>
+                              <span class="fa-stack fa-lg " >
+                                <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
+                              <i class="fa fa-instagram fa-stack-1x" aria-hidden="true"></i>
+                              </span>
+                    <% end %>
+                <% else %>
+                    <%= render  'layouts/shared/instagram_image_picker'  %>
+
+                <% end %>
+
+
+          <% else %>
+              <h1 class="headline hero-headline"><%= @lactic_session.title %>
+                <span class="subhead">
+                  <div class="inviter-avatar">
+                    <%= link_to  "/public_profile?id=#{@lactic_session.creator_fb_id}" do %>
+                        <%= image_tag("https://graph.facebook.com/#{@lactic_session.creator_fb_id}/picture?type=large")%>
+                    <% end %>
+                  </div>
+                </span>
+              </h1>
+          <% end %>
+          </div>
+          <div class="col-xs-12 lactic-title">
+            <% if @lactic_session.instagram_image && !@lactic_session.instagram_image.empty? %>
+                <%= image_tag @lactic_session.instagram_image, :class => 'lactic-instagram-img', :id => 'lactic_session_image_id'%>
+            <% else %>
+                <%= image_tag "fitness/#{@lactic_session.type_image}", :class => 'lactic-img', :id => 'lactic_session_image_id'%>
+            <% end %>
+          </div>
+        </div>
+
+        <% end %>
+
+        <div class="modal fade" id="modal_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-id">Voters</h3>
+              </div>
+              <div class="modal-body">
+                <%= render  partial: 'layouts/shared/lactic_user_list',:locals => { :lactic_session => @lactic_session } %>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+              </div>
+            </div><!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+
+        <div class="row">
+
+
+          <!--<div class="col-md-4 lactic-desc">-->
+            <!--<h2 class="session-title"></h2>-->
+            <!--<div id="top-card" data-li-template="top_card">-->
+              <!--<div class="profile-top-card top-card">-->
+                <!--<div class="profile-card vcard entity" tabindex="0">-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+
+          <div class="col-md-8 lactic-desc">
+            <h2 class="session-title">Details :</h2>
+            <% desc ||= @lactic_session.description || "#{@lactic_session.title} LACtic session" %>
+            <p class="lactic-desc"><%= desc %>.</p>
+            <h3 class="summary" >Start At : </h3><p class="lactic-desc"><%= Time.zone.parse(@lactic_session.start_date_time.to_s).strftime("%b %d %Y, %H:%M") %>.</p>
+            <h3 class="summary">Ends :</h3> <p class="lactic-desc"><%= Time.zone.parse(@lactic_session.end_date_time.to_s).strftime("%b %d %Y, %H:%M") %>.</p>
+            <% if @lactic_session.location %>
+               <div class="">
+                <div >
+                <h3 class="summary">Location :</h3>
+                </div>
+                <% if @lactic_session.location_origin %>
+
+                    <% if @session_location_url &&  @session_location_url != "" %>
+                        <div class=" location-icon lactic-desc">
+                        <a href=<%= @session_location_url%> target="_blank" class="location-url transparent-link">
+                          <i class="fa fa-map-marker fa-lg" aria-hidden="true">
+                             <%= @lactic_session.location %>
+                          </i>
+                        </a>
+
+                        </div>
+
+                    <% else %>
+                         <%= @lactic_session.location %>
+                    <% end %>
+
+                    <% if @session_location_website &&  @session_location_website != "" %>
+                        <div class=" location-icon lactic-desc">
+                        <a href=<%= @session_location_website%>  target="_blank" class="transparent-link">
+                          <i class="fa fa-home fa-lg location-website-url" aria-hidden="true">
+                            Website
+                          </i>
+                        </a>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <%= @lactic_session.location %>
+                <% end %>
+
+            <% end %>
+          </div>
+          </div>
+
+          <div class="col-md-4 lactic-desc">
+            <h2 class="session-title">Votes</h2>
+            <table summary="Overview session">
+              <tbody>
+              <tr id="overview-summary-past">
+                <th scope="row"></th>
+                <span class="field">
+                  <p>
+                    <%=link_to image_tag('flexed-biceps.png', :border => 0, :id => 'voter_img', :class => 'vote-img'), vote_on_path("#{@id}"), :method => 'post'%>
+                    <% if @lactic_session.votes && !@lactic_session.votes.empty? && !@lactic_session.votes[0].empty? %>
+                        <a class="hint"><%= JSON.parse(@lactic_session.votes.to_json).length %> Voted</a>
+                    <% else %>
+                        <label> No Votes Yet! </label>
+                    <% end %>
+                  </p>
+                </span>
+                <!--</td>-->
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+
+
+        <div class="row ">
+          <div class="col-xs-8 center-field">
+            <h2 class="session-title ">Comments</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <span class="field">
+              <p>
+                <%= render  partial: 'layouts/shared/comments',:locals => { :lactic_session => @lactic_session, :redirect_id => @id} %>
+              </p>
+            </span>
+          </div>
+        </div>
+
+
+
+        <div class="row share-row">
+         <!--if @lactic_session.creator_id == @current_user_id -->
+
+              <div class="col-xs-3 ">
+                <%=link_to  google_init_path(:caller => lactic_session_url(@lactic_session)), :alt => "Google Calendar" ,:class => 'transparent-link google-cal-link' do%>
+                    <span class="fa-stack fa-lg calendar-icons-spacing">
+                      <i class="fa fa-calendar fa-stack-2x" aria-hidden="true"></i>
+                      <i class="fa fa-google fa-stack-1x google-icon" aria-hidden="true"></i>
+                    </span>
+                <% end %>
+              </div>
+
+              <div class="col-xs-3 share-icon">
+                <%=link_to image_tag('ical_icon.jpg'), url_for(params.merge(:ical => true, :format => :ics)),:class => 'transparent-link'%>
+              </div>
+
+              <div class="col-xs-3 fb-share-icon">
+                <%= button_to fb_invite_path , :id => 'FBInvite', :class => 'transparent-link invite-fb' do%>
+                    <i class="fa fa-facebook-square fa-2x " aria-hidden="true"></i>
+                <% end %>
+              </div>
+
+
+              <div class="col-xs-3 share-icon">
+                <%= render  partial: 'lactic_sessions/invite'  %>
+              </div>
+           <!--end-->
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+          <!--<div class="col-xs-12 ">-->
+            <h2 class="headline hero-headline">
+              <!--< if @lactic_session.creator_id == @current_user.id.to_s %>-->
+                  <%= link_to 'Remove from calendar' ,delete_lactic_session_path(:id => url_params, :delete_date => @lactic_session.start_date_time), :class => "btn btn-danger",data: { toggle: 'confirmation', href:  delete_lactic_session_path(:id => @id, :delete_date => @lactic_session.start_date_time) } , :id => 'remove_from_cal'  %>
+                  <i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>
+              <!--< else %>-->
+                  <!--<= link_to 'Remove from calendar' ,remove_invite_path("#{@id}"), :class => "btn btn-danger ",data: { toggle: 'confirmation'}, :id => 'remove_from_cal'  %>-->
+                  <!--<i class="fa fa-trash-o fa-lg" aria-hidden="true"></i>-->
+              <!--< end %>-->
+            </h2>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  <!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<%= render 'layouts/shared/footer'  %>
+<!--</body>-->
+<!--</html>-->

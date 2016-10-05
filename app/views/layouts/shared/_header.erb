@@ -1,0 +1,372 @@
+<!--<script src="//js.pusher.com/3.0/pusher.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>-->
+<!--<script src="//js.pusher.com/3.0/pusher.min.js"></script>-->
+<!--<script src="https://js.pusher.com/2.0/pusher.min.js"></script>-->
+<script>
+    $(document).ready(function() {
+
+        $('.header-button').each(function () {
+//            var inner_badge = $(this).val();
+            var inner_badge ;
+//            alert(inner_badge);
+            var current_url = window.location.href;
+            current_url = current_url.replace('https://warm-citadel-1598.herokuapp.com/','');
+
+            switch (current_url) {
+                case 'settings':
+                    inner_badge = '5';
+                    break;
+                case 'homes':
+                    inner_badge = '1';
+                    break;
+                case 'search':
+                    inner_badge = '3';
+                    break;
+                case 'lactics':
+                    inner_badge = '4';
+                    break;
+                default:
+                    inner_badge = '2';
+            }
+
+            if ($(this).val() == inner_badge ){
+                if (!$( this).hasClass("hover-header-active")){
+                    $( this ).addClass( "hover-header-active" );
+                }
+
+            }else{
+                if ($( this).hasClass("hover-header-active")){
+                    $( this ).removeClass( "hover-header-active" );
+                }
+
+            }
+        });
+
+//        $('.nav-button-wrapper').click(function(e) {
+//            var $this = $(this);
+//            if (!$this.hasClass('hover-header-active')) {
+//                $this.addClass('hover-header-active');
+//            }
+//            e.preventDefault();
+//        });
+
+
+        $(".badge.badge-notify").each(function () {
+            var inner_badge = $(this).text();
+            if (inner_badge == '0' || inner_badge == 0){
+                if (!$( this).hasClass("notification-hide")){
+                    $( this ).addClass( "notification-hide" );
+                }
+            }else{
+                if ($( this).hasClass("notification-hide")){
+                    $( this ).removeClass( "notification-hide" );
+                }
+            }
+        });
+        $('.badge.badge-notify').each(function () {
+            $(this).change(function () {
+                var inner_badge = $(this).text();
+                if (inner_badge == '0'|| inner_badge == 0){
+                    if (!$( this).hasClass("notification-hide")){
+                        $( this ).addClass( "notification-hide" );
+                    }
+                }else{
+                    if ($( this).hasClass("notification-hide")){
+                        $( this ).removeClass( "notification-hide" );
+                    }
+                }
+            });
+        });
+//        });
+
+
+    $(".badge.badge-notify.notification-hide.notification-tab").each(function () {
+            var inner_badge = $(this).text();
+            if (inner_badge == '0' || inner_badge == 0){
+                if (!$( this).hasClass("notification-hide")){
+                    $( this ).addClass( "notification-hide" );
+                }
+            }else{
+                if ($( this).hasClass("notification-hide")){
+                    $( this ).removeClass( "notification-hide" );
+                }
+            }
+        });
+        $('.badge.badge-notify.notification-hide.notification-tab').each(function () {
+            $(this).change(function () {
+                var inner_badge = $(this).text();
+                if (inner_badge == '0'|| inner_badge == 0){
+                    if (!$( this).hasClass("notification-hide")){
+                        $( this ).addClass( "notification-hide" );
+                        $( this ).css("background-color", "black");
+                    }
+                }else{
+                    if ($( this).hasClass("notification-hide")){
+                        $( this ).removeClass( "notification-hide" );
+                    }
+                }
+            });
+        });
+//        });
+
+
+
+    });
+
+
+</script>
+<header>
+  <div class="unpublished-bar hide">
+  This is what your event will look like after going live
+</div><div class="sleek-template"><nav class="template-nav navbar-default sleek-nav-menu color-2-background">
+<!--</div><div class="sleek-template"><nav class="template-nav navbar navbar-default sleek-nav-menu color-2-background">-->
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar color-5-background"></span>
+        <span class="icon-bar color-5-background"></span>
+        <span class="icon-bar color-5-background"></span>
+      </button>
+      <a class="navbar-brand visible-xs color-5 col-xs-9" href="">LACtic</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav color-2-background main-nav">
+        <!--<li id="notify-li" style="display: none"><a id="notify_btn" class="header-button" href="/fetch_invites" ></a>-->
+        <!--</li>-->
+        <li>
+          <a class="nav-button-wrapper ">
+            <!--<button type="submit" class="header-button hover-header" onClick="location.href='/about'" ><i class="fa fa-question fa-lg fa-stack-2x hover-header"></i></button>-->
+            <button type="submit" class="header-button hover-header hover-header" onClick="location.href='/about'" >
+              <!--<i class="lactic-header-icon hover-header">-->
+                <!--<= image_tag ("logo-active.png"), :class => "lactic-header-icon"%>-->
+                <%= image_tag ("LACtic.png"), :class => ""%>
+              <!--</i>-->
+            </button>
+
+          </a>
+        </li>
+
+
+        <li>
+
+
+          <!--<span data-tooltip="" aria-haspopup="true" ="left"="" class="has-tip tip-left" data-width="90" data-selector="tooltip-ipczqp293"aria-describedby="tooltip-ipczqp293" title="">"tip-left"</span>-->
+          <!--<span data-tooltip="" aria-haspopup="true" ="right"="" class="has-tip tip-right" data-width="120" data-selector="tooltip-ipczqp294" aria-describedby="tooltip-ipczqp294" title="">"tip-right"</span>-->
+              <a class="nav-button-wrapper"
+                 href="/homes">
+                <!--<button type="submit" class="header-button" onClick="location.href='/homes'" ><span class="glyphicon glyphicon-home" aria-hidden="true"></span></button>-->
+                <!--<button type="submit" value="1" class="header-button hover-header" onClick="location.href='/homes'" aria-haspopup="true"  class="has-tip tip-right" data-width="90">-->
+                <button type="submit" value="1" class="header-button hover-header" onClick="location.href='/homes'" >
+                  <span class="badge badge-notify notification-hide">
+                    <% if @timeline_notifiactions && @timeline_notifiactions > 0 %>
+                        <%= @timeline_notifiactions %>
+                    <% else %>
+                    0
+                    <% end %>
+                  </span>
+
+                  <i class="fa fa-home fa-lg fa-stack-2x hover-header"></i>
+
+
+                </button>
+
+              </a>
+            </li>
+            <li>
+              <a class="nav-button-wrapper"
+                 href="/profile">
+                <!--<button type="submit" class="header-button" onClick="location.href='/profile'" ><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>-->
+                <button type="submit" value="2" class="header-button hover-header hover-header-active" onClick="location.href='/profile'" >
+                  <span class="badge badge-notify notification-hide">
+                    <% if @requests_notifiactions && @requests_notifiactions > 0 %>
+                        <%= @requests_notifiactions %>
+                     <% else %>
+                    0
+                    <% end %>
+                  </span>
+
+                  <i class="fa fa-user fa-lg fa-stack-2x hover-header"></i>
+
+
+                </button>
+
+              </a>
+            </li>
+            <li>
+              <a class="nav-button-wrapper"
+                 href="/search">
+                <!--<button type="submit" class="header-button" onClick="location.href='/search'" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>-->
+                <button type="submit" value="3" class="header-button hover-header" onClick="location.href='/search'" >
+                  <span class="badge badge-notify notification-hide">0</span>
+                  <i class="fa fa-search fa-lg fa-stack-2x hover-header"></i>
+                </button>
+              </a>
+            </li>
+            <li>
+              <a class="nav-button-wrapper ">
+
+                <button type="submit" value="4" class="header-button hover-header" onClick="location.href='/lactics'" >
+
+
+
+                <!--<button type="submit" class="header-button" href="#" id="notificationButton" >-->
+
+                <!--</button>-->
+                <span class="badge badge-notify notification-hide">
+                  <% if @invites_notifiactions && @invites_notifiactions > 0 %>
+                      <%= @invites_notifiactions %>
+                   <% else %>
+                    0
+                    <% end %>
+                </span>
+                  <i class="fa fa-calendar fa-lg fa-stack-2x hover-header"></i>
+                </button>
+
+              </a>
+            </li>
+
+        <li>
+              <a class="nav-button-wrapper ">
+
+                <button type="submit" value="5" class="header-button hover-header" onClick="location.href='/settings'" >
+                  <span class="badge badge-notify notification-hide">0</span>
+                  <i class="fa fa-cog fa-lg fa-stack-2x hover-header"></i>
+                </button>
+
+
+
+                <!--<button type="submit" class="header-button" href="#" id="notificationButton" >-->
+
+                <!--</button>-->
+
+              </a>
+            </li>
+
+        <li>
+          <a tabindex="0" role="button" class="header-button hover-header nav-button-wrapper"
+             data-container="body" data-toggle="popover" data-placement="bottom" data-trigger ="focus hover"
+             id="notificationBtn"
+             title="Notifications"
+         >
+          <!--<a class="nav-button-wrapper " >-->
+            <span class="badge badge-notify notification-hide notification-tab" >
+                <% if @total && @total > 0 %>
+                    <%= @total %>
+                 <% else %>
+                  <p></p>
+              <% end %>
+              </span>
+          <i class="fa fa-globe fa-lg fa-stack-2x hover-header notification-tab">
+
+          </i>
+
+
+          </a>
+        </li>
+
+
+
+        <li>
+              <a class="nav-button-wrapper ">
+                <!--<button type="submit" class="header-button" onClick="location.href='/weekly_schedule'" ><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></button>-->
+                <!--<button type="submit" class="header-button hover-header" href="#" id="signoutButton" ><i class="fa fa-sign-out fa-lg fa-stack-2x hover-header"></i></button>-->
+                <button type="submit" class="header-button hover-header" href="#" id="signoutButton" >
+                  <span class="badge badge-notify notification-hide" >0</span>
+                  <i class="fa fa-sign-out fa-lg fa-stack-2x hover-header">
+                  </i>
+                </button>
+
+              </a>
+            </li>
+
+        <!--<li>-->
+          <!--<a class="nav-button-wrapper ">-->
+            <!--<button type="submit" class="header-button" href="#" id="loctionShareButton" onClick="location.href='<= set_locations_path %>'" value="<= cookies[:lactic_location] %>" >-->
+              <!--<span class="fa-stack fa-lg location-stack">-->
+                <!--< if cookies[:lactic_location] == 'on' %>-->
+
+                    <!--<i id="location-icon" class="fa fa-location-arrow fa-stack-1x location-on"></i>-->
+
+                    <!--<i id="locationoff" class="fa fa-ban fa-stack-2x text-danger" style="display: none"></i>-->
+                    <!--<i id="locationon" class="fa fa-circle-o fa-stack-2x location-on" style=""></i>-->
+
+                <!--< else %>-->
+                    <!--<i id="location-icon" class="fa fa-location-arrow fa-stack-1x"></i>-->
+                    <!--<i id="locationoff" class="fa fa-ban fa-stack-2x text-danger" style=""></i>-->
+                    <!--<i id="locationon" class="fa fa-circle-o fa-stack-2x location-on" style="display: none"></i>-->
+                <!--< end %>-->
+                <!--</span>-->
+            <!--</button>-->
+          <!--</a>-->
+        <!--</li>-->
+
+
+        <% if @current_user_cookie_id && @current_user_cookie_id ==  '10153011850791938' %>
+        <li>
+          <a class="nav-button-wrapper ">
+
+            <button type="submit" value="5" class="header-button hover-header" onClick="location.href='/lacticate_screen'" >
+              <span class="badge badge-notify notification-hide">0</span>
+              <i class="fa fa-info-circle fa-lg fa-stack-2x hover-header"></i>
+            </button>
+
+
+
+            <!--<button type="submit" class="header-button" href="#" id="notificationButton" >-->
+
+            <!--</button>-->
+
+          </a>
+        </li>
+        <% end %>
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+</div>
+
+
+</header>
+<!--<a href="#" id="myButton" class="user-lacticate-btn"></a>-->
+<div class="modal fade" id="modal_sign_out" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="modal-title-id">Sign-Out Requests</h1>
+      </div>
+      <div class="modal-body">
+            Sign-Out As <%= cookies['lactic_name'] %> ?
+        <%= render 'sessions/sign_out' %>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        <!--<button class="btn btn-primary">Sign-Out</button>-->
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal_notification" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" id="session-modal-title">
+        <h1 class="modal-title" id="modal-title-id">Notifications</h1>
+      </div>
+      <div class="modal-body">
+        <%= render 'notifications_center'  %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

@@ -1,0 +1,44 @@
+
+.nav-v5-2-header #search_header {
+    background-color: #3f3f3f;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #696969), color-stop(100%, #3f3f3f));
+    background-image: -webkit-linear-gradient(top, #696969 0%,#3f3f3f 100%);
+    background-image: -moz-linear-gradient(top, #696969 0%,#3f3f3f 100%);
+    background-image: -o-linear-gradient(top, #696969 0%,#3f3f3f 100%);
+    background-image: linear-gradient(top, #696969 0%,#3f3f3f 100%);
+    height: 42px;
+}
+#search_header {
+    z-index: -100000;
+    /*position: relative;*/
+    text-align: left;
+    /*position: relative;*/
+    /*padding-top: 10px;*/
+    /*margin-top: 20px;*/
+}
+
+#search_header>.wrapper {
+    z-index: -10000;
+}
+#search_header .nav-item{
+    line-height: 13px;
+    /*position: relative;*/
+
+    padding-top: 13px;
+    padding-bottom: 14px;
+    /*color: #0077b5;*/
+    text-decoration: none;
+    /*cursor: pointer;*/
+    display: block;
+
+    /*padding-left: 15px;*/
+    /*padding-right: 15px;*/
+    color: #D7D7D7;
+    float: left;
+}
+
+.search_fb{
+    float: left;
+
+
+}

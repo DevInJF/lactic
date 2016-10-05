@@ -1,0 +1,259 @@
+<style type="text/css">
+    .list-content{
+        min-height:300px;
+        padding-top: 150px;
+    }
+    .list-content .list-group .title{
+        background:#5bc0de;
+        border:2px solid #DDDDDD;
+        font-weight:bold;
+        color:#FFFFFF;
+    }
+    .list-group-item img {
+        height:80px;
+        width:80px;
+    }
+
+    .jumbotron .btn {
+        padding: 5px 5px !important;
+        font-size: 12px !important;
+    }
+    .prj-name {
+        color:#5bc0de;
+    }
+    .break{
+        width:100%;
+        margin:20px;
+    }
+    .name {
+        color:#5bc0de;
+        position: relative;
+    }
+</style>
+<script>
+
+  function onFriendClick(friend){
+
+      <% public_profile %>
+  }
+
+    $(document).ready(function(){
+        var selected = [];
+        var filter_start = 'not';
+        $("li").click(function (e) {
+            filter_start = 'start';
+            var cb = $(this).find('a').find(":checkbox")[0];
+            if (cb){
+            if (e.target != cb) cb.checked = !cb.checked;
+            $(this).toggleClass("selected", cb.checked);
+            $('.person-category').each(function () {
+                if ($(this).val() != 'null') {
+                    if ($(this).is(':checked')) {
+                        if ($(this).val() != 'null' && selected.indexOf($(this).val()) == -1) {
+                            selected.push($(this).val());
+                        }
+                    }
+                    else {
+                        if  (selected.indexOf($(this).val())!=-1){
+                            selected.splice(selected.indexOf($(this).val()), 1);
+                        }
+                    }
+                }
+                $("#user_info_keywords_about").val(selected);
+
+            });}
+        });
+
+
+
+
+
+//        $(".search_filter_form").submit();
+
+        var x = document.getElementById("osm_friends_list");
+        var locations;
+
+        $(document).mouseup(function (e)
+        {
+            var container = $("#osm_friends_list");
+
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+//                container.hide();
+            }
+
+            var filter_container = $(".search_filter_form");
+            if (!filter_container.is(e.target) // if the target of the click isn't the container...
+                    && filter_container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                if (selected && selected.length > 0) {
+                    $(".search_filter_form").submit();
+                }
+
+            }
+
+        });
+        $("#dropdownMenu1").click(function (e) {
+
+            if (selected && selected.length > 0){
+                $(".search_filter_form").submit();
+            }
+        });
+
+        $("#Search").keydown(function(){
+
+            var newFriendList = <%=raw all_contacts %>;
+//            alert(newFriendList.length);
+
+            if (newFriendList) {
+                for (var j = 0; j < newFriendList.length; j++) {
+//                for (let friendItem of newFriendList) {
+//                newFriendList.forEach( function (friend)
+                    {
+                        var friendItem = newFriendList[j];
+                        var friend = document.getElementById(friendItem.id);
+                        if (!friend && typeof friend !== 'undefined' && friendItem.id !== 'undefined') {
+                            innerFriend = "<li class='list-group-item text-left' id='" + friendItem.picture + "'>" +
+                            "<a id='" + friendItem.picture + "class = 'name' ' text='" + friendItem.name +
+                            "' onClick='onFriendClick(this)'>" + "<img class='list-group-item text-left' src='" +
+                            friendItem.picture + "'/><label>" + friendItem.name + "</label></a></li>"+" <div class='break'></div>"
+                            if (!document.getElementById(friendItem.picture))
+                            document.getElementById("osm_friends_list").innerHTML += innerFriend;
+                        }
+                    }
+
+                }
+            }
+            $('#osm_friends_list').show();
+        });
+
+        $("#Search").keyup(function(){
+            // Retrieve the input field text and reset the count to zero
+            var filter = $(this).val(), count = 0;
+
+            // Loop through the comment list
+            $(".list-group li").each(function(){
+
+                // If the list item does not contain the text phrase fade it out
+                if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                    $(this).fadeOut();
+
+                    // Show the list item if the phrase matches and increase the count by 1
+                } else {
+                    $(this).show();
+                    count++;
+                }
+            });
+
+            // Update the count
+            var numberItems = count;
+//            $("#filter-count").text("Number of Comments = "+count);
+        });
+
+    });
+</script>
+
+<%= render 'layouts/shared/header'  %>
+<div id="second-top-header">
+  <ul class="user-search-navigator ">
+    <li >
+      <div class="dropdown">
+        <%= form_for( @user_info , :url => search_path,:html => { :class => 'search_filter_form'}) do |f| %>
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Search Filter
+              <span class="caret"></span>
+            </button>
+            <%= f.hidden_field :keywords_about %>
+            <%= text_field_tag 'Search', nil %>
+            <ul class="dropdown-menu scrollable-menu " aria-labelledby="dropdownMenu1" role="menu" style="left:50%; margin-left:-100px;">
+              <li class="search-nearby">
+              <%=link_to search_nearby_path, :method => 'post', :class => 'search-nearby' do %>
+                  <i class="fa fa-location-arrow fa-lg fa-stack-2x hover-header">  Nearby</i>
+                    <!--<i class="flaticon-scale"></i>-->
+                    <h5 class="nearby-desc">Last checked-in within a 10km range</h5>
+              <% end %>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Instructors</li>
+              <li style="display: none"><a href="#" ><input class="person-category" type="checkbox" value="null"/></a></li>
+              <li><a href="#" ><input class="person-category" type="checkbox" value="shape"/>Body Shape</a></li>
+              <li><a href="#" ><input  class="person-category" type="checkbox" value="nutritionist"/>Nutritionist</a></li>
+              <li><a href="#" ><input class="person-category" type="checkbox" value="dancer"/>Dance</a></li>
+              <li><a  href="#" ><input  class="person-category" type="checkbox" value="instructor"/>Trainer</a></li>
+              <li><a  href="#" ><input   class="person-category" type="checkbox" value="model"/>Fitness Model</a></li>
+              <!--<li role="separator" class="divider"></li>-->
+              <!--<li class="dropdown-header">Trainee Interests</li>-->
+              <!--<li><a href="#" ><input type="checkbox"/>Weight training</a></li>-->
+              <!--<li><a href="#" ><input type="checkbox"/>Cardio training</a></li>-->
+              <!--<li><a href="#" ><input type="checkbox"/>Dance</a></li>-->
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Services</li>
+              <li><a href="#" ><input class="person-category" type="checkbox" value="gym"/>Gym</a></li>
+              <li><a href="#" ><input class="person-category" type="checkbox" value="studio"/>Classes Studio</a></li>
+              <li><a href="#" ><input class="person-category" type="checkbox" value="crossfit"/>CrossFit</a></li>
+            </ul>
+            <% end %>
+          </div>
+        </li>
+      </ul>
+    </div>
+        <div class="jumbotron list-content">
+          <ul class="list-group" id="osm_friends_list">
+            <li href="#" class="list-group-item title">
+              Your LACtic Friends
+            </li>
+            <h4 id="lactic_friends"></h4>
+            <% if (@contacts) %>
+                <% (@contacts).each do |osm_user| %>
+                    <% if osm_user && !osm_user.empty?  %>
+                        <% if (!osm_user["filtered"] ) %>
+                            <li id='<%= ((osm_user)["picture"])%>' class="list-group-item text-left ">
+                              <% if  @nearby_result.include? osm_user["id"] %>
+                                  <label class="user-nearby-icon">
+                                    <i class="fa fa-map-marker fa-lg fa-stack-2x location-on" aria-hidden="true"></i>
+                                  </label>
+                              <% end %>
+                              <label class="pull-right lactic-icon">
+                                <%= image_tag("flexed-biceps.png") %>
+                                <% if @filter_search_result.length >0 %>
+                                    <%= image_tag("fitness/bike.png") %>
+                                <% end %>
+                              </label>
+
+                              <a id='<%= ((osm_user)["picture"])%>' text='<%= (osm_user)["name"]%>' onClick='onFriendClick(this)'/>
+                              <%= link_to  "/public_profile?id=#{(osm_user)["id"]}" do %>
+                                  <%= image_tag  "https://graph.facebook.com/#{(osm_user)["id"]}/picture?type=large", :class=> 'img-thumbnail'%>
+                                  <label class="name"><%= (osm_user)["name"].gsub('%q',"'")%></label>
+                              <% end %>
+                              <!--<img src='<%= ((osm_user)["picture"])%>' class="img-thumbnail"/>-->
+                            </li>
+                            <div class="break"></div>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+
+            <% if @non_contacts  &&  (!@filter_search_result || @filter_search_result.length == 0)%>
+                <h4 id="facebook_friends"></h4>
+                <%(@non_contacts).each do |osm_user| %>
+                    <% if osm_user && !osm_user.empty? && (osm_user) %>
+                        <li id='<%=  ((osm_user)["name"])%>' class="list-group-item text-left">
+                          <a id='<%= ((osm_user)["name"])%>' text='<%= (osm_user)["name"]%>' onClick='onFriendClick(this)'>
+                            <%= link_to  "/public_profile?id=#{(osm_user)["name"]}" do %>
+                                <%= image_tag  ((osm_user)["picture"]), :class=> 'img-thumbnail'%>
+
+
+
+                                <label class="name"><%= (osm_user)["name"].gsub('%q',"'")%></label>
+                            <% end %>
+                          </a>
+                        </li>
+                        <div class="break"></div>
+                    <% end %>
+                <% end %>
+            <% end %>
+          </ul>
+        </div>
+<%= render 'layouts/shared/footer'  %>

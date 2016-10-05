@@ -1,0 +1,50 @@
+<script>
+
+    $(document).ready(function() {
+        $('li').hover(
+
+
+                function () {
+                    var index = this.id;
+                    if (index) {
+//                        alert("remove_about_"+index);
+                        $("#remove_"+index).show();
+                    }
+
+                },
+
+                function () {
+                    var index = this.id;
+                    if (index) {
+                    $("#remove_"+index).hide();
+                    }
+                }
+        );
+    })
+</script>
+
+
+<h3> Details about <%= @user_info.name %> </h3>
+<div class="actions">
+  <% if @user_info.about && !@user_info.about.empty? %>
+      <% @user_info.about.each_with_index do |info_about,index| %>
+          <ul>
+            <div class="user_info" >
+              <li id="about_<%=index%>">
+                <% if @user.id == @user_info.id %>
+                    <%= link_to remove_about_info_url(:user_about => @user_info.about , :index => index, :id => @user_info.id, :name => @user_info.name,:title => @user_info.title , :latitude => @user_info.latitude,:longitude => @user_info.longitude,:public_service => @user_info.public_service  ) do %>
+                        <i id="remove_about_<%=index%>" class="fa fa-times fa-lg fa-pull-right" aria-hidden="true" style="display: none"></i>
+                    <% end %>
+                <% end %>
+                <div class="user_info_element">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left fa-border" aria-hidden="true"></i>
+                  <%= info_about %>
+                </div>
+              </li>
+            </div>
+          </ul>
+      <% end %>
+  <% end %>
+
+</div>
+

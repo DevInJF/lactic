@@ -1,0 +1,22 @@
+<%= link_to(lactic_session) do %>
+<% if (lactic_session.votes) %>
+
+    <ol id="UserslistFilter" class="lacticUserlist">
+  <% (@lactic_session.votes).each do |lactic_user_hash| %>
+          <% (lactic_user_hash).each do |id,name| %>
+      <li >
+        <a>
+          <img id="<%= "img_#{id}" %>" src="https://graph.facebook.com/<%= id%>/picture?type=small" class="lactic_request_profile_img"/>
+
+          <%if id == @current_user_uid %>
+              <%= link_to name,profile_path%>
+        <% else %>
+              <%= link_to name,public_profile_path({:id => id})%>
+        <% end %>
+        </a></li>
+      <% end %>
+      <% end %>
+    </ol>
+<% end %>
+
+<% end %>

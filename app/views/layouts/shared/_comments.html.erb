@@ -1,0 +1,69 @@
+<div class="row lacticUserlist" id="session_comments_list">
+  <div class="col-xs-6">
+
+        <!--<ol id="session_comments_list" class="lacticUserlist">-->
+  <!--<li>-->
+        <%= form_for(@lactic_session,:url => comment_on_path, :html => {:id => "#{@lactic_session.id}-#{(@lactic_session.start_date_time.to_f * 1000).to_i}"}) do |f|   %>
+
+        <div class="actions">
+          <!--<div class="">-->
+
+            <div class="comment comment-col">
+              <li>
+                <%= f.text_field :comment ,:placeholder => "Write a comment",  class: "comment"%>
+                </a>
+              </li>
+            </div>
+            <div class="form-group">
+              <%= f.hidden_field :id, :value=>"#{@lactic_session.id}" %>
+              <%= f.hidden_field :start_time, :value=>"#{@date_redirect}" %>
+            </div>
+
+          <!--</div>-->
+
+        </div>
+
+
+    <% end %>
+  </div>
+  </div>
+
+
+<% if @lactic_session.comments && !@lactic_session.comments.empty? %>
+      <% @lactic_session.comments.each do |comment| %>
+          <%comment.each do |comment_date,comment_record| %>
+            <div class="row comment-div">
+            <div class="col-md-4 comment-col">
+                <div class="avatar">
+                  <% @profile_path = "https://graph.facebook.com/#{comment_record["id"]}/picture?type=small" %>
+                  <%if comment_record["id"] == @current_user_uid %>
+                      <%= link_to(image_tag(@profile_path), profile_path)%>
+                  <% else %>
+                      <%= link_to  "/public_profile?id=#{comment_record["id"]}" do %>
+                          <%= image_tag(@profile_path)%>
+                      <% end %>
+                  <% end %>
+                </div>
+                <div class="comment-bubble">
+                  <div class="timeline-item">
+                    <div class="retweet-comment">
+                      <!--<div class="icon-retweet"></div>-->
+                      <div class="icon-comment-time">
+                        <i class="fa fa-clock-o fa-lg" aria-hidden="true"></i>
+                        <%= (Time.zone.parse(comment_date)).strftime("%b %d %Y %H:%M") %>
+                      </div>
+                    </div>
+                    <h5 class="comment-title high-light"><%= comment_record["name"] %></h5>
+                    <p class="event-description"></p>
+                    <h3 class="comment_desc">
+                      <%= comment_record["comment"] %>
+                    </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+      <% end %>
+  <% end %>
+
+

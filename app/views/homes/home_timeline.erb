@@ -1,0 +1,86 @@
+<script>
+    $( document ).ready(function() {
+
+
+        var url = 0;
+
+        if (typeof document.URL.split('?')[1] !== 'undefined') {
+
+            day = document.URL.split('?')[1];
+            if (typeof day !== 'undefined') {
+                url = parseInt(day.replace("day=", "")) - 1;
+            }else
+                url = 0;
+        }
+        $("#osm_day_".concat(url)).parent().addClass( "activePage" );
+
+
+        $("#second-top-header").removeClass('navbar-fixed-top');
+    });
+</script>
+<%= render 'layouts/shared/header'  %>
+
+<!--<div id="main" class="main-view footer-padding" style="opacity: 1;">-->
+<!--<div class="home-page">-->
+<!--<div class="col-xs-12 col-sm-10 col-sm-offset-1 timer-holder">-->
+<!--<span class="first">-->
+<!--<p id="notice"></p>-->
+<!--<div class="col-xs-12 form-group margin-bottom-large">-->
+<nav id="second-top-header" class="navbar navbar-default">
+  <!--<div class="wrapper">-->
+  <div class="container">
+    <ul class="nav main-nav guest-nav" role="navigation" id="osm-day-navigator">
+
+      <%  for k in 0..6 do %>
+          <% t =Time.now+(60 * 60 * 24)*k  %>
+          <li class="nav-item">
+
+            <a href="/homes?day=<%=k+1%>" class="nav-link" id="osm_day_<%=k%>" onclick="osmDayClicked(this.id.replace('osm_day_',''))"><%= t.strftime("%a")%><br><%= t.strftime("%b-%e")%></a>
+          </li>
+
+      <% end %>
+
+    </ul>
+  </div>
+</nav>
+<!--</div>-->
+<!--<div class="callouts-group">-->
+<!--<div class="list-group">-->
+<!--</span>-->
+
+
+
+
+
+<div class="timeline">
+  <!--<div class="timeline-layer">-->
+  <% if @osm_sessions && @osm_sessions.length>0 %>
+
+
+      <% @osm_sessions.each do |osm_session| %>
+          <%= render  partial: 'layouts/shared/lactic_timeline_session',:locals => { :osm_session => osm_session } %>
+
+      <% end %>
+
+  <% else %>
+      <h2>No LActic Sessions Found for Today!</h2>
+
+  <% end %>
+  <!--</div>-->
+  <!--<div class="wrapper hp-nus-wrapper">-->
+
+  <!--<div id="global-error"></div>-->
+
+
+  <!--<span class="callout-arrow"></span>-->
+  <!--</div>-->
+  <!--</div>-->
+</div>
+<!--<p id="agreement">-->
+<!--<strong>*</strong> By joining OSM, you agree to OSM's <a href="UserAggrement.html">User Agreement</a>, <a href="index.html">Privacy Policy</a> and <a href="index.html">Cookie Policy</a>.-->
+<!--</p>-->
+<!--footer!-->
+<%= render 'layouts/shared/footer'  %>
+
+<!--</body>-->
+<!--</html>-->

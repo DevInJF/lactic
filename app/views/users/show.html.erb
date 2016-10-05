@@ -1,0 +1,447 @@
+<script>
+    $(document).ready(function(){
+
+
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+
+        function setPosition(position) {
+
+            setCookie("osm_latitude",position.coords.latitude);
+            setCookie("osm_longitude",position.coords.longitude);
+
+            console.log(document.cookie);
+
+        }
+        function getDayTitle(d){
+            var date  = new Date(d);
+            var weekday = new Array(7);
+            weekday[0]=  "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            return weekday[date.getDay()];
+        }
+        function getHoursTitle(d){
+            var date = new Date(d);
+            var hours = (d.getHours()<10)? "0"+d.getHours() : d.getHours();
+            var minutes = (d.getMinutes()<10)? "0"+d.getMinutes() : d.getMinutes();
+            return hours+":"+minutes;
+        }
+
+
+        $('#create_lactic').click(function() {
+
+            var now = new Date();
+            var start_t = new Date(now.getTime());
+            start_t.setHours(now.getHours());
+            var end_t = new Date(start_t);
+            end_t.setHours(start_t.getHours()+1);
+
+//
+            $("#day_session").val(start_t.getDay());
+
+            $("#date_start").val($.datepicker.formatDate("dd M yy", start_t));
+            $("#date_end").val($.datepicker.formatDate("dd M yy", end_t));
+
+            $("#time_start").val(getHoursTitle(start_t));
+            $("#time_end").val(getHoursTitle(end_t));
+            var title = getDayTitle(now)+"'s LACtic Session";
+            $('#modal-title-id').html(title);
+            $('.modal-title').html(title);
+            $("#lactic_form").modal();
+
+        });
+
+
+    });
+</script>
+<script>
+    function onSkillVoterListClick(keyword){
+        $("#user_info_keyword").val(keyword);
+        if (keyword && keyword != ''){
+            var list = <%=raw @user_info.keywords_rated.to_json %>;
+            if (list){
+                var voters_list = '';
+                for (var id in list){
+                    console.log(id + " -> " + list[id]);
+                    // if (key == "name") doSomething();
+                    if (id == '<%= @user.uid %>'){
+                    }else{
+                        if (id == keyword){
+                            var voters = list[id];
+                            for(var i=0;i<voters.length;i++){
+                                for (var uid in voters[i]){
+                                    voters_list +="<li><a><img id='"+uid+"' src='https://graph.facebook.com/"+uid+"/picture?type=small' class='lactic_request_profile_img'/>";
+                                    voters_list += "<a href='/public_profile?id="+uid+"'><label class='name'>"+voters[i][uid]+"</label></a></li>";
+                                }
+                            }
+                        }
+                    }
+                    $("#UserslistFilter").html(voters_list);
+                }
+            }
+        }
+        $('#modal_votes').modal();
+    }
+    $(document).ready(function() {
+
+        function profile_image_cycle(profile_image) {
+
+            var tmp = profile_image.data('swap');
+            profile_image.attr('data-swap', $(this).attr('src'));
+            profile_image.data('swap',profile_image.attr('src'));
+            profile_image.attr('src',tmp);
+//            $(this).attr('str', tmp);
+        };
+
+
+        $('#profile-img').hover(function(){
+            var $this = $(this);
+            profile_image_cycle($this);
+            timer = setInterval(function(){ profile_image_cycle($this); }, 2000);
+        }, function(){
+            clearInterval(timer);
+        });
+
+
+        $('.owl-testimonials').owlCarousel({
+            singleItem: true,
+            pagination: true
+        });
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+        document.cookie = "time_zone=" + new Date().getTimezoneOffset();
+
+//        alert("TIME ZONE SET "+getCookie('time_zone'));
+
+        $('#myButton').click(function () {
+            $('#modal-title-id').html("LACtic Requests");
+            $('#modal_form_addappt').modal();
+
+            $('.speaker-header-background').css({ opacity: 1 });
+
+        })
+        $('#modal_form_addappt').on('hidden.bs.modal', function () {
+            // do something…
+            $('.speaker-header-background').css({ opacity: 0.8});
+        })
+
+        $('#moreAboutBtn').click(function () {
+//            $('#modal-title-id').html("LACtic Requests");
+            $('#modal_about_form_addappt').modal();
+        })
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+
+    })
+
+
+</script>
+<%= render 'layouts/shared/header'  %>
+
+<div class="main-view footer-padding no-loader"
+     style="opacity: 1;">
+  <div class="speaker-page  color-4-background">
+    <div class="main-app-container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="col-xs-12 speaker-header speaker-header-background">
+            <!--<div class="background-blur">-->
+            <div class="background-profile">
+                 <!--style="background: url(https://res.cloudinary.com/bizzaboprod/image/upload/w_270,h_270,c_fill,g_face,e_blur:1300/fkyhcsbwjtkz7p6ahuxp.png)"-->
+            </div>
+            <% if !@user.matched%>
+                <!--<a href="#" id="myButton" class="btn btn-primary">LActic Requests</a>-->
+                <a href="#" id="myButton" class="user-lacticate-btn"></a>
+                <div class="modal fade" id="modal_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="modal-title-id">LActic Requests</h3>
+                  </div>
+                  <div class="modal-body">
+
+                    <%= render  partial:'lactic_matches/lactic_request',  :locals =>{:lactic_requests => @lactic_requests} %>
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <!--<button class="btn btn-primary">Save changes</button>-->
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+            <% else %>
+                <% if @user.matched_user %>
+                    <a href='<%="#{public_profile_url({:id => @user.matched_user})}" %>' class="user-lacticate-match" style="background-image: url('<%="https://graph.facebook.com/#{@user.matched_user}/picture?type=large"%>'); background-repeat: no-repeat;"></a>
+                <% end %>
+            <% end %>
+            <div class="col-xs-12">
+              <div class="speaker-name"><%= @user.name %></div>
+              <div class="speaker-title"></div>
+              <div class="speaker-company"></div>
+              <div class="speaker-links">
+                <a href=""></a>
+              </div>
+              <div class="speaker-social">
+                <% if  @user.uid && !@user.uid.empty? %>
+                <a href="https://www.facebook.com/<%= @user.uid %>" target="_blank"><i class="fa fa-facebook-square transparent-link"></i></a>
+                    <% if !@instagram_link || @instagram_link.empty? %>
+                        <%=link_to  $INSTAGRAM_CODE_URL, :alt =>"INSTAGRAM", :class => 'transparent-link ',:id => "" do%>
+                              <!--<span class="fa-stack" >-->
+                                <!--<i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>-->
+                              <i class="fa fa-instagram " aria-hidden="true"></i>
+                              <!--</span>-->
+                        <% end %>
+                    <% else %>
+                        <%=link_to  @instagram_link, :alt =>"INSTAGRAM", :class => 'transparent-link ',:id => "",:target =>"_blank" do%>
+                              <!--<span class="fa-stack" >-->
+                                <!--<i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>-->
+                              <i class="fa fa-instagram " aria-hidden="true"></i>
+                              <!--</span>-->
+                        <% end %>
+                    <% end %>
+
+
+                <% else %>
+                <!--GOOGLE USER SOCIAL LINK-->
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row col-container">
+        <div class="col-md-6 sm-margin-top">
+          <div class="panel-body color-5-background">
+            <div class="panel-title color-2">UP To This Week</div>
+            <%= label_tag :create_lactic, 'Schedule a new LACtic ', :class => "btn btn-primary new-lactic-btn", :id => 'create_lactic' %>
+            <ul class="sessions-list">
+              <div class="row form-group color-5-background">
+                <div class="col-xs-12 weekly-sessions-profile panel-text color-3">
+                  <div class="intro-table intro-table-third1 intro-session-weekly-table">
+                    <div class="layer-red center-sessions">
+                      <h5 class="white heading"></h5>
+                      <div class="owl-testimonials bottom profile-owl">
+
+                        <% @lactic_sessions.each do |lactic_session| %>
+                            <div class="item">
+                              <h4 class="white heading high-light content"><%= lactic_session.title %></h4>
+                              <h5 class="white heading high-light content"><%= Time.parse(lactic_session.start_date_time.to_s).strftime("%b %d %Y, %H:%M")  %></h5>
+                              <h5 class="white heading high-light content transparent-link"><%= link_to 'Show', lactic_session_path(lactic_session), :class => 'btn btn-white-fill expand' %></h5>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+
+          <div class="panel-body tweets-panel color-5-background sm-margin-top">
+            <div class="panel-title color-2">About</div>
+            <pre class="panel-text speaker-bio color-3"></pre>
+            <% if @user_info.about && !@user_info.about.empty? %>
+                <div class="row intro-tables user-about">
+                  <div class="intro-table-about intro-table-1">
+                    <div class="layer-blue"></div>
+                    <div class="col-xs-12">
+                      <div class="user_info_element white heading high-light">
+                        <i class="fa fa-quote-left fa-lg fa-pull-left" aria-hidden="true"></i>
+                        <%= "#{@user_info.about[0][0..30]}..." %>
+                        <a href="#" id="moreAboutBtn" class="user-about-btn transparent-link white high-light">Read more</a>
+                      </div>
+                    </div>
+                    <div class="actions col-xs-12">
+                      <h3>Add some details about me </h3>
+                      <a href="/settings" class="transparent-link" >
+                        <i class="fa fa-info-circle fa-lg"></i>
+                      </a>
+                    </div>
+                    <% if @user.uid ==  '10153011850791938' %>
+                        <div class="col-xs-12">
+                          <%=link_to  google_init_path(:caller => profile_path), :alt => "Google Calendar", :class => 'transparent-link col-xs-6' do%>
+                              <span class="fa-stack fa-lg ">
+                                <i class="fa fa-calendar fa-stack-2x" aria-hidden="true"></i>
+                                <i class="fa fa-google fa-stack-1x " aria-hidden="true"></i>
+                              </span>
+                          <% end %>
+                          <%=link_to  send_email_url(:send_to_email => @user.email, :send_to_name => @user.name, :send_to_id => @user.id), :alt => "LACtic email notification", :class => 'transparent-link col-xs-6' do%>
+                              <span class="fa-stack fa-lg ">
+                                <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
+                                <i class="fa fa-inbox fa-stack-1x " aria-hidden="true"></i>
+                              </span>
+                          <% end %>
+                        </div>
+                    <% end %>
+                    <!--<div class="col-xs-12">-->
+                      <!--< if @instagram_pic %>-->
+                          <!--<div class="item col-xs-4">-->
+                            <!--<= image_tag  @instagram_pic, :class => "circular",  :id => 'profile-instagram-img'%>-->
+                          <!--</div>-->
+                      <!--< else %>-->
+                          <!--<=link_to  $INSTAGRAM_CODE_URL, :alt =>"INSTAGRAM", :class => 'transparent-link col-xs-4' do%>-->
+                              <!--<span class="fa-stack fa-lg ">-->
+                                <!--<i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>-->
+                              <!--<i class="fa fa-instagram fa-stack-1x" aria-hidden="true"></i>-->
+                              <!--</span>-->
+                          <!--< end %>-->
+                      <!--< end %>-->
+                      <!--< if !@lactic_instagram_images || @lactic_instagram_images.empty? %>-->
+                              <!--<h5 class="white heading high-light col-xs-4">Hash tag #LACtic your Instargram pictures, you want to view here!</h5>-->
+                          <!--< else %>-->
+                              <!--<h5 class="white heading high-light col-xs-4"><= @user.name %>'s #LACtic Instagram Pictures</h5>-->
+                          <!--< end %>-->
+                    <!--</div>-->
+                    <!--< if @lactic_instagram_images %>-->
+                        <!--<div class="owl-testimonials bottom profile-owl col-xs-12">-->
+                          <!--< @lactic_instagram_images.each do |image| %>-->
+                              <!--<div class="item col-xs-offset-4">-->
+                                <!--<= image_tag image, :class => 'circular-large' %>-->
+                              <!--</div>-->
+                          <!--< end %>-->
+                        <!--</div>-->
+                    <!--< end %>-->
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6 sm-margin-top">
+          <div class="panel-body color-5-background fitness-skills">
+            <div class="tweets-timeline-wrapper col-xs-12">
+              <a width="600" height="340"
+                 data-chrome="noborders noscrollbar transparent"
+                 class="twitter-timeline"></a>
+              <!--data-screen-name="adamberk"-->
+              <div class="panel-title color-2">Fitness Skills
+                <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" id="ui-id-1">Add a skill<a href="/settings">
+
+                  <i class="fa fa-info-circle fa-lg pull-right" data-toggle="tooltip" data-placement="top"></i>
+                </a></button>
+              </div>
+              <div class="row session-panel form-group color-5-background">
+                <div class="color-3 skills-title" href="" >
+                  <span><strong><%= @user.name %>'s Fitness skills</strong></span>
+                </div>
+                <br>
+
+                <% if @user_info && @user_info.keywords_rated%>
+                    <% @user_info.keywords_rated.each do |keyword, voted| %>
+                        <div class="session-date color-3 keywords-profile">
+                          "<%= keyword.slice(0,1).capitalize + keyword.slice(1..-1)  %>"
+                          <a class="fitness-skill" id="skill_votes_<%=keyword%>" onclick="onSkillVoterListClick('<%=keyword%>')">
+                            <span class="fa-stack fa-lg pull-right">
+                              <i class="fa fa-circle fa-stack-2x"></i>
+                              <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                            </span>
+                          </a>
+                        </div>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="speaker-img-container">
+        <% if @user.picture && !@user.picture.empty? && @user.picture !=  "https://graph.facebook.com/#{@user.uid}/picture?type=large" && @user.google_id&& !@user.google_id.empty?%>
+            <%= image_tag @user.picture, :class => "circular", 'data-swap' => "https://graph.facebook.com/#{@user.uid}/picture?type=large", :id => 'profile-img'%>
+        <% else %>
+            <%= image_tag "https://graph.facebook.com/#{@user.uid}/picture?type=large", :class => "circular" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="container" style="display:none">
+  <div id="basic-template">
+    <a class="ui-notify-cross ui-notify-close" href="#">x</a>
+    <h1>#{title}</h1>
+    <p>#{text}</p>
+  </div>
+</div>
+
+
+<%= render 'layouts/shared/footer'  %>
+<div class="modal fade" id="modal_votes" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-id">Voters</h3>
+      </div>
+      <div class="modal-body">
+
+        <ol id="UserslistFilter" class="lacticUserlist">
+
+        </ol>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  </div>
+
+<div class="modal fade" id="lactic_form" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" id="session-modal-title">
+        <h3 class="modal-title" id="modal-title-id"></h3>
+      </div>
+      <div class="modal-body">
+        <%= render 'lactic_sessions/form'  %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="modal_about_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-id">About me</h3>
+      </div>
+      <div class="modal-body">
+        <%= render 'user_about', :locals => { :user_info => @user_info }  %>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+        <!--<button class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>

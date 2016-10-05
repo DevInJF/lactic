@@ -1,0 +1,80 @@
+.header-button{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+.location-on{
+    color: green;
+}
+.location-stack{
+    margin-top: 0.3em;
+}
+.nav .hover{
+    background-color: transparent;
+
+}
+.hover-header .hover{
+    color: green;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: darkcyan;
+}
+.nav-button-wrapper:hover {
+    background: transparent !important;
+}
+.hover-header{
+    margin-top: -1vh;
+}
+.hover-header:hover {
+    color: teal;
+}
+.hover-header:focus {
+    color: teal;
+}
+.hover-header-active{
+    color: teal;
+}
+
+.lactic-header-icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    background: no-repeat;
+    /*font-size: 2em;*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*width: 75%;*/
+    /*text-align: center;*/
+    /*font-size: 1.33333333em;*/
+    /*line-height: 0.75em;*/
+    /*vertical-align: -15%;*/
+    /*display: inline-block;*/
+    /*font: normal normal normal 14px/1 FontAwesome;*/
+    /*font-size: inherit;*/
+    /*text-rendering: auto;*/
+    /*-webkit-font-smoothing: antialiased;*/
+    /*margin-top: -1vh*/
+}
+.notification-hide{
+    color: transparent !important;
+    background: transparent !important;
+}
+.notification-tab{
+    position: inherit;
+    /*float: left;*/
+    /*font-size: 50%;*/
+    /*margin-right: -39vw;*/
+    /*margin-top: -3vh;*/
+    /*margin-left: 1.5vw !important;*/
+}
+
+@media (max-width: 767px) {
+    .notification-tab{
+        /*margin-left: 6.5vw !important;*/
+    }
+}

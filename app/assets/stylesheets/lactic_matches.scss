@@ -1,0 +1,111 @@
+// Place all the styles related to the LacticMatches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.lactic_requests_list  tr li:hover ol {
+  display:block;
+}
+.lactic_request_profile_img{
+  /*float: right;*/
+
+  width: 15%;
+  height: 30%;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  /*background: url(http://link-to-your/image.jpg) no-repeat;*/
+  background: no-repeat;
+  margin: 10px;
+}
+/* base nav styles */
+.lactic_requests_list {
+  display:block;
+  margin:0 auto 20px;
+//  border-radius: 25px;
+//  border: 2px solid #8AC007;
+  position:inherit;
+  /*background-color:#6a6a6a;*/
+  font:16px Tahoma,
+  Sans-serif;
+  cursor: pointer;
+
+//  width: 30em;
+
+  height: 12em;
+  line-height: 2em;
+  /*border: 1px solid #ccc;*/
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+}
+.lactic_requests_list ol {
+  padding:10px;
+  margin:0;
+}
+.lactic_requests_list tr li {
+  position:relative;
+  float:left;
+  list-style-type:none;
+
+}
+.lactic_requests_list ol:after {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden;
+}
+.lactic_requests_list tr li a {
+  display:block;
+  padding:10px 20px;
+  border-left:1px solid #999;
+  border-right:1px solid #222;
+  color:#eee;
+  text-decoration:none;
+}
+.lactic_requests_list tr li a img{
+  float: left;
+}
+.lactic_requests_list tr li a label{
+  align-content: center;
+  vertical-align: middle;
+  padding-left: 10px;
+}
+.lactic_requests_list tr li a:focus {
+  outline:none;
+  text-decoration:underline;
+}
+.lactic_requests_list tr li:first-child a {
+  border-left:none;
+}
+.lactic_requests_list tr li.last a {
+  border-right:none;
+}
+.lactic_requests_list a span {
+  display:block;
+  float:right;
+  margin-left:5px;
+}
+.lactic_requests_list ol ol {
+  display:block;
+  width:100%;
+  position:relative;
+  left:0;
+  background:#6a6a6a;
+}
+.fblist ol ol li {
+  float:none;
+}
+.fblist ol ol a {
+  padding:5px 10px;
+  border-left:none;
+  border-right:none;
+  font-size:14px;
+}
+.fblist ol ol a:hover {
+  background-color:#555;
+}
+.lacticate_btn {
+  float: right;
+  margin: 10px;
+}

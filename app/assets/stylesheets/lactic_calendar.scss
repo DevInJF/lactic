@@ -1,0 +1,17 @@
+.lactic-calendar {
+
+  color: antiquewhite;
+  width: 100%;
+//    color: white;
+//    background: rgba(28, 36, 65, 0.93);
+//    background-image: image-url("calendarbackground.png");
+    background-image: image-url("lacticbackground1.png");
+    /*background-image: image-url("my-lactic-profile.png");*/
+  background-repeat: round;
+    background-size: cover;
+}
+th, td, hr, thead, tbody, .fc-row {
+  border-color: #ccc !important;
+  background: transparent !important;
+
+}

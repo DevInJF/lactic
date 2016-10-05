@@ -1,0 +1,2 @@
+class UserInfosController < LacticSessionsCommonController
+end

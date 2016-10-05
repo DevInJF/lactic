@@ -1,0 +1,114 @@
+<script>
+    $(document).ready(function() {
+//        Preventing ENTER key from submitting the form
+        $("form").on("keypress", ":input:not(textarea)", function (e) {
+            if (e.keyCode == 13) {
+                return false;
+            }
+        });
+        var selected = [];
+
+        $('.person-category').click(function () {
+                if ($(this).val() != 'null') {
+                    if ($(this).is(':checked')) {
+                        if ($(this).val() != 'null' && selected.indexOf($(this).val()) == -1) {
+                            selected.push($(this).val());
+                        }
+                    }
+                    else {
+                        if  (selected.indexOf($(this).val())!=-1){
+                            selected.splice(selected.indexOf($(this).val()), 1);
+                        }
+                    }
+                }
+            $("#user_info_keywords_about").val(selected);
+//            e.stopPropagation();
+            });
+    });
+</script>
+
+
+<%= form_for(@user_info, :url => update_user_info_path(@user_info, :user_about => @user_info.about ),:html => {:id => "user_info_form",  :style => 'class:ajax-form;' }) do |f| %>
+
+
+    <div class="error" style="display:none"></div>
+  <% if @user_info.errors.any? %>
+    <div id="error_explanation">
+    </div>
+  <% end %>
+
+  <!--<div class="actions">-->
+  <div class="row">
+    <div class="col-xs-12 center-settings">
+    <h3> My Details </h3>
+  </div>
+  </div>
+    <!--<div class="user_info">-->
+      <!--<div class="user_info_element">-->
+
+      <!--<div class="user_info_element">-->
+
+
+    <div class="row">
+      <!--<div class="keywords-form">-->
+      <div class="col-xs-12 center-settings">
+        <!--<li >-->
+          <div class="dropdown" >
+            <!--<div class="dropdown">-->
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Keywords,users can find me by
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu1"  role="menu" style="left:50%; margin-left:-100px;">
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">I am...</li>
+              <li style="display: none"><a href="#" ><input class="person-category" type="checkbox" value="null"/></a></li>
+
+
+              <li class="category"><a href="#" ><input  class="person-category" type="checkbox" value="instructor"/>Instructor</a></li>
+              <li class="category"><a href="#" ><input   class="person-category" type="checkbox" value="trainee"/>Trainee</a></li>
+              <li class="category"><a href="#" ><input   class="person-category" type="checkbox" value="dancer"/>Dancer</a></li>
+              <li class="category"><a href="#" ><input   class="person-category" type="checkbox" value="nutritionist"/>Nutritionist</a></li>
+              <li class="category"><a href="#" ><input   class="person-category" type="checkbox" value="model"/>Fitness Model</a></li>
+
+                <!--<li role="separator" class="divider"></li>-->
+              <!--<li class="dropdown-header">Interests</li>-->
+              <!--<li class="category"><a href="#" ><input   class="person-category" type="checkbox"/>Weight training</a></li>-->
+              <!--<li class="category"><a href="#" ><input class="person-category" type="checkbox"/>Cardio training</a></li>-->
+              <!--<li class="category"><a href="#" ><input  class="person-category" type="checkbox"/>Dance</a></li>-->
+              <!--<li class="category"><a href="#" ><input class="person-category" type="checkbox"/>Weight lose</a></li>-->
+              <!--<li class="category"><a href="#" ><input  class="person-category" type="checkbox"/>Outdoors Activities</a></li>-->
+              <!--<li role="separator" class="divider"></li>-->
+              <!--<li class="dropdown-header">Other</li>-->
+              <!--<li class="category"><a href="#" ><= f.text_field :keyword_about %></a></li>-->
+            </ul>
+          </div>
+        <!--</li>-->
+      </div>
+
+    </div>
+    <div class="row">
+    <div class="col-xs-12 center-settings">
+      <!--<li>-->
+      <%= f.label :Some_details_about_me%>
+      <%= f.text_field :more_about , class: "form-control vresize about-input"%>
+      <!--</li>-->
+    </div>
+
+    </div>
+    <div class="row">
+      <div class="col-xs-12 center-settings">
+    <%= f.submit "Edit", class: 'btn btn-primary'%>
+    </div>
+    </div>
+
+      <%= f.hidden_field :id %>
+      <%= f.hidden_field :keywords_about, :value => Array.new %>
+      <%= f.hidden_field :public_service, :value => false %>
+    <%= f.hidden_field :latitude, :value => @user_info.latitude %>
+    <%= f.hidden_field :longitude, :value => @user_info.longitude %>
+
+
+  <!--</div>-->
+<% end %>
+

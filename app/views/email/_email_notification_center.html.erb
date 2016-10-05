@@ -1,0 +1,40 @@
+<h2 style="text-align: -webkit-center;">Check out your new notification: </h2>
+
+<div>
+  <ul class="notifications_box">
+    <% if @email_notifications %>
+        <% (@email_notifications).reverse_each do | notifications_arr| %>
+            <% (notifications_arr).each do | date, notification| %>
+                <% if notification %>
+                    <% @url =  (@email_notification_send)? "https://warm-citadel-1598.herokuapp.com#{notification["url"]}" : "#{notification["url"]}"%>
+                    <%= link_to  @url , {:style=>'text-decoration: none; color: black;'} do%>
+                        <li class="active" style="text-align: center; -webkit-border-radius: 150px !important;">
+                          <div style="line-height: 3em; text-align: center">
+                            <img src="https://graph.facebook.com/<%=notification["notifier_id"]%>/picture?type=small" style="-webkit-border-radius: 150px; -moz-border-radius: 150px; border-radius: 150px;" />
+                          </div>
+                          <div style="line-height: 3em">
+                            <span style="text-decoration: none; color: #00070e;"><%=notification["message"].gsub('%q',"'").gsub('\\\\u0026',"&") %></span>
+                            <% if DateTime.now()  - date.to_datetime < 1 %>
+                                <% if ((DateTime.now()  - date.to_datetime)*24).to_i < 1 %>
+                                    <% if ((DateTime.now()  - date.to_datetime)*24*60).to_i <  1 %>
+                                        <span class="notification-date" style="font-size: smaller; color: grey; text-decoration: none;"><%="#{((DateTime.now()  - date.to_datetime)*24*60).to_i} seconds ago" %></span>
+                                    <% else %>
+                                        <span class="notification-date" style="font-size: smaller; color: grey; text-decoration: none;"><%="#{((DateTime.now()  - date.to_datetime)*24).to_i} minutes ago" %></span>
+                                    <% end %>
+                                <% else %>
+                                    <span class="notification-date" style="font-size: smaller; color: grey; text-decoration: none;"><%="#{((DateTime.now()  - date.to_datetime)*24).to_i} hours ago" %></span>
+                                <% end %>
+                            <% else %>
+                                <span class="notification-date" style="font-size: smaller; color: grey; text-decoration: none;"><%=Time.zone.parse(date).strftime("%b %d at %H:%M") %></span>
+                            <% end %>
+                          </div>
+                        </li>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% else %>
+        No new notifications
+    <% end %>
+  </ul>
+</div>

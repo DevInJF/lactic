@@ -1,0 +1,142 @@
+<script>
+    $(document).ready(function() {
+// attach dialog element to .hint elements
+
+        var selected_invitees = [];
+
+        var invited = <%=raw @invited %>;
+        var session_creator =<%=raw @session_creator %>;
+
+        if (invited) {
+            console.log("INVITED SEARCH.... ");
+            $(".list-group li").each(function(){
+                //do stuff
+                // $(this) references each li
+//                var invited_already = _.find(invited, function(obj) { console.log("INVITED object.... "+  obj[$(this).id]); return obj[$(this).id]  })
+
+                var invited_already = jQuery.inArray(this.id,invited) >= 0;
+                console.log("INVITED .... "+ invited_already);
+                console.log("INVITED ID.... "+ this.id);
+
+                if (invited_already){
+                    $(this).addClass( "disabled" );
+                };
+                if (session_creator == this.id){
+                    $(this).css("display","none")
+                }
+
+
+            });
+        }
+
+
+
+
+
+        $("#invite-icon").click(function() {
+//            $('div.modal-body').html(
+
+            $('#invite_modal_form_addappt').modal();
+
+
+            $("li.list-group-item").on("click",function() {
+//    function onFriendClick(friend){
+
+
+        if (selected_invitees.indexOf(this.id) == 'undefined' || selected_invitees.indexOf(this.id) == -1  && session_creator != this.id){
+
+//            var map = []; // or var map = {};
+//            map[this.id] = this.id;
+
+            selected_invitees.push(this.id);
+            $(this)
+                    .css('background-color','#EE178C')
+
+        }else {
+            $(this)
+                    .css('background-color','#ffffff');
+//            selected_invitees[this.id] = null;
+            selected_invitees.splice(selected_invitees.indexOf(this.id),1);
+        }
+
+        $("#lactic_session_view_invitees").val(JSON.stringify(selected_invitees));
+                var current_val = $("#lactic_session_view_invitees").val();
+//                for (var i in current_val) {
+//                    if (current_val.hasOwnProperty(i)) {
+//                        alert(i + "=>" + current_val[i]);
+//                    }
+//                }
+//        alert("CURRENT INVITEES "+$("#invitees").val());
+    });
+
+        });})
+</script>
+
+<!--<i id="invite-icon" class='fa fa-user-plus'></i>-->
+<span  id="invite-icon" class="fa-stack fa-2x">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-user-plus fa-stack-1x fa-inverse"></i>
+</span>
+<%= form_for(@lactic_session,:url => invite_path, :html => {:id => "#{@lactic_session.id}-#{(@lactic_session.start_date_time.to_f * 1000).to_i}"}) do |f|   %>
+
+<div class="modal fade" id="invite_modal_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title-id">Invitees</h3>
+      </div>
+      <div class="invite-modal-body">
+
+      <!--<div class="row">-->
+          <!--<div class="col-md-4 lactic-desc">-->
+            <!--< if @current_user_id ==  '10153011850791938' %>-->
+                <!--<= button_to fb_invite_path , :id => 'FBInvite', :class => 'transparent-link invite-fb' do%>-->
+
+                    <!--<i class="fa fa-facebook-square fa-2x " aria-hidden="true"></i>-->
+                <!--< end %>-->
+            <!--< end %>-->
+          <!--</div>-->
+        <!--</div>-->
+        <%= render  partial: 'layouts/shared/lactic_user_search'  %>
+
+            <div class="actions">
+
+
+                <div class="form-group">
+                  <%= f.hidden_field :id, :value=>"#{@lactic_session.id}" %>
+                  <%= f.hidden_field :start_time, :value=>"#{@date_redirect}" %>
+                  <%= f.hidden_field  :view_invitees %>
+                  <!--<= submit_tag ('Invite', class: 'btn btn-primary') %>-->
+
+
+                </div>
+
+
+
+            </div>
+
+
+            </div>
+      <div class="modal-footer invite-footer">
+        <div class="col-xs-6" id="invite-footer-title">
+        <h5  class="footer-h5 " style="
+        float: left;
+        "> Select the invitees and pres 'Invite'</h5>
+      </div>
+        <div class="col-xs-6" id="invite-btn">
+        <!--<= submit_tag("Invite") %>-->
+        <%= f.submit "Invite", class: 'btn btn-primary btn-invite'%>
+
+        <button class="btn btn-danger btn-invite" data-dismiss="modal" aria-hidden="true">Close</button>
+      </div>
+      </div>
+
+    </div>
+
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<% end %>
+
+

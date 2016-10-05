@@ -1,0 +1,193 @@
+
+/* JS disabled styles */
+.fblist  tr li:hover ol {
+    display:block;
+}
+
+/* base nav styles */
+.fblist {
+    display:block;
+    margin:0 auto 20px;
+    border-radius: 25px;
+    border: 2px solid #8AC007;
+    position:inherit;
+    /*background-color:#6a6a6a;*/
+    font:16px Tahoma,
+    Sans-serif;
+    cursor: pointer;
+
+    width: 30em;
+
+    height: 12em;
+    line-height: 2em;
+    /*border: 1px solid #ccc;*/
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+}
+.fblist ol {
+    padding:10px;
+    margin:0;
+}
+.fblist tr li {
+    position:relative;
+    float:left;
+    list-style-type:none;
+
+}
+.fblist ol:after {
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+.fblist tr li a {
+    display:block;
+    padding:10px 20px;
+    border-left:1px solid #999;
+    border-right:1px solid #222;
+    color:#eee;
+    text-decoration:none;
+}
+.fblist tr li a img{
+    float: left;
+}
+.fblist tr li a label{
+    align-content: center;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+.fblist tr li a:focus {
+    outline:none;
+    text-decoration:underline;
+}
+.fblist tr li:first-child a {
+    border-left:none;
+}
+.fblist tr li.last a {
+    border-right:none;
+}
+.fblist a span {
+    display:block;
+    float:right;
+    margin-left:5px;
+}
+.fblist ol ol {
+    display:block;
+    width:100%;
+    position:relative;
+    left:0;
+    background:#6a6a6a;
+}
+.fblist ol ol li {
+    float:none;
+}
+.fblist ol ol a {
+    padding:5px 10px;
+    border-left:none;
+    border-right:none;
+    font-size:14px;
+}
+.fblist ol ol a:hover {
+    background-color:#555;
+}
+#search_header .nav-item {
+    line-height: 13px;
+    /* position: relative; */
+    padding-top: 13px;
+    padding-bottom: 14px;
+    /* color: #0077b5; */
+    text-decoration: none;
+    /* cursor: pointer; */
+    display: block;
+    padding-left: 15px;
+    padding-right: 15px;
+    color: #D7D7D7;
+}
+
+.inviteesList {
+    float: right;
+    /*display: inline-table;*/
+    /*text-align: left;*/
+    text-align: center;
+}
+.inviteesList  tr li:hover ol {
+    /*display:block;*/
+}
+.inviteesList {
+    width: 20em;
+    height: 12em;
+    line-height: 2em;
+    /*border: 1px solid #ccc;*/
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+    overflow-x: hidden;
+    display: inline-block;
+    padding: 10px;
+    /**/
+    /*display:inline-table;*/
+    /*margin:0 auto 20px;*/
+    /*border:1px solid #222;*/
+    /*position:inherit;*/
+    /*background-color:whitesmoke;*/
+    /*font:16px Tahoma,*/
+    /*Sans-serif;*/
+    /*cursor: pointer;*/
+}
+.inviteesList ol {
+    text-indent: 1em;
+    padding:10px;
+    margin:0;
+    float:left;
+    /*text-align: center;*/
+}
+.inviteesList  li {
+    text-indent: 1em;
+    /*position:relative;*/
+    padding:10px;
+    float:left;
+    list-style-type:none;
+
+}
+#invitees {
+}
+
+#invitees label{
+    /*float:left;*/
+    /*margin-bottom: inherit;*/
+    /*padding: 20px;*/
+}
+#invitees ol{
+    /*tmargin-bottom: inherit;*/
+    /*width: 50%;*/
+
+
+}
+.fb_invite {
+    float: right;
+    padding: 10px;
+}
+.osm_fb_invite {
+    padding: 20px;
+
+
+}
+.osm_users_friends {
+
+    height: auto;
+}
+.osm_users_friends label{
+    color: #0077b5;
+
+}
+.osm_users_friends img{
+    /*float: l;*/
+    width: 50px;
+    height: 50px;
+
+}
+.osm_link{
+    float: right;
+}

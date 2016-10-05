@@ -1,0 +1,110 @@
+.lactic-suggest-img {
+    display: none;
+}
+.suggest-row-home{
+    margin-top: 6vh;
+    margin-left: 5vw;
+}
+.heading-suggest{
+    margin-top: 10em;
+}
+.suggested-row-lactic{
+    z-index: 999;
+
+}
+.main-suggestion-row{
+
+     background-color: black;
+     border-radius: 10%;
+    opacity: 0.8;
+
+ }
+
+@media (device-height : 568px)
+and (device-width : 320px)
+and (-webkit-min-device-pixel-ratio: 2)
+    /* and (orientation : todo: you can add orientation or delete this comment)*/ {
+    .card{
+        margin-top:  -10vh;
+    }
+    .suggest-row-home {
+        margin-top: 25vh !important;
+    }
+    #lactic-day-navigator {
+        padding-top: 50px !important;
+        font-size: smaller;
+    }
+}
+@media screen and (device-aspect-ratio: 40/71) {
+    .heading-suggest{
+        /*margin-top: 25vh !important;*/
+    }
+}
+/*iPhone 6*/
+@media screen and (device-aspect-ratio: 375/667) {
+
+    .suggest-row-home {
+    margin-top: 15vh;
+}
+    #lactic-day-navigator {
+        padding-top: 50px !important;
+        font-size: smaller;
+    }
+}
+.circular-link{
+    border-radius: 50%;
+}
+.card-avatar{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    overflow: hidden;
+    margin-left: 2%;
+    /*height: 5em;*/
+}
+
+.suggstion-row{
+    display: flex;
+    /*width: 100vw;*/
+}
+.card {
+    overflow: hidden;
+    position: relative;
+    /*border: 1px solid #CCC;*/
+    text-align: center;
+    padding: 0;
+    /*background-color: black;*/
+    color: #88acd9;
+    /* border-radius: 90%; */
+    /* width: 100%; */
+
+    margin-left: 5vw;
+}
+
+.card .header-bg {
+    /* This stretches the canvas across the entire hero unit */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    /*border-bottom: 1px #FFF solid;*/
+    /* This positions the canvas under the text */
+    z-index: 1;
+}
+.card .card-avatar {
+    position: relative;
+    margin-top: 15vh;
+    z-index: 100;
+}
+
+.card .card-avatar img {
+    /*width: 100px;*/
+    /*height: 100px;*/
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 5px solid rgba(0,0,30,0.8);
+    margin-top: 2em;
+    width: 50%;
+}

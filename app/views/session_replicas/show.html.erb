@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @session_replica.origin_id %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @session_replica.start_date %>
+</p>
+
+<%= link_to 'Edit', edit_session_replica_path(@session_replica) %> |
+<%= link_to 'Back', session_replicas_path %>

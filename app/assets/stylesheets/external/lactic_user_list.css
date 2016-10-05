@@ -1,0 +1,141 @@
+.lacticUserlist  tr li:hover ol {
+    display:block;
+}
+.disabled {
+    pointer-events:none;
+ /*//This makes it not clickable*/
+opacity:0.6;
+    display: none;
+/*//This grays it out to look disabled*/
+}
+/* base nav styles */
+.lacticUserlist {
+    /*padding-left: 5vw;*/
+    display:block;
+    margin:0 auto 20px;
+    /*border-radius: 25px;*/
+    /*border: 2px solid #8AC007;*/
+    position:inherit;
+    /*background-color:#6a6a6a;*/
+    /*font:16px Tahoma,*/
+    /*Sans-serif;*/
+    cursor: pointer;
+
+    /*width: 30em;*/
+
+    /*height: 12em;*/
+    line-height: 2em;
+    /*border: 1px solid #ccc;*/
+    padding: 0;
+    margin: 0;
+    overflow: scroll;
+
+
+    /*margin-left: 3vw;*/
+    /*margin-top: 2vh;*/
+}
+@media (min-width:768px){
+    .lacticUserlist {
+        margin-left: 10vw;
+    }
+}
+@media(max-width: 768px) {
+
+    .lacticUserlist {
+        margin-left: 3vw;
+    }
+}
+.lacticUserlist ol {
+    padding:10px;
+    margin:0;
+}
+.lacticUserlist tr li {
+    position:relative;
+    float:left;
+    list-style-type:none;
+
+}
+.lacticUserlist ol:after {
+    content:".";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden;
+}
+.lacticUserlist tr li a {
+    display:block;
+    padding:10px 20px;
+    border-left:1px solid #999;
+    border-right:1px solid #222;
+    color:#eee;
+    text-decoration:none;
+}
+.lacticUserlist tr li a img{
+    float: left;
+    width: 30%;
+    height: 30%;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    /*background: url(http://link-to-your/image.jpg) no-repeat;*/
+    background: no-repeat;
+}
+.lacticUserlist tr li a label{
+    align-content: center;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+.lacticUserlist tr li a:focus {
+    outline:none;
+    text-decoration:underline;
+}
+.lacticUserlist tr li:first-child a {
+    border-left:none;
+}
+.lacticUserlist tr li.last a {
+    border-right:none;
+}
+.lacticUserlist a span {
+    display:block;
+    float:right;
+    margin-left:5px;
+}
+.fblist ol ol {
+    display:block;
+    width:100%;
+    position:relative;
+    left:0;
+    background:#6a6a6a;
+}
+.lacticUserlist ol ol li {
+    float:none;
+}
+.lacticUserlist ol ol a {
+    padding:5px 10px;
+    border-left:none;
+    border-right:none;
+    font-size:14px;
+}
+.lacticUserlist ol ol a:hover {
+    background-color:#555;
+}
+.search-nearby{
+    font-size: xx-small;
+    padding: 2vh;
+    height: 8vh;
+}
+.user-nearby-icon{
+    transform: scale(1.5, 1.5);
+    -ms-transform: scale(0.5, 0.5);
+    -webkit-transform: scale(1.5, 1.5);
+    position: absolute;
+    /*top: 5vh;*/
+    /*right: 10vw;*/
+}
+.nearby-desc{
+    margin: 4vh;
+    margin-left: 0px;
+}
+.person-category{
+
+}

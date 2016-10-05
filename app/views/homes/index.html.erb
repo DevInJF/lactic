@@ -1,0 +1,73 @@
+
+
+<script>
+
+    var ready;
+    ready = function() {
+        for (var i=0, max=6; i <= max; i++) {
+            $("#weekly_sessions_"+i).css('display','none');
+        }
+        var url = 0;
+
+        if (typeof document.URL.split('?')[1] !== 'undefined') {
+
+            day = document.URL.split('?')[1];
+            if (typeof day !== 'undefined') {
+                url = parseInt(day.replace("day=", "")) - 1;
+            }else
+                url = 0;
+        }
+        $("#lactic_day_".concat(url)).parent().addClass( "activePage" );
+
+        $("#weekly_sessions_"+url).show();
+    };
+
+    $(document).ready(ready);
+    $(document).on('page:load', ready);
+</script>
+<%= render 'layouts/shared/header'  %>
+<nav id="second-top-header" class="navbar navbar-default">
+  <div class="container">
+          <ul class="nav main-nav guest-nav" role="navigation" id="lactic-day-navigator">
+
+            <%  for k in 0..6 do %>
+                <% t =Time.now+(60 * 60 * 24)*k  %>
+                <li class="nav-item">
+
+                  <% if @current_user_id == '10153011850791938' %>
+                      <a class="nav-link" id="lactic_day_<%=k%>" onclick="lacticDayClicked2(this.id.replace('lactic_day_',''))">
+                        <%= t.strftime("%a")%><br><%= t.strftime("%b-%e")%>
+                      </a>
+                  <% else %>
+                      <a href="/homes?day=<%=k+1%>" class="nav-link" id="lactic_day_<%=k%>" onclick="lacticDayClicked(this.id.replace('lactic_day_',''))">
+                        <%= t.strftime("%a")%><br><%= t.strftime("%b-%e")%>
+                      </a>
+
+                <% end %>
+                </li>
+
+            <% end %>
+
+          </ul>
+        </div>
+      </nav>
+<!--<div class="">-->
+<%= render 'layouts/shared/lactic_users_suggest'  %>
+<!--</div>-->
+<div class="timeline">
+      <% if @week_lactic_sessions  %>
+          <%  for k in 0..6 do %>
+              <div id="weekly_sessions_<%=k%>">
+                <% if !@week_lactic_sessions[k]  || @week_lactic_sessions[k].empty? %>
+                    <h2>No LActic Sessions Found for Today!</h2>
+                <% else %>
+                    <%  @week_lactic_sessions[k].each do |lactic_session| %>
+                        <%= render  partial: 'layouts/shared/lactic_timeline_session',:locals => { :lactic_session => lactic_session } %>
+                    <% end %>
+                <% end %>
+              </div>
+          <% end %>
+      <% end %>
+  <!--< end %>-->
+</div>
+<%= render 'layouts/shared/footer'  %>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+<style type="text/css">
+  div {
+      background-size: cover;
+      width: 100%;
+      -webkit-background-size: 100%;
+      -moz-background-size: 100%;
+      -o-background-size: 100%;
+      background-size: 100%;
+      width: 100%;
+  }
+    .intro-table-hover {
+        /*background-image: image-url("table-2-hover.jpg");*/
+        /*background-image: url(<%= "#{Rails.root}/app/assets/images/table-2-hover.jpg"%>);*/
+        background-position: 50% 50%;
+    }
+  .lactic-img {
+      -webkit-border-radius: 150px;
+  }
+  ul {
+      list-style-type: none;
+  }
+  .notification-date {
+      font-size: smaller;
+      /*color: grey;*/
+  }
+  .notifications_box li {
+      border-bottom: 1px solid #edeeee;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+  }
+    .notifications_box{
+
+        overflow: scroll;
+    }
+
+
+
+
+</style>
+
+
+</head>
+<body>
+<div style="    background-color: black;  -webkit-margin-bottom: -20%; -moz-margin-bottom: -20%;
+        opacity: 0.8;
+        font-family: fantasy;
+        color: #ffffff">
+<h1 style="text-align: -webkit-center; color: aliceblue;">Hi <%= @user.name %></h1>
+<p style="text-align: -webkit-center; color: aliceblue;">I'ts LACtic Time!<br>
+  <!--&lt;!&ndash;Time to switch partners.-->
+  <br>
+</p>
+<p style="text-align: -webkit-center; color: aliceblue; "><strong> Visit : </strong></p>
+  <div style="text-align: center">
+<%= link_to "LACtic",  "https://warm-citadel-1598.herokuapp.com/profile" , {:style=>'text-align: center; font-size: large; text-decoration: none; color: aliceblue;'}%>
+  </div>
+</div>
+
+<!--<div class="modal-dialog">-->
+  <div  style="background-color: ghostwhite">
+    <!--<div class="modal-header" id="session-modal-title">-->
+      <!--&lt;!&ndash;<h2 style="text-align: -webkit-center;">Check out your new notification: </h2>&ndash;&gt;-->
+      <!--&lt;!&ndash;<h1 class="modal-title popover-title" id="modal-title-id">Notifications</h1>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="modal-body">-->
+      <!--<=render 'email/email_notification_center'  %>-->
+      <%= render "email/#{@email_type}"  %>
+    <!--</div>-->
+
+  </div>
+  <!-- /.modal-content -->
+<!--</div>-->
+<div style="    background-color: black;
+        opacity: 0.8;
+        font-family: fantasy;
+        color: antiquewhite; text-align: center">
+  <!--<footer>-->
+    <div class="footer" style="    z-index: 101;
+            position: absolute;">
+      <div class="main-app-container">
+        <div class="col-xs-12">
+          <div class="modal-footer" style="line-height: 2em">
+            Let's start releasing some of that lactic acid
+            by adding some Fitness sesions to your weekly schedule!
+            <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>-->
+          </div>
+
+          <div class="row footer-wrapper hidden-xs" style="line-height: 2em">
+            <div class="col-sm-3 text-left">
+              <a href="https://warm-citadel-1598.herokuapp.com/about"
+                 target="_blank">
+                <div class="footer-powered-by footer-text-color">
+                                    <span style="color: #ffffff"> Powered by <i
+                                    class="fa icon-bizzabo_logo_footer footer-logo bizzabo-logo"></i></span><span
+                class="powered-by-text bold-text bizzabo-text" style="color: #ffffff; line-height: 2em"> LActic </span>
+                </div>
+              </a>
+            </div>
+            <div class="col-sm-9 text-right" >
+              <div class="add-to-calendar inline margin-right-small"></div>
+              <div class="footer-logo-wrapper inline">
+                <a><span class="contact-organizer-action footer-text-color" style="color: #ffffff; line-height: 2em"> Contact us </span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!--</footer>-->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,438 @@
+
+<script>
+//    $( document ).ready(function() {
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '1464889360497123',
+            xfbml      : true,
+            version    : 'v2.7'
+        });
+        FB.getLoginStatus(function(response) {
+//            alert('fb login');
+            statusChangeCallback(response);
+        });
+
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+//    });
+
+
+
+
+//    $( document ).ready(function() {
+    function showOSMLogin(){
+        console.log('Successful login for, Show OSM Login: ' + decodeURIComponent(getCookie('lactic_name'))+ getCookie('osm_id')+ 'RESPOND OSM CURRENT '+getCookie('osm_respond_id')+ 'EMAIL '+ getCookie('lactic_email'));
+        if(document.getElementById("status") == null || document.getElementById("OSMloginDIV") == null || document.getElementById("fbLoginBtn") == null){
+            return;
+        }
+//        var user_name = (getCookie('osm_name') && getCookie('osm_name')!= 'undefined'&& getCookie('osm_name')!= undefined)? getCookie('osm_name') : ''
+
+
+        document.getElementById('fb_login_img').innerHTML = '<img src="https://graph.facebook.com/' +  getCookie('osm_id') + '/picture?type=large" class="circular"/>';
+
+
+        var osm_cookie = getCookie('osm_id');
+//        alert ($("#fbLoginBtn").css('display') == 'none');
+//        alert (osm_cookie);
+
+
+        osm_cookie = <%= (@cookie)? @cookie : 'undefined' %>;
+        osm_cookie = (osm_cookie != '280906882262216' && osm_cookie && osm_cookie != 'undefined')? osm_cookie : getCookie('osm_id')
+
+        if ( !osm_cookie || osm_cookie === undefined || osm_cookie === "undefined" || osm_cookie == '' || getCookie('osm_id') == 'undefined' ){
+//            alert('UNDEFINED');
+
+            document.getElementById('status').innerHTML ='<h1>'+"Hi, Please LogIn with Facebook ,to use LActic! "+'</h1>';
+
+            document.getElementById('OSMloginDIV').style.display = 'none';
+            document.getElementById("fbLoginBtn").style.display = '';
+        }else{
+//            alert('DEFINED!!!!'+osm_cookie);
+            document.getElementById('status').innerHTML ='<h1>'+"Hi "+  decodeURIComponent(getCookie('lsctic_name')) + ", LACticIn to start using the platform! "+'</h1>';
+
+            document.getElementById("FBloginDIV").style.display = 'none';
+            document.getElementById('OSMloginDIV').style.display = '';
+//            $("#log_in_callback").val('facebook');
+
+            if  ($("#signUpBtn").text() == 'Sign Up'){
+                $("#signUpBtn").text('LACtic IN');
+                $(document).trigger("add-alerts", [
+                    {
+                        'message': "Connecting...",
+                        'priority': 'success'
+                    }
+                ]);
+
+//                $(function () {
+
+
+
+//                location.reload(true);
+            }
+
+
+//            var URL = 'https://warm-citadel-1598.herokuapp.com/lactic_in';
+//            window.location = URL;
+
+
+//            $("#lacticinid").attr("onclick", "window.location = this.href");
+//                });
+//            $("#lacticinid").click();
+
+//            if ($("#fbLoginBtn").css('display') == 'none') {
+//                document.getElementById('OSMloginDIV').style.display = '';
+//            }else{
+//                document.getElementById('OSMloginDIV').style.display = 'none';
+//            }
+        }
+
+//        if (document.getElementById("fbLoginBtn").style.display == 'none'){
+//
+//        }
+
+
+//        document.getElementById('LACticMock').style.display = '';
+    }
+    // Load the SDK asynchronously
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+
+    /**
+     * Created by sharonanachum on 8/1/15.
+     */
+    function statusChangeCallback(response) {
+//        alert('statusChangeCallback');
+        console.log('statusChangeCallback');
+
+        console.log(response);
+        // The response object is returned with a status field that lets the
+        // app know the current login status of the person.
+        // Full docs on the response object can be found in the documentation
+        // for FB.getLoginStatus().
+        if (response.status === 'connected') {
+//            alert('statusChangeCallback CONNECTED');
+            // Logged into your app and Facebook.
+//            alert("loggedin"+response.authResponse.accessToken);
+            document.cookie = "accessToken="+ response.authResponse.accessToken;
+            document.cookie = "expiresIn="+ response.authResponse.expiresIn;
+
+//            alert("CURRENT EXPIRE DATE "+response.authResponse.expiresIn);
+            expires_cookie = getCookie("current_access_token_expires_in");
+//            next_expire = parseInt(response.authResponse.expiresIn)+ new Date().getTime()
+//            alert("CHECK FETCH NEW TOKEN     "+response.authResponse.accessToken+" expire "+response.authResponse.expiresIn);
+
+
+//            if (!expires_cookie.trim()  ) {
+            var current_url = window.location.href;
+            current_url = current_url.replace('https://warm-citadel-1598.herokuapp.com/','');
+            if (current_url != 'homes'){
+
+
+
+//                alert("FETCH NEW TOKEN");
+                $.ajax({
+
+                    type: "GET",
+                    url: "<%=raw "https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&fb_exchange_token=#{cookies['accessToken']}&client_id=#{FACEBOOK_CONFIG['app_id']}&client_secret=#{FACEBOOK_CONFIG['secret']}" %>",
+                    success: function (response) {
+
+//                    alert(response);
+//                        console.log("current DATA  " + data);
+
+
+                        var start = response.indexOf("accessToken=");
+//                        var res = data.slice(start);
+
+//                        console.log("current RES  1" + res);
+                        var res = response.split("=");
+//                        console.log("current RES  2" + res);
+                        var accessToken = res['1'].replace('; expiresIn', '').replace('&expires','');
+
+//                        expires in 60 days
+                        var expiresIn = new Date().getTime() + 86400000*60;
+
+                        var expireDate = new Date(expiresIn);
+//                        console.log("current ACCESS "+ getCookie("current_access_token"));
+                        document.cookie = "current_access_token=" + accessToken.replace('&expires','');
+//                        alert("NEW ACCESS "+accessToken.replace('&expires',''));
+//                        var expiresIn = res['2'].split('; ')[0];
+//                    document.getElementById("demo").innerHTML = accessToken +" EXPIRES "+ expiresIn;
+
+
+//                        console.log("current ACCESS EXPIRE "+parseInt(expiresIn) + new Date().getTime());
+                        document.cookie = "current_access_token_expires_in=" + expireDate;
+
+//                        alert("NEW EXPIRE DATE :"+expireDate);
+//                        document.cookie = "current_access_token_expires_in="+"";
+//                        console.log("current access " + data);
+                        <!--extended = data.split('=');-->
+                        <!--extendedAT = extended['1'].replace('&expires','');-->
+//            alert(data);
+                        testAPI();
+                    },
+                    error: function (data){
+
+//                        alert('error !!'+data);
+                        $(document).trigger("add-alerts", [
+                            {
+                                'message': "Facebook connects...",
+                                'priority': 'warning'
+                            }
+                        ]);
+
+//                        var URL = '<= root_path %>'+'?facebook_sign_in=true'
+//                        window.location = URL;
+
+                        if (getCookie('osm_respond_id') == null || getCookie('osm_respond_id') == '' || getCookie('osm_respond_id') == 'undefined'){
+                            location.reload(true);
+                        }
+
+
+
+
+                    }
+
+                });
+            }
+
+        } else if (response.status === 'not_authorized') {
+            //
+//            alert(' UNDEFINED');
+            document.cookie = "osm_id=undefined" ;
+            document.cookie = "lactic_name=undefined";
+
+//            alert( "The person is logged into Facebook, but not your app.");
+
+            // The person is logged into Facebook, but not your app.
+            document.getElementById('status').innerHTML = 'Please log ' +
+            'into LACtic';
+            document.getElementById("fbLoginBtn").style.display = '';
+            document.getElementById('OSMloginDIV').style.display = 'none';
+//            testAPI();
+//            showOSMLogin();
+        } else {
+//            alert( "The person is not logged into Facebook, so we're not sure if");
+//            alert(' NOT SURE??????');
+            // The person is not logged into Facebook, so we're not sure if
+            // they are logged into this app or not.
+            document.getElementById("fbLoginBtn").style.display = '';
+//            document.getElementById("FBloginDIV").style.display = '';
+            document.getElementById('OSMloginDIV').style.display = 'none';
+            document.getElementById('status').innerHTML = 'Please log ' +
+            'into Facebook before using LACtic.';
+        }
+    }
+
+
+
+
+    // This is called with the results from from FB.getLoginStatus().
+
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+//    function checkLoginState() {
+////        alert('checkLoginState');
+//        FB.getLoginStatus(function(response) {
+//            statusChangeCallback(response);
+//        });
+//    }
+
+//    window.fbAsyncInit = function() {
+//        FB.init({
+//            appId      : '1464889360497123',
+//            cookie     : true,  // enable cookies to allow the server to access
+//                                // the session
+//            xfbml      : true,  // parse social plugins on this page
+//            version    : 'v2.5' // use graph api version 2.5
+//        });
+
+        // Now that we've initialized the JavaScript SDK, we call
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+
+//        FB.getLoginStatus(function(response) {
+////            alert('fb login');
+//            statusChangeCallback(response);
+//        });
+
+//    };
+
+    // Load the SDK asynchronously
+    <!--(function(d, s, id) {-->
+        <!--var js, fjs = d.getElementsByTagName(s)[0];-->
+        <!--if (d.getElementById(id)) return;-->
+        <!--js = d.createElement(s); js.id = id;-->
+//       js.src = "//connect.facebook.net/en_US/sdk.js";-->
+//        <!--js.src = "//connect.facebook.net/en_US/sdk/debug.js";-->
+        <!--fjs.parentNode.insertBefore(js, fjs);-->
+    <!--}(document, 'script', 'facebook-jssdk'));-->
+
+
+    function testAPI() {
+
+        console.log('Welcome!  Fetching your information.... ');
+
+
+        FB.api('/me?fields=id,name,gender,email', 'get', {
+            access_token: '<%= "#{cookies['accessToken']}" %>'
+//            fields: 'id,name,gender,email'
+        }, function (response) {
+//            alert(JSON.stringify(response));
+            document.cookie = "osm_id=" + response.id;
+            document.cookie = "lactic_name=" + encodeURIComponent(response.name);
+            document.cookie = "lactic_email=" + encodeURIComponent(response.email);
+            showOSMLogin();
+        });
+
+//
+//        FB.api('/me?fields=name,email', function(response) {
+//
+//            console.log('Successful login for: ' + response.name );
+//            document.cookie = "osm_id=" + response.id;
+//            document.cookie = "osm_name=" + encodeURIComponent(response.name);
+//            document.cookie = "osm_email=" + encodeURIComponent(response.email);
+//            console.log('OSM NAME COOKIE '+decodeURIComponent(getCookie('osm_name')));
+//            showOSMLogin();
+//    }, {scope: 'public_profile,email,user_friends,user_actions.fitness'})}
+
+    }
+
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    function isUndefined(value){
+        // Obtain `undefined` value that's
+        // guaranteed to not have been re-assigned
+        var undefined = void(0);
+        return value === undefined;
+    }
+
+
+    $(document).ready(function() {
+
+        if ( (getCookie('osm_response') && getCookie('osm_response') != 'undefined' && getCookie('osm_response') === 'connected') || (getCookie('osm_id') && getCookie('osm_id') != 'undefined')){
+            $("#OSMloginDIV").click(function() {
+                document.cookie = "osm_respond_id=" + getCookie('osm_id');
+                document.cookie = "lactic_fb_id=" + getCookie('osm_id');
+                if (getCookie('lactic_mock_respond_id')){
+                    document.cookie = "osm_respond_id=" + getCookie('lactic_mock_respond_id');
+                    document.cookie = "lactic_fb_id=" + getCookie('lactic_mock_respond_id');
+                }
+
+//            return false;
+            });
+        }
+
+
+        $("#LACticMock").click(function() {
+            document.cookie = "lactic_mock_respond_id=280906882262216";
+//            document.cookie = "osm_respond_id=" + getCookie('lactic_mock_respond_id');
+
+//            return false;
+        });
+
+
+//        function logInSubscribe()
+//        {
+////            alert("loggin");
+//            FB.Event.subscribe('auth.login', login_event);
+//        }
+//        window.onload=logInSubscribe;
+//        var login_event = function(response) {
+//            console.log("login_event occured ");
+//            console.log(response.status);
+//            console.log(response);
+//            document.cookie = "osm_response=" + response.status;
+//            location.reload(true);
+//        }
+
+    });
+
+
+
+
+<!--<script>-->
+
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+//    function testAPI() {
+//        console.log('Welcome!  Fetching your information.... ');
+//        FB.api('/me', function(response) {
+//            console.log('Successful login for: ' + response.name);
+//            document.getElementById('status').innerHTML =
+//                    'Thanks for logging in, ' + response.name + '!';
+//        });
+//    }
+//    });
+
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+<div data-alerts="alerts" data-titles="{'warning': '<em>LACtic</em>'}" data-ids="myid" data-fade="3000"></div>
+      <div id="content" class="jointoday">
+
+        <form name="searchForm">
+        <!--<ul class="user-category-link">-->
+        <!--<ul>-->
+
+          <% if @cookie && @cookie != @mock %>
+              <!--<div id="reconnect" class="col-md-12">-->
+                <!--<div id="fbLoginBtn" style="display: none;">-->
+
+                  <!--<fb:login-button scope="public_profile,email,user_friends,user_actions.fitness" onlogin="checkLoginState();" autologoutlink="true" data-show-faces="true"  >-->
+                  <!--</fb:login-button>-->
+
+                <!--</div>-->
+              <!--</div>-->
+
+          <% else %>
+              <!--<div id="reconnect" class="col-md-12">-->
+              <!--<div id="fbLoginBtn" style="display: none;" class="col-md-12">-->
+
+                <!--<fb:login-button scope="public_profile,email,user_friends,user_actions.fitness" onClick="checkLoginState();" autologoutlink="true" data-show-faces="true"  >-->
+                <!--</fb:login-button>-->
+
+              <!--</div>-->
+              <!--</div>-->
+              <!--</li>-->
+          <% end %>
+
+
+
+
+        </form>
+
+
+      </div>
+

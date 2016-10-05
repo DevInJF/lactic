@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>LActic Matched</strong>
+
+</p>
+
+<p>
+  <strong> <%= @current_follower_user.name %></strong>
+<div class="speaker-img-container">
+  <% @profile_path = "http://graph.facebook.com/#{@current_follower_user.uid}/picture?type=large" %>
+  <%= image_tag @profile_path, :class => "circular"%>
+</div>
+
+
+<p>
+  <strong><%= @public_osm_user.name %></strong>
+
+<div class="speaker-img-container">
+  <% @profile_path = "http://graph.facebook.com/#{@lactic_match.responder_uid}/picture?type=large" %>
+  <%= image_tag @profile_path, :class => "circular"%>
+</div>
+</p>
+

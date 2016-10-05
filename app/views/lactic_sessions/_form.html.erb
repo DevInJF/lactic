@@ -1,0 +1,274 @@
+<script>
+    function applyDatepicker() {
+
+        $('#datepairExample .time').timepicker({
+            'showDuration': true,
+            'timeFormat': 'H:i:s'
+        });
+
+        $('#datepairExample .bdatepicker').bdatepicker({
+            'format': 'm/d/yyyy',
+            'autoclose': true
+        });
+
+        $('#datepairExample').datepair();
+
+
+    }
+    $(document).ready(function(){
+        //        Preventing ENTER key from submitting the form
+        $("form").on("keypress", ":input:not(textarea)", function (e) {
+            if (e.keyCode == 13) {
+                return false;
+            }
+        });
+
+
+        applyDatepicker();
+        $("#date_start").hide();
+        $("#date_end").hide();
+        $('input:checkbox').bootstrapSwitch();
+
+        $('#session-type li').on('click', function(){
+            var picked  = $(this).text();
+            $('#lactic_session_view_type').val(picked);
+            picked = (picked.includes('This is'))? 'Other' : picked;
+            $('#dropdownSessionType').text(picked);
+        });
+
+        $("#lactic_session_repeat").change(function(){
+            if ($("#lactic_session_repeat").val()=="1"){
+
+                $("#date_start").hide();
+                $("#date_end").hide();
+            } else {
+
+                $("#date_start").show();
+                $("#date_end").show();
+            }
+        });
+
+
+
+//        $('.popover-link').each(function() {
+
+//        });
+
+
+        // The date picker (read the docs)
+//        $('.datepicker').pickadate();
+        // The time picker (read the docs)
+//        $('.timepicker').pickatime()
+
+// Use the picker object directly.
+//        var picker = $input.pickadate('picker');
+//        picker.methodName(argument1, argument2, ...)
+//        picker.objectName
+
+// Or pass through the element’s plugin data.
+//        $input.pickadate(methodName, argument1, argument2, ...)
+//        $input.pickadate(objectName)
+    })
+</script>
+<script>
+    function onLocationClick(location, title){
+//        $("#location").val(location.text);
+        $("#location").val(title);
+        $("#location_id").val(location.id);
+        $("#location_origin").val(location.getAttribute('value'));
+//        $("#location").keyup();
+//        $(".popover.fade.bottom.in").removeClass('in');
+        $(".popover.fade.top.in").hide();
+//        $(".popover.fade.bottom").addClass('out')
+//        container.hide();
+//        $('#listFilter').hide();
+    }
+</script>
+<script>
+    $(document).ready(function(){
+        var x = document.getElementById("listFilter");
+        var locations;
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setPosition);
+        } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+        }
+        function setPosition(position) {
+
+            setCookie("lactic_latitude",position.coords.latitude);
+            setCookie("lactic_longitude",position.coords.longitude);
+
+            console.log(document.cookie);
+        }
+//        $("#location").keydown(function(){
+            $('#location').popover({title: 'Locations nearby', placement: 'top',trigger: 'click focus', html: true, content: "<%= escape_javascript render 'locations/nearest' %>"});
+//
+
+
+
+        $('body').on('click', function (e) {
+            $('[data-toggle="popover"]').each(function () {
+                //the 'is' for buttons that trigger popups
+                //the 'has' for icons within a button that triggers a popup
+                if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                    $(this).popover('hide');
+                }
+            });
+        });
+
+
+//            $('#listFilter').show();
+//        });
+
+        $("#location").keyup(function(){
+            // Retrieve the input field text and reset the count to zero
+            var filter = $(this).val(), count = 0;
+
+            // Loop through the comment list
+            $(".notification-place").each(function(){
+
+//
+                // If the list item does not contain the text phrase fade it out
+                if ($(this).text().search(new RegExp(filter, "i")) <= 0) {
+                    $(this).fadeOut();
+
+//
+                    // Show the list item if the phrase matches and increase the count by 1
+                } else {
+                    $(this).show();
+                    count++;
+                }
+            });
+
+            // Update the count
+            var numberItems = count;
+        });
+//        $("#listFilter").hide();
+
+//        var x = document.getElementById("listFilter");
+//        var locations;
+
+        $(document).mouseup(function (e)
+        {
+            var container = $("#location");
+
+            if (!container.is(e.target) // if the target of the click isn't the container...
+                    && container.has(e.target).length === 0) // ... nor a descendant of the container
+            {
+                $("#location").popover('hide');
+
+            }
+        });
+    });
+</script>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for(@lactic_session, remote: remote, :html => {role: :form, 'data-model' => 'lactic_session', :id => "lactic_sessions_form",  :style => 'class:ajax-form; ' }) do |f|   %>
+    <% if @lactic_session.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@lactic_session.errors.count, "error") %> prohibited this LActic from being saved:</h2>
+          <ul>
+            <% @lactic_session.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="form-group">
+      <div class="form-group">
+        <%= f.hidden_field :day_session, :id=>'day_session' %>
+      </div>
+      <!--<ol>-->
+        <div class=" form-group">
+          <div class="actions ">
+            <%= f.submit 'LACtic!', class: 'btn btn-primary submit-lactic' %>
+          </div>
+          <div class="col-xs-12">
+            <%= f.label :title, class: 'control-label'%>
+            <%= f.text_field :title , class: " form-control"%>
+          </div>
+          <div class="col-xs-12">
+            <%= f.label :type, class: 'control-label'%>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownSessionType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Session Type
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu scrollable-menu" id="session-type" aria-labelledby="dropdownSessionType"  role="menu" style="left:50%; margin-left:-100px;">
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">This is...</li>
+                <li style="display: none"><a href="#" ><input class="sesssion-type"  value="null"/></a></li>
+                <li class="sessiontype" value="dance"><a class="dropdown-item session_type" href="#" value="dance">Dance</a></li>
+                <li class="sessiontype"><a class="session_type" href="#" value="cycle">Cycle</a></li>
+                <li class="sessiontype"><a class="session_type" href="#" value="aerobic">Aerobics</a></li>
+                <li class="sessiontype"><a class="session_type" href="#"  value="core">Yoga, Pilates</a></li>
+                <li class="sessiontype"><a class="session_type" href="#"   value="weights">Weights lifting</a></li>
+                <li class="sessiontype"><a class="session_type" href="#"   value="outdoors">Outdoors workout</a></li>
+                <li class="sessiontype"><a class="session_type" href="#"   value="gym">Gym workout</a></li>
+                <li class="sessiontype"><a class="session_type" href="#"   value="run">Running</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+        <%= f.hidden_field :view_type, :value => '' %>
+
+      <!--</ol>-->
+      <div class="col-xs-12">
+        <div class=" form-group">
+
+            <%= f.label :description, class: 'control-label'%>
+            <%= f.text_field :description, class: " form-control"%>
+
+        </div>
+      </div>
+
+      <div class=" form-group ">
+        <p id="datepairExample" class="col-xs-12">
+          <%= f.text_field :time_start, :id=>'time_start', :class => 'time start col-xs-6'%>
+          <%= f.text_field :date_start, :id=>'date_start', :class => 'bdatepicker start col-xs-6' %>
+          <%= f.text_field :time_end,:id=>'time_end', :class => 'time end col-xs-6' %>
+          <%= f.text_field :date_end, :id=>'date_end',:class => 'bdatepicker end col-xs-6'%>
+        </p>
+      </div>
+      <%= f.hidden_field :start_date, :id=>'start_date' %>
+      <%= f.hidden_field :end_date, :id=>'end_date' %>
+      <!--<ol>-->
+        <div class=" form-group">
+          <div class="col-xs-12">
+            <%= f.label :respeat, :class => 'col-xs-6'%>
+            <%= f.select(:repeat, @repeat_options, :class => 'repeat-session col-xs-6')%>
+
+        </div>
+        </div>
+      <!--</ol>-->
+      <!--<ol>-->
+        <div class="form-group">
+          <div class="col-xs-12">
+            <%= f.label :location, class: 'control-label' %><br />
+            <%= f.text_field :location, :id=>'location' , class: " form-control"%>
+            <%= f.hidden_field :location_id, :id=>'location_id' %>
+            <%= f.hidden_field :location_origin, :id=>'location_origin' %>
+            <span id="filter-count" class="help-block"></span>
+
+
+        </div>
+        </div>
+      <!--</ol>-->
+      <!--FIRST VERSION DEFAULT SET TO TRUE-->
+      <!--<ol>-->
+        <!--<div class=" form-group">-->
+          <!--<li>-->
+            <!--<= f.check_box :shared %>-->
+          <!--</li>-->
+        <!--</div>-->
+      <!--</ol>-->
+
+
+    </div>
+<% end %>
+
+
+
+

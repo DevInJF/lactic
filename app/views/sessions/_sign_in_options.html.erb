@@ -1,0 +1,97 @@
+<script>
+   function logInToFB(){
+       $("#log_in_callback").val('true');
+       document.getElementById("fbLoginBtn").style.display = 'none';
+
+       $("#sign-up-closebtn").click(function(){
+//           alert('clicked');
+
+       });
+       $("#modal_sign_up").modal("hide");
+//       location.reload(true);
+
+
+//       var URLl = '<= root_path %>'+'?facebook_sign_in=true'
+//       var URL = 'https://warm-citadel-1598.herokuapp.com/lactic_in';
+       var URL = 'https://warm-citadel-1598.herokuapp.com/auth/facebook';
+//       window.location = URL;
+
+//       var URLl = '<= root_path %>';
+       window.location = URL;
+//       location.reload(true);
+
+
+   }
+</script>
+<%= hidden_field_tag :log_in_callback, '' %>
+
+<div id="content" class="jointoday">
+
+  <form name="searchForm">
+
+<div id="reconnect" class="col-md-12">
+  <div id="fbLoginBtn" style="display: none;">
+    <div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="true" data-auto-logout-link="false" data-scope="public_profile,email,user_friends,user_actions.fitness" onlogin="logInToFB();"></div>
+    <!--<fb:login-button scope="public_profile,email,user_friends,user_actions.fitness" onlogin="checkLoginState();" data-show-faces="true"  >-->
+    <!--</fb:login-button>-->
+
+  </div>
+</div>
+  </form>
+
+
+</div>
+<div id="status" class="headline hero-headline"></div>
+<div id="answers" class="col-md-12">
+    <input type=hidden id="fbIDRespond" name="fbIDRespondName"
+           value=""/>
+    <div id="fb_login_img">
+    </div>
+    <!--</li>-->
+</div>
+
+<!--<li id="power">-->
+
+<div class="col-xs-12">
+    <div id="FBloginDIV" style="display: none;"  >
+
+        <%= link_to "Log In With Facebook",'/auth/facebook', class: "btn btn-primary" %>
+
+    </div>
+
+</div>
+<div class="col-xs-12">
+    <div id="OSMloginDIV" style="display: none;"  >
+        <!--<i class="fa fa-bolt fa-2x fa-pull-right fa-border" aria-hidden="true">-->
+        <a  href='/auth/facebook' class="btn btn-default" id="lacticinid">
+            <i class="fa fa-bolt fa-2x fa-pull-right fa-border" aria-hidden="true"> LActic In!</i>
+            <!--</i>-->
+        </a>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div id="GoogleLogin"  style="display: none;"  >
+        <!--<i class="fa fa-bolt fa-2x fa-pull-right fa-border" aria-hidden="true">-->
+        <%=link_to  google_init_path(:caller => google_sign_in_path), :class => 'transparent-link' do%>
+        Google Sign In
+                  <span class="fa-stack fa-lg ">
+                       <i class="fa fa-square-o fa-stack-2x" aria-hidden="true"></i>
+                       <i class="fa fa-google fa-stack-1x " aria-hidden="true"></i>
+                     </span>
+        <% end %>
+        <!--</i>-->
+
+    </div>
+</div>
+
+<!--<div class="col-xs-12 mock-user-sign-in">-->
+    <!--<div id="LACticMock"  >-->
+        <!--&lt;!&ndash;<i class="fa fa-bolt fa-2x fa-pull-right fa-border" aria-hidden="true">&ndash;&gt;-->
+        <!--< link_to root_path, class: "btn btn-default" do %>-->
+        <!--<i class="fa fa-bolt fa-2x fa-pull-right fa-border" aria-hidden="true"> Mock user sign-in!</i>-->
+        <!--< end %>-->
+        <!--&lt;!&ndash;</i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->

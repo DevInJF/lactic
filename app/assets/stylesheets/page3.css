@@ -1,0 +1,280 @@
+/*.chrome-v5-responsive #body {*/
+    /*margin-top: 68px;*/
+    /*margin-bottom: 10px;*/
+    /*padding:0;*/
+/*}*/
+
+/*#body {*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*width: 980px;*/
+/*}*/
+
+/*#body .hp-nus-wrapper {*/
+    /*padding: 0;*/
+/*}*/
+
+.what-is-linkedin {
+    background: #fff;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.what-is-linkedin .row {
+}
+
+.what-is-linkedin .callouts {
+    background: url(../images/linkedin/bg_grey_cols_273x3_v1.png) top repeat-y;
+    overflow: hidden;
+}
+
+.what-is-linkedin .row:after {
+    content: " 0020";
+    display: block;
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.what-is-linkedin .hero-headline {
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 30px;
+    color: #000;
+    padding-top: 0px;
+    padding-bottom: 50px;
+    text-align: center;
+
+}
+
+.what-is-linkedin .subhead {
+    display: block;
+}
+
+.callouts .callout-headers {
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.callouts .callout {
+    /*margin-left: 10px;*/
+    float: left;
+    /*width: 236px;*/
+    /*padding-left: 10px;*/
+    /*padding-right: 15px;*/
+    margin-top: 0px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.callouts .connect-icn {
+    background-position: 0 -250px;
+}
+
+.callouts .img {
+    background: url('../images/linkedin/icon_optimized_whatislinkedin_icon_sprite_236x750.png') no-repeat;
+    /*width: 236px;*/
+    height: 227px;
+}
+
+ .callouts .connect-icn {
+    background-position: 0 -250px;
+}
+
+.callouts .title {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 22px;
+    color: #000;
+}
+
+.callouts .learn {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+
+ .callouts .profile-icn {
+    background-position: 0 0;
+}
+
+.callouts .connect {
+    margin-left: 10px;
+    float: left;
+    margin-left: 92px;
+    position: relative;
+    /*width: 236px;*/
+}
+
+.callouts .summary {
+    font-size: 13px;
+    line-height: 17px;
+    color: #333;
+    font-weight: normal;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.callouts .share-icn {
+    background-position: 0 -500px;
+}
+
+.what-is-linkedin .join-now {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 0px;
+}
+
+.what-is-linkedin .join-now .join-btn.lu-state-active, .what-is-linkedin .join-now .join-btn.active, .what-is-linkedin .join-now .join-btn:active {
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.25) inset;
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.25) inset;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25) inset;
+}
+.what-is-linkedin .join-now .join-btn.lu-state-hover, .what-is-linkedin .join-now .join-btn.hover, .what-is-linkedin .join-now .join-btn:hover, .what-is-linkedin .join-now .join-btn.lu-state-focus, .what-is-linkedin .join-now .join-btn.focus, .what-is-linkedin .join-now .join-btn:focus {
+    background-color: #eddb11;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEDDB11', endColorstr='#FFF2B21B');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eddb11), color-stop(35%, #efcf14), color-stop(65%, #f1bf18), color-stop(100%, #f2b21b));
+    background-image: -webkit-linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    background-image: -moz-linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    background-image: -o-linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    background-image: linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+.what-is-linkedin .join-now .join-btn.lu-state-hover, .what-is-linkedin .join-now .join-btn.hover, .what-is-linkedin .join-now .join-btn:hover, .what-is-linkedin .join-now .join-btn.lu-state-focus, .what-is-linkedin .join-now .join-btn.focus, .what-is-linkedin .join-now .join-btn:focus {
+    background-color: #eddb11;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFEDDB11', endColorstr='#FFF2B21B');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #eddb11), color-stop(35%, #efcf14), color-stop(65%, #f1bf18), color-stop(100%, #f2b21b));
+    background-image: -webkit-linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    background-image: -moz-linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    background-image: -o-linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    background-image: linear-gradient(top, #eddb11 0%,#efcf14 35%,#f1bf18 65%,#f2b21b 100%);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+}
+.what-is-linkedin .join-now .join-btn {
+    font-weight: bold;
+    border-width: 1px;
+    border-style: solid;
+    cursor: pointer;
+    margin: 0;
+    overflow: visible;
+    text-decoration: none !important;
+    width : auto;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding: 0 15px;
+    height: 34px;
+    line-height: 32px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    background-color: #f6e312;
+    border-color: #e9ac1a;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFF6E312', endColorstr='#FFF9C80D');
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f6e312), color-stop(100%, #f9c80d));
+    background-image: -webkit-linear-gradient(top, #f6e312 0%,#f9c80d 100%);
+    background-image: -moz-linear-gradient(top, #f6e312 0%,#f9c80d 100%);
+    background-image: -o-linear-gradient(top, #f6e312 0%,#f9c80d 100%);
+    background-image: linear-gradient(top, #f6e312 0%,#f9c80d 100%);
+    white-space: nowrap;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+    vertical-align: middle;
+}
+
+.what-is-linkedin .join-now {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 0px;
+}
+
+.what-is-linkedin .join-now .tagline {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    color: #000;
+    padding-left: 0px;
+    padding-right: 15px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    zoom: 1;
+}
+
+/*html {*/
+    /*overflow-y: scroll;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
+    /*border: 0;*/
+    /*outline: 0;*/
+/*}*/
+
+#pagekey-what_is_linkedin {
+    background: #e9e9e9 url('../images/linkedin/texture_grain_200x200_v2.png');
+}
+/*#body, .primary, .wrapper {*/
+    /*clear: both;*/
+/*}*/
+.circular {
+/*width: 150px;*/
+/*height: 150px;*/
+
+    width: 30%;
+height: 30%;
+border-radius: 150px;
+-webkit-border-radius: 150px;
+-moz-border-radius: 150px;
+background: url(http://link-to-your/image.jpg) no-repeat;
+background: no-repeat;
+}
+
+
+.fbOSMlogin {
+    font-size: 18px;
+    color: #666 !important;
+    text-decoration: none;
+    cursor: text;
+
+    margin-left: 0;
+    line-height: 1.5;
+    color: #666;
+    width: 180px;
+    clear: both;
+
+}
+
+
+
+
+/*.ghome #main .jointoday  {*/
+    /*float: right;*/
+    /*text-align: right;*/
+    /*margin-right: 0px;*/
+
+/*}*/
+
+.new_osm:link {color: blue; text-decoration: none; background-color: transparent }
+.new_osm:visited {color: purple; text-decoration: aqua; }
+.new_osm:hover {color: orange; text-decoration: underline; }
+.new_osm:active {color: red; }
+
+.create_osm{
+    align-content: center;
+}
+
+/*.month_calendar td { height: 500px; width: 14.28%; }*/

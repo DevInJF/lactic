@@ -1,0 +1,184 @@
+<style type="text/css">
+    th, td, hr, thead, tbody, .fc-row {
+        border-color: #ccc !important;
+        background: transparent !important;
+    }
+</style>
+<script>
+//    $.noConflict();
+    $(document).ready(function() {
+        function executeQuery() {
+            <% if !@lactic_sessions || @lactic_sessions.empty? %>
+            $.ajax({
+                url: '/lactics',
+                success: function(data) {
+//                    location.reload();
+                    // do something with the return value here if you like
+                }
+            });
+            setTimeout(executeQuery, 7000); // you could choose not to continue on failure...
+            <% end %>
+        }
+        $(document).ready(function() {
+            // run the first time; all subsequent calls will take care of themselves
+            setTimeout(executeQuery, 7000);
+        });
+        function getDayTitle(d){
+            var date  = new Date(d);
+            var weekday = new Array(7);
+            weekday[0]=  "Sunday";
+            weekday[1] = "Monday";
+            weekday[2] = "Tuesday";
+            weekday[3] = "Wednesday";
+            weekday[4] = "Thursday";
+            weekday[5] = "Friday";
+            weekday[6] = "Saturday";
+            return weekday[date.getDay()];
+        }
+        function getHoursTitle(d){
+            var date = new Date(d);
+            var hours = (d.getHours()<10)? "0"+d.getHours() : d.getHours();
+            var minutes = (d.getMinutes()<10)? "0"+d.getMinutes() : d.getMinutes();
+            return hours+":"+minutes;
+        }
+        full_calendar_options=
+        {
+            editable:!0,
+            header:{
+                left:"prev,next",
+                center:"title",
+//            right:"month,agendaWeek,agendaDay"
+                right:"today"
+            },
+            defaultView:"month",
+            height:"500",
+            slotMinutes:15,
+            dragOpacity:.5,
+            selectable: true,
+            selectHelper: true,
+            select:function(t,e,i){
+                //console.log("START "+new Date(t.getTime())+" END "+new Date(e.getTime()));
+//                FullcalendarEngine.Form.display({
+
+
+
+                var allDay_t = i;
+                var now = new Date();
+//                var  date = new Date(start_t);
+                var start_t = new Date(t.getTime());
+                start_t.setHours(now.getHours());
+                var end_t = new Date(start_t);
+                end_t.setHours(start_t.getHours()+1);
+//
+//
+
+                $("#day_session").val(start_t.getDay());
+
+                $("#date_start").val($.datepicker.formatDate("dd M yy", start_t));
+                $("#date_end").val($.datepicker.formatDate("dd M yy", end_t));
+
+                $("#time_start").val(getHoursTitle(start_t));
+                $("#time_end").val(getHoursTitle(end_t));
+//                console.log(getDayTitle(start_t)+"s LACtic Session");
+//                alert(getDayTitle(start_t)+"s LACtic Session");
+                var title = getDayTitle(start_t)+"'s LACtic Session";
+                $('#modal-title-id').html(title);
+                $('.modal-title').html(title);
+//                $('#session-modal-title').html(title);
+                $("#modal_form_addappt").modal();
+                $('#calendar').fullCalendar('unselect');
+//                })
+            },
+//            select: function(start, end) {
+//                var  date = new Date(start);
+//                $("#day_session").val(date.getDay());
+////                $("#start_date").val(date);
+////                $("#time_start").val(getHoursTitle(start));
+////                $("#time_end").val(getHoursTitle(end));
+//                $('#modal-title-id').html(getDayTitle(start)+"s LACtic Session");
+//                $('#modal_form_addappt').modal();
+//                $('#calendar').fullCalendar('unselect');
+//            },
+            editable: true,
+            eventLimit: true,
+            timeFormat:"h:mm t{ - h:mm t}",
+            ignoreTimezone:!1,
+            allDayDefault:!0,
+            //layout:"fullcalendar",
+            //mount_path:"/fullcalendar/demo",
+            events:'/lactics'
+        }
+        $('#calendar').fullCalendar(full_calendar_options);
+        $('.hint').click(function() {
+            $('#modal_form_addappt').modal();
+        });
+    });
+
+</script>
+
+
+<%= render 'layouts/shared/header'  %>
+<div id="main" class="main-view footer-padding" style="opacity: 1;">
+  <div class="home-page">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 timer-holder">
+
+      <p id="notice"><%= notice %></p>
+      <div class="modal fade" id="modal_form_addappt" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header" id="session-modal-title">
+              <h3 class="modal-title" id="modal-title-id"></h3>
+            </div>
+            <div class="modal-body">
+              <%= render 'form'  %>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!--<div class="col-xs-12 form-group margin-bottom-large">-->
+      <h1 class="col-sm-offset-4 col-sm-4 col-xs-12 calendar-title">
+          Click on a day to create a new session</h1>
+
+
+
+
+      <div class="session-color-define row">
+        <label class="fc-event-invite col-xs-2 col-xs-offset-1">Invites</label>
+        <label class="fc-event col-xs-2 col-xs-offset-1">My</label>
+        <label class="fc-event-friend col-xs-2 col-xs-offset-1">Match</label>
+
+      </div>
+
+      <!--<div class="session-color-define row">-->
+        <!--<label class="fc-event-invite col-md-4 col-md-offset-0">Invites</label>-->
+        <!--<label class="fc-event col-md-4 col-md-offset-0">My</label>-->
+        <!--<label class="fc-event-friend col-md-4 col-md-offset-0">Match</label>-->
+
+      <!--</div>-->
+      <!--</div>-->
+      <% if @lactic_sessions %>
+          <div class="landing-event-time">
+            <%= render 'layouts/shared/lactic_calendar'  %>
+      <% end %>
+      <% if @lactic_sessions %>
+
+      <% else %>
+          <h2>No LACtic Sessions Found!</h2>
+      <% end %>
+      <br>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<%= render 'layouts/shared/footer'  %>

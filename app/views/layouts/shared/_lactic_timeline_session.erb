@@ -1,0 +1,60 @@
+
+        <%= link_to(lactic_session) do %>
+          <!--<li>-->
+            <div class="avatar">
+              <% @profile_path = "https://graph.facebook.com/#{lactic_session.creator_fb_id}/picture?type=large" %>
+              <% if lactic_session.creator_fb_id == get_current_session_user.uid%>
+                  <%= link_to(image_tag(@profile_path), profile_path)%>
+              <% else %>
+                  <%= link_to  "/public_profile?id=#{lactic_session.creator_fb_id}" do %>
+                      <%= image_tag(@profile_path)%>
+
+                  <% end %>
+              <% end %>
+              <!--<div class="hover">-->
+                <!--<div class="icon-twitter"></div>-->
+              <!--</div>-->
+            </div>
+
+            <!--<div class="bubble-container">-->
+              <div class="bubble">
+              <div class="timeline-item">
+                <div class="retweet">
+                  <!--<div class="icon-retweet"></div>-->
+                  <div class="icon-mail-reply action">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <!--<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>-->
+                    <% if lactic_session.location %>
+                        <!--&lt;!&ndash;<h3 >Location :</h3>&ndash;&gt;-->
+
+                        <% if lactic_session.location_id &&  lactic_session.location != "" %>
+
+                            <!--<a target="_blank" href="http://facebook.com/<%=lactic_session.location_id %>"><span >-->
+                            <%= lactic_session.location %>.
+                            <!--</span></a>-->
+
+                        <% end %>
+                    <% end %>
+
+                  </div>
+                </div>
+                <h3 class="timeline-title"><%=lactic_session.title%></h3><br/>
+                <% desc ||= lactic_session.description || "#{lactic_session.title} LACtic session" %>
+                <p class="event-description"><%= desc %>.</p>
+                <!--<div class="over-bubble">-->
+
+                  <!--<div class="icon-retweet action"></div>-->
+                  <!--<div class="icon-star"></div>-->
+                <h4>
+                  <%= link_to 'More details', lactic_session_path(lactic_session), :class => 'new_osm' %>
+
+                </h4>
+
+                <!--</div>-->
+              <!--</div>-->
+              </div>
+
+              <!--<div class="arrow"></div>-->
+            </div>
+          <!--</li>-->
+        <% end %>

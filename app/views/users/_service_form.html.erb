@@ -1,0 +1,99 @@
+<script>
+    $(document).ready(function() {
+//        Preventing ENTER key from submitting the form
+        $("form").on("keypress", ":input:not(textarea)", function (e) {
+            if (e.keyCode == 13) {
+                return false;
+            }
+        });
+        var selected = [];
+
+        $('.service-category').click(function () {
+            if ($(this).val() != 'null') {
+                if ($(this).is(':checked')) {
+                    if ($(this).val() != 'null' && selected.indexOf($(this).val()) == -1) {
+                        selected.push($(this).val());
+                    }
+                }
+                else {
+                    if  (selected.indexOf($(this).val())!=-1){
+                        selected.splice(selected.indexOf($(this).val()), 1);
+                    }
+                }
+            }
+            $("#user_info_keywords_service_about").val(selected);
+//            e.stopPropagation();
+        });
+    });
+</script>
+
+
+<%= form_for(@user_info, :url => update_user_info_path( @user_info, :user_about => @user_info.about ),:html => {:id => "user_info_form",  :style => 'class:ajax-form;' }) do |f| %>
+
+
+    <div class="error" style="display:none"></div>
+    <% if @user_info.errors.any? %>
+        <div id="error_explanation"></div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-xs-12 center-settings">
+      <h3> Service information editing </h3>
+    </div>
+    </div>
+
+
+
+
+      <div class="row">
+        <div class="col-xs-12 center-settings">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              Public service profile
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu scrollable-menu" aria-labelledby="dropdownMenu1"  role="menu" style="left:50%; margin-left:-100px;">
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">This is...</li>
+              <li style="display: none"><a href="#" ><input class="service-category" type="checkbox" value="null"/></a></li>
+              <li class="scategory"><a href="#" ><input  class="service-category" type="checkbox" value="gym"/>Gym</a></li>
+              <li class="scategory"><a href="#" ><input   class="service-category" type="checkbox" value="studio"/>Studio</a></li>
+              <li class="scategory"><a href="#" ><input   class="service-category" type="checkbox" value="crossfit"/>CrossFit</a></li>
+              <!--<li role="separator" class="divider"></li>-->
+                <!--<li class="dropdown-header">Specialize in</li>-->
+                <!--<li class="scategory"><a href="#" ><input type="checkbox"/>Weight training</a></li>-->
+                <!--<li class="scategory"><a href="#" ><input type="checkbox"/>Cardio training</a></li>-->
+                <!--<li class="scategory"><a href="#" ><input type="checkbox"/>Dance</a></li>-->
+                <!--<li class="scategory"><a href="#" ><input type="checkbox"/>Weight lose</a></li>-->
+                <!--<li class="scategory"><a href="#" ><input type="checkbox"/>Outdoors Activities</a></li>-->
+                <!--<li role="separator" class="divider"></li>-->
+                <!--<li class="dropdown-header">Other</li>-->
+              <!--<li class="dropdown-header">Other</li>-->
+              <!--<li class="scategory"><a href="#" ><= f.text_field :keyword_service_about %></a></li>-->
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="row">
+      <!--<div class="row">-->
+      <div class="col-xs-12 center-settings">
+        <%= f.label :Some_details_about_it%>
+        <%= f.text_field :more_about , class: "form-control vresize about-input"%>
+      </div>
+
+    </div>
+      <div class="row">
+        <div class="col-xs-12 center-settings">
+          <%= f.submit "Edit", class: 'btn btn-primary'%>
+        </div>
+      </div>
+      <%= f.hidden_field :id %>
+      <%= f.hidden_field :public_service, :value => true %>
+      <%= f.hidden_field :keywords_service_about, :value => Array.new %>
+      <%= f.hidden_field :latitude, :value => @user_info.latitude %>
+      <%= f.hidden_field :longitude, :value => @user_info.longitude %>
+    <!--</div>-->
+
+<% end %>
